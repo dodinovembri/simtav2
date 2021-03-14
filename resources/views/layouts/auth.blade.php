@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Skripsi Management Information System">
+    <meta name="author" content="SI Fasilkom Unsri">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/logo.png') }}">
+
+    <title>Authentication</title>
+
+    <!-- vendor css -->
+    <link href="{{ asset('theme/lib/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('theme/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
+
+    <!-- template css -->
+    <link rel="stylesheet" href="{{ asset('theme/assets/css/cassie.css') }}">
+
+  </head>
+  <body>
+
+    @yield('content')
+
+    <script src="{{ asset('theme/lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('theme/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('theme/lib/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('theme/lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+
+    <script>
+      $(function(){
+
+        'use strict'
+
+        feather.replace();
+
+        new PerfectScrollbar('.signin-sidebar', {
+          suppressScrollX: true
+        });
+
+      })
+    </script>
+    <script src="{{ asset('theme/assets/js/svg-inline.js') }}"></script>
+  </body>
+</html>
