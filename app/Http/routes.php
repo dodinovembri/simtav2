@@ -39,7 +39,16 @@ Route::group(['prefix' => 'lecturer'], function()
 	Route::post('update/{id}', ['uses' => 'System\LecturerController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\LecturerController@destroy']);
 });
-
+Route::group(['prefix' => 'college_student'], function()
+{
+	Route::get('', ['uses' => 'System\CollegeStudentController@index']);
+	Route::get('create', ['uses' => 'System\CollegeStudentController@create']);
+	Route::post('store', ['uses' => 'System\CollegeStudentController@store']);
+	Route::get('show/{id}', ['uses' => 'System\CollegeStudentController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentController@edit']);
+	Route::post('update/{id}', ['uses' => 'System\CollegeStudentController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentController@destroy']);
+});
 /** 
  * 
  * Master Data routes

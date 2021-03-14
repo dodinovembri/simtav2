@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\PersonModel;
-use Auth;
 use Ramsey\Uuid\Uuid;
 
 class LecturerController extends Controller {

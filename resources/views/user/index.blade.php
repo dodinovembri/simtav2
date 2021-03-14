@@ -7,7 +7,7 @@
 	<div class="content">
 
 		@include('components.header')
-		@include('components.function')
+		@include('components.helper')
 
 		<div class="content-header">
 			<div>
