@@ -1,15 +1,14 @@
 <?php namespace App\Http\Controllers\System;
+// Collage Student = Mahasiswa
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\StudentThesisModel;
 
-use App\Models\UserModel;
-use App\Models\PersonModel;
-use Ramsey\Uuid\Uuid;
-
-class UserController extends Controller {
+class ManageStudentThesisController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -18,8 +17,9 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$data['users'] = UserModel::orderBy('created_at')->get();
-		return view('user.index', $data);
+		$lecturer_id = Auth::user()->id;
+		$data['student_thesis'] = StudentThesisModel::where('lecturer_id', $lecturer_id)->get();
+		return view('student_thesis.index', $data);
 	}
 
 	/**
@@ -29,8 +29,7 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
-		$data['person'] = PersonModel::where('status', 1)->get();
-		return view('user.create', $data);
+		// 
 	}
 
 	/**
@@ -40,21 +39,7 @@ class UserController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$new_user = $request->new_user;
-		foreach ($new_user as $key => $value) {
-			$find_to_person = PersonModel::find($value);
-
-			$save_to_user = new UserModel();
-			$save_to_user->id = Uuid::uuid4();
-			$save_to_user->status = 1;
-			$save_to_user->person_id = $find_to_person->id;
-			$save_to_user->username = isset($find_to_person->nim) ? $find_to_person->nim : $find_to_person->nip;
-			$save_to_user->password = isset($find_to_person->nim) ? bcrypt($find_to_person->nim) : bcrypt($find_to_person->nip);
-			$save_to_user->user_type_code = $find_to_person->person_type_code;
-			$save_to_user->save();
-		}
-
-		return redirect(url('user'))->with('success', "Berhasil menambahkan data User!");
+		// 
 	}
 
 	/**
@@ -65,7 +50,7 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		$data = UserModel::find($id);		
+		//
 	}
 
 	/**
@@ -98,7 +83,7 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		// 
 	}
 
 }
