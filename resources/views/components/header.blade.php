@@ -75,7 +75,7 @@
 							<a href="" class="dropdown-item"><i data-feather="edit-2"></i> Edit Profile</a>
 							<a href="" class="dropdown-item"><i data-feather="briefcase"></i> Account Settings</a>
 							<a href="" class="dropdown-item"><i data-feather="shield"></i> Privacy Settings</a>
-							<a href="" class="dropdown-item"><i data-feather="log-out"></i> Sign Out</a>
+							<a href="{{ url('auth/logout') }}" class="dropdown-item"><i data-feather="log-out"></i> Sign Out</a>
 						</div>
 					</div><!-- dropdown-menu -->
 				</div>

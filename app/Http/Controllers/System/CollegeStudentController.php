@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\PersonModel;
+use App\Models\UserModel;
+use Ramsey\Uuid\Uuid;
 
 class CollegeStudentController extends Controller {
 
@@ -27,7 +29,7 @@ class CollegeStudentController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('college_student.create');
 	}
 
 	/**
@@ -35,9 +37,32 @@ class CollegeStudentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$check = PersonModel::where('nim', $request->nim)->first();
+		if ($check) {
+			return redirect(url('college_student'))->with('info', "Data Mahasiswa sudah tersedia!");
+		}else{
+			$insert                   = new PersonModel();
+			$insert->id               = Uuid::uuid4();
+			$insert->status           = 1;
+			$insert->nim              = $request->nim;
+			$insert->given_name       = $request->given_name;
+			$insert->middle_name      = $request->middle_name;
+			$insert->surname          = $request->surname;
+			$insert->person_type_code = 4;
+			$insert->save();
+
+			$insert_user                 = new UserModel();
+			$insert_user->id             = Uuid::uuid4();
+			$insert_user->status         = 1;
+			$insert_user->username       = $request->nim;
+			$insert_user->password       = bcrypt($request->nim);
+			$insert_user->user_type_code = 4;
+			$insert_user->save();
+
+			return redirect(url('college_student'))->with('success', "Berhasil menambahkan data Mahasiswa!");
+		}
 	}
 
 	/**
@@ -81,7 +106,10 @@ class CollegeStudentController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = PersonModel::find($id);
+		$delete->delete();
+
+		return redirect(url('college_student'))->with('success', "Berhasil menghapus data Mahasiswa!");
 	}
 
 }

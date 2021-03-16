@@ -16,7 +16,7 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		$data['users'] = UserModel::all();
+		$data['users'] = UserModel::orderBy('created_at')->get();
 		return view('user.index', $data);
 	}
 

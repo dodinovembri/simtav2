@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\PersonModel;
+use App\Models\UserModel;
 use Ramsey\Uuid\Uuid;
 
 class LecturerController extends Controller {
@@ -51,6 +52,14 @@ class LecturerController extends Controller {
 			$insert->surname          = $request->surname;
 			$insert->person_type_code = 3;
 			$insert->save();
+
+			$insert_user                 = new UserModel();
+			$insert_user->id               = Uuid::uuid4();
+			$insert_user->status           = 1;
+			$insert_user->username       = $request->nip;
+			$insert_user->password       = bcrypt($request->nip);
+			$insert_user->user_type_code = 3;
+			$insert_user->save();
 
 			return redirect(url('lecturer'))->with('success', "Berhasil menambahkan data Dosen!");
 		}
@@ -106,7 +115,10 @@ class LecturerController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = PersonModel::find($id);
+		$delete->delete();
+
+		return redirect(url('lecturer'))->with('success', "Berhasil menghapus data Dosen!");
 	}
 
 }

@@ -56,7 +56,7 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>NIP</th>
+									<th>NIM</th>
 									<th>Nama</th>
 									<th>Tipe</th>
 									<th>Status</th>
@@ -69,7 +69,7 @@
 									$no++; ?>
 									<tr>
 										<td>{{ $no }}</td>
-										<td>{{ $value->nip }}</td>
+										<td>{{ $value->nim }}</td>
 										<td>{{ $value->given_name." ".$value->middle_name." ".$value->surname }}</td>
 										<td><?php echo CheckUserType($value->person_type_code); ?></td>
 										<td><?php echo CheckStatus($value->status); ?></td>

@@ -24,14 +24,14 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('lecturer/store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('college_student/store') }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
                                 <hr>
                                 <div class="form-group">
-                                    <label class="form-label">NIP</label>
-                                    <input type="text" class="form-control" name="nip" placeholder="Enter dosen NIP">
+                                    <label class="form-label">NIM</label>
+                                    <input type="text" class="form-control" name="nim" placeholder="Masukkan NIM">
                                     <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
                                 </div><!-- form-group -->
 
@@ -50,7 +50,7 @@
                                 <hr class="op-0">
 
                                 <button class="btn btn-brand-02">Save Product</button>
-                                <button class="btn btn-white mg-l-2">Reset Changes</button>
+                                <button type="button" class="btn btn-white mg-l-2">Reset Changes</button>
                             </div><!-- tab-pane -->
                         </form>
                     </div><!-- tab-content -->

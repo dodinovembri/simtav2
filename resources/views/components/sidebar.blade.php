@@ -18,7 +18,7 @@
 			<li class="nav-item"><a href="{{ url('user') }}" class="nav-link"><i data-feather="list"></i> Syarat Kompre </a></li>
 
 			<li class="nav-label"><label class="content-label">Master Data</label></li>
-			<li class="nav-item"><a href="{{ url('user') }}" class="nav-link"><i data-feather="user"></i> User Pengguna </a></li>
+			<li class="nav-item"><a href="{{ url('user') }}" class="nav-link {{ (Request::is('user')) || (Request::is('user/*')) ? 'active' : '' }}"><i data-feather="user"></i> User Pengguna </a></li>
 			<li class="nav-item"><a href="{{ url('field_of_study') }}" class="nav-link {{ (Request::is('field_of_study')) || (Request::is('field_of_study/*')) ? 'active' : '' }}"><i data-feather="clipboard"></i> Bidang Studi </a></li>
 			<li class="nav-item"><a href="{{ url('year_of_education') }}" class="nav-link"><i data-feather="calendar"></i> Angkatan </a></li>
 			<li class="nav-item"><a href="{{ url('user') }}" class="nav-link"><i data-feather="list"></i> Jurusan </a></li>

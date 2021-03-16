@@ -24,7 +24,7 @@
                 <div class="signin-form">
                     <div class="form-group">
                         <label>Email address</label>
-                        <input type="email" class="form-control" name="email" placeholder="Enter your email address" required="">
+                        <input type="text" class="form-control" name="username" placeholder="Enter your email address" required="">
                     </div>
                     <div class="form-group">
                         <label class="d-flex justify-content-between">
