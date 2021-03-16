@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\ComprehensiveRequirementModel;
 
 class ComprehensiveRequirementController extends Controller {
 
@@ -15,7 +16,8 @@ class ComprehensiveRequirementController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data['comprehensive_requirements'] = ComprehensiveRequirementModel::all();
+		return view('comprehensive_requirement.index', $data);
 	}
 
 	/**

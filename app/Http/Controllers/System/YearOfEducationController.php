@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\YearOfEducationModel;
 
 class YearOfEducationController extends Controller {
 
@@ -15,7 +16,8 @@ class YearOfEducationController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data['year_of_educations'] = YearOfEducationModel::all();
+		return view('year_of_education.index', $data);
 	}
 
 	/**

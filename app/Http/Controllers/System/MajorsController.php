@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\MajorsModel;
 
 class MajorsController extends Controller {
 
@@ -15,7 +16,8 @@ class MajorsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data['majors'] = MajorsModel::all();
+		return view('majors.index', $data);
 	}
 
 	/**

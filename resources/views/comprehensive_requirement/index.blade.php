@@ -14,10 +14,10 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">User</li>
+					<li class="breadcrumb-item active" aria-current="page">Syarat Kompre</li>
 				</ol>
 			</nav>
-			<h4 class="content-title content-title-xs">List User</h4>
+			<h4 class="content-title content-title-xs">List Syarat Kompre</h4>
 		</div>
 	</div>
 	<div class="content-body">
@@ -25,7 +25,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
-						<a href="{{ url('user/create') }}">
+						<a href="{{ url('proposal_seminar_requirement/create') }}">
 							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
 						</a><br><br>
 						@if(session()->has('success'))
@@ -47,25 +47,24 @@
 						<table id="example1" class="table">
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Username</th>
-									<th>Type</th>
-									<th>Status</th>
-									<th>Actions</th>
+									<th class="wd-20p">No</th>
+									<th class="wd-25p">Kode Syarat Kompre</th>
+									<th class="wd-20p">Nama Syarat Kompre</th>
+									<th class="wd-15p">Status</th>
+									<th class="wd-20p">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-							<?php $no = 0;
-								foreach ($users as $key => $value) {
+								<?php $no = 0;
+								foreach ($comprehensive_requirements as $key => $value) {
 									$no++; ?>
 									<tr>
 										<td>{{ $no }}</td>
-										<td>{{ $value->username }}</td>
-										<td><?php echo CheckUserType($value->user_type_code); ?></td>
+										<td>{{ $value->proposal_seminar_requirement_code }}</td>
+										<td>{{ $value->proposal_seminar_requirement_name }}</td>
 										<td><?php echo CheckStatus($value->status); ?></td>
 										<td>
-											<a href="{{ url('user/show', $value->id) }}"><i class="fa fa-eye"></i></a>
-											<a href="{{ url('user/edit', $value->id) }}"><i class="fa fa-edit" style="margin-left: 8px"></i></a>
+											<a href="{{ url('proposal_seminar_requirement/edit', $value->id) }}"><i class="fa fa-edit" style="margin-left: 8px"></i></a>
 											<a href="#modal1{{$value->id}}" data-toggle="modal"><i class="fa fa-trash" style="margin-left: 8px"></i></a>
 										</td>
 									</tr>
@@ -83,7 +82,7 @@
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary rounded-5" data-dismiss="modal">Cancel</button>
-													<a href="{{ url('user/destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
+													<a href="{{ url('proposal_seminar_requirement/destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
 												</div>
 											</div>
 										</div>

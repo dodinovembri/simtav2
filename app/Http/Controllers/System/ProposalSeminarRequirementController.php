@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\ProposalSeminarRequirementModel;
 
 class ProposalSeminarRequirementController extends Controller {
 
@@ -15,7 +16,8 @@ class ProposalSeminarRequirementController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data['proposal_seminar_requirements'] = ProposalSeminarRequirementModel::all();
+		return view('proposal_seminar_requirement.index', $data);
 	}
 
 	/**

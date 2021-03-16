@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\ThesisTopicModel;
 
 class ThesisTopicController extends Controller {
 
@@ -15,7 +16,8 @@ class ThesisTopicController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data['thesis_topics'] = ThesisTopicModel::all();
+		return view('thesis_topic.index', $data);
 	}
 
 	/**
