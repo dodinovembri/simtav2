@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2021 at 09:42 AM
+-- Generation Time: Mar 17, 2021 at 01:22 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -19,6 +19,40 @@ SET time_zone = "+00:00";
 --
 -- Database: `simtav2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `business_entity`
+--
+
+CREATE TABLE `business_entity` (
+  `id` varchar(36) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `creator_id` varchar(36) DEFAULT NULL,
+  `updater_id` varchar(36) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `business_entity_document`
+--
+
+CREATE TABLE `business_entity_document` (
+  `id` varchar(36) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `creator_id` varchar(36) DEFAULT NULL,
+  `updater_id` varchar(36) DEFAULT NULL,
+  `business_entity_id` varchar(36) NOT NULL,
+  `document_id` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -192,8 +226,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
-('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-16 08:07:08', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$10$0l4zMMAsqtlBDb7A8UKVDe6Ipqa/4ozmPTc6SngKASALaAzJdlUw6', 'jlujMbAYocJjm83cawFs9EktqQnyXJsFPgFoeMqN7SsYqQFN3wm9C6eRLdXC', 2),
-('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-16 08:12:09', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', '4kHL9Zt5N80pRqdc5PYZvlfNkjTfCXX6YZcP5NuVtz5wpxvebpdHWqazXA8E', 1),
+('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-16 12:37:43', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$10$0l4zMMAsqtlBDb7A8UKVDe6Ipqa/4ozmPTc6SngKASALaAzJdlUw6', '6hrgTgkxAgkHdc058BnyjWElQrIyZBvPFI3W4pPvTOeVPNB1EWdquChhIwrb', 2),
+('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-16 12:35:00', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520103', '$2y$10$fTCkfy4wDfSHjmXyT35bBOEdnmwatA1eygIM8fy/lzImzVvNa0Qxa', NULL, 4),
+('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-16 12:54:21', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'xMmctl3kFAPfhNh6Cqu6N3A5c4yrtU5iBG3zIBTgOPhF3oyGgVl57nxQ7iOn', 1),
 ('fdd40e9f-ec2c-4987-987b-3024266fbf86', 1, NULL, '2021-03-16 07:59:21', '2021-03-16 07:59:21', NULL, NULL, '48a93040-862b-11eb-8b4d-c0b5d79bd8c4', '09031181520124', '$2y$10$Y0Veggk6CFISpAk5/F9FKeGO5wuny60TeJRAKH6ibLO3NEsL.LlXe', NULL, 3);
 
 -- --------------------------------------------------------
@@ -218,6 +253,18 @@ CREATE TABLE `year_of_education` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `business_entity`
+--
+ALTER TABLE `business_entity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `business_entity_document`
+--
+ALTER TABLE `business_entity_document`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `comprehensive_requirement`
