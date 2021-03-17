@@ -8,13 +8,6 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\PersonModel;
-use App\Models\UserModel;
-use Ramsey\Uuid\Uuid;
-use Auth;
-use Illuminate\Support\Facades\Validator;
-use App\Models\MultimediaDescriptionModel;
-use App\Models\DocumentModel;
-use App\Models\BusinessEntityDocument;
 
 class CollegeStudentThesisController extends Controller
 {
@@ -37,32 +30,7 @@ class CollegeStudentThesisController extends Controller
 
 	public function store_kkt_file(Request $request)
 	{
-		return $request->all();
-		$creator_id            = Auth::user()->id;
-		$person_id             = Auth::user()->person_id;
-		$information_type_code = $request->information_type_code;
-		$kkt_file              = $request->kkt_file;
-		$total_sks_now         = $request->total_sks_now;
-		$total_sks_transkrip   = $request->total_sks_transkrip;
-
-		foreach ($information_type_code as $key => $value) {
-			$insert_to_multimedia                        = new MultimediaDescriptionModel();
-			$insert_to_multimedia->id                    = Uuid::uuid4();
-			$insert_to_multimedia->status                = 1;
-			$insert_to_multimedia->creator_id            = $creator_id;
-			$insert_to_multimedia->information_type_code = $value;
-			$insert_to_multimedia->file_name             = uniqid() . '.' . $file->getClientOriginalExtension();
-			$insert_to_multimedia->original_file_name    = $file->getClientOriginalExtension();
-			$insert_to_multimedia->url                   = $request->$kkt_file[$key]->path();
-			$insert_to_multimedia->save();
-
-			// $insert_to_person_asset                            = new PersonAssetModel();
-			// $insert_to_person_asset->person_id                 = $person_id;
-			// $insert_to_person_asset->multimedia_description_id = $insert_to_multimedia->id;
-			// $insert_to_person_asset->save();
-		}
-
-		return redirect(url('college_student_thesis'))->with('success', "Anda telah berhasil menambahkan KRS, KP dan Transkrip File!");
+		// 
 	}
 
 	/**
@@ -82,30 +50,7 @@ class CollegeStudentThesisController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$check = PersonModel::where('nim', $request->nim)->first();
-		if ($check) {
-			return redirect(url('college_student'))->with('info', "Data Mahasiswa sudah tersedia!");
-		} else {
-			$insert                   = new PersonModel();
-			$insert->id               = Uuid::uuid4();
-			$insert->status           = 1;
-			$insert->nim              = $request->nim;
-			$insert->given_name       = $request->given_name;
-			$insert->middle_name      = $request->middle_name;
-			$insert->surname          = $request->surname;
-			$insert->person_type_code = 4;
-			$insert->save();
-
-			$insert_user                 = new UserModel();
-			$insert_user->id             = Uuid::uuid4();
-			$insert_user->status         = 1;
-			$insert_user->username       = $request->nim;
-			$insert_user->password       = bcrypt($request->nim);
-			$insert_user->user_type_code = 4;
-			$insert_user->save();
-
-			return redirect(url('college_student'))->with('success', "Berhasil menambahkan data Mahasiswa!");
-		}
+		// 
 	}
 
 	/**

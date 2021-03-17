@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('college_student_thesis/store_kkt_file') }}" method="POST" enctype="multipart/form-data" id="kktForm">
+                        <form action="{{ url('my_thesis/store_kkt_file') }}" method="POST" enctype="multipart/form-data" id="kktForm">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
@@ -62,7 +62,7 @@
                                 <hr class="op-0">
 
                                 <button class="btn btn-brand-02">Save</button>
-                                <a href="{{ url('college_student_thesis') }}"><button type="button" class="btn btn-white mg-l-2">Cancel</button></a>
+                                <a href="{{ url('my_thesis') }}"><button type="button" class="btn btn-white mg-l-2">Cancel</button></a>
                             </div><!-- tab-pane -->
                         </form>
                         <script>

@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BusinessEntityModel extends Model {
+class PersonAssetModel extends Model {
 
-    public $table ='business_entity';
+    public $table ='person_asset';
     public $guarded ='[]';
 
 }

@@ -35,7 +35,7 @@
 			<?php }elseif (Auth::user()->user_type_code == 4){ ?>
 				<li class="nav-label"><label class="content-label">Transactions</label></li>
 				<li class="nav-item"><a href="{{ url('home') }}" class="nav-link {{ (Request::is('home')) ? 'active' : '' }}"><i data-feather="bar-chart-2"></i> Dashboard </a></li>
-				<li class="nav-item"><a href="{{ url('college_student_thesis') }}" class="nav-link {{ (Request::is('college_student_thesis')) || (Request::is('college_student_thesis/*')) ? 'active' : '' }}"><i data-feather="activity"></i> Skripsi Saya </a></li>
+				<li class="nav-item"><a href="{{ url('my_thesis') }}" class="nav-link {{ (Request::is('my_thesis')) || (Request::is('my_thesis/*')) ? 'active' : '' }}"><i data-feather="activity"></i> Skripsi Saya </a></li>
 			<?php } ?>
 		</ul>
 	</div>

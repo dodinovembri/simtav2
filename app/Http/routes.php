@@ -20,24 +20,7 @@ Route::controllers([
 ]);
 
 /**
- * Transactions routes
- */
-Route::group(['prefix' => 'college_student_thesis'], function()
-{
-	Route::get('', ['uses' => 'System\CollegeStudentThesisController@index']);
-	Route::get('create', ['uses' => 'System\CollegeStudentThesisController@create']);
-	Route::get('store', ['uses' => 'System\CollegeStudentThesisController@store']);
-	Route::get('show/{id}', ['uses' => 'System\CollegeStudentThesisController@show']);
-	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentThesisController@edit']);
-	Route::get('update/{id}', ['uses' => 'System\CollegeStudentThesisController@update']);
-	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
-
-	// krs, kp dan transkrip nilai (kkt) file routes
-	Route::get('create_kkt_file', ['uses' => 'System\CollegeStudentThesisController@create_kkt_file']);
-	Route::post('store_kkt_file', ['uses' => 'System\CollegeStudentThesisController@store_kkt_file']);
-});
-
-/**
+ * For Administrator
  * Data routes
  */
 Route::group(['prefix' => 'user'], function()
@@ -91,6 +74,20 @@ Route::group(['prefix' => 'comprehensive_requirement'], function()
 	Route::get('destroy/{id}', ['uses' => 'System\ComprehensiveRequirementController@destroy']);
 });
 
+/**
+ * For Manager
+ * Transaction routes
+ */
+Route::group(['prefix' => 'college_student_thesis'], function()
+{
+	Route::get('', ['uses' => 'System\CollegeStudentThesisController@index']);
+	Route::get('create', ['uses' => 'System\CollegeStudentThesisController@create']);
+	Route::post('store', ['uses' => 'System\CollegeStudentThesisController@store']);
+	Route::get('show/{id}', ['uses' => 'System\CollegeStudentThesisController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentThesisController@edit']);
+	Route::post('update/{id}', ['uses' => 'System\CollegeStudentThesisController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
+});
 /** 
  * 
  * Master Data routes
@@ -150,4 +147,23 @@ Route::group(['prefix' => 'manage_student_thesis'], function()
 	Route::get('edit/{id}', ['uses' => 'System\ManageStudentThesisController@edit']);
 	Route::post('update/{id}', ['uses' => 'System\ManageStudentThesisController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\ManageStudentThesisController@destroy']);
+});
+
+/**
+ * For College Student
+ * Transactions routes
+ */
+Route::group(['prefix' => 'my_thesis'], function()
+{
+	Route::get('', ['uses' => 'System\MyThesisController@index']);
+	Route::get('create', ['uses' => 'System\MyThesisController@create']);
+	Route::get('store', ['uses' => 'System\MyThesisController@store']);
+	Route::get('show/{id}', ['uses' => 'System\MyThesisController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\MyThesisController@edit']);
+	Route::get('update/{id}', ['uses' => 'System\MyThesisController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\MyThesisController@destroy']);
+
+	// krs, kp dan transkrip nilai (kkt) file routes
+	Route::get('create_kkt_file', ['uses' => 'System\MyThesisController@create_kkt_file']);
+	Route::post('store_kkt_file', ['uses' => 'System\MyThesisController@store_kkt_file']);
 });
