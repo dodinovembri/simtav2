@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2021 at 11:04 AM
+-- Generation Time: Mar 17, 2021 at 04:25 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -242,6 +242,13 @@ CREATE TABLE `thesis_topic` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `thesis_topic`
+--
+
+INSERT INTO `thesis_topic` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `thesis_topic_code`, `thesis_topic_name`, `description`) VALUES
+('2b54d07f-8c89-4fc1-a57c-50dec3c2c006', 1, NULL, '2021-03-17 15:08:23', '2021-03-17 15:13:49', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'SPK', 'Sistem Pendukung Keputusan', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -269,7 +276,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
 ('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-17 08:33:33', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$10$0l4zMMAsqtlBDb7A8UKVDe6Ipqa/4ozmPTc6SngKASALaAzJdlUw6', 'VumOvZetoTkKoHMKG7ZS4dXhZdaUKcCEPnHsSlWOcNYh5KWrLVpnrL6ppZjt', 2),
-('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-16 12:35:00', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520103', '$2y$10$fTCkfy4wDfSHjmXyT35bBOEdnmwatA1eygIM8fy/lzImzVvNa0Qxa', NULL, 4),
+('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-17 13:24:32', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520103', '$2y$10$fTCkfy4wDfSHjmXyT35bBOEdnmwatA1eygIM8fy/lzImzVvNa0Qxa', 'vHGaL1uBc2fZKguY5itFWgkejhJAvvk3raSJLUdmhACtgSnLWkLDUaEv1FUF', 4),
 ('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-16 12:54:21', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'xMmctl3kFAPfhNh6Cqu6N3A5c4yrtU5iBG3zIBTgOPhF3oyGgVl57nxQ7iOn', 1),
 ('fdd40e9f-ec2c-4987-987b-3024266fbf86', 1, NULL, '2021-03-16 07:59:21', '2021-03-16 07:59:21', NULL, NULL, '48a93040-862b-11eb-8b4d-c0b5d79bd8c4', '09031181520124', '$2y$10$Y0Veggk6CFISpAk5/F9FKeGO5wuny60TeJRAKH6ibLO3NEsL.LlXe', NULL, 3);
 

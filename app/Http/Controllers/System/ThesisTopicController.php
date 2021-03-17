@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\ThesisTopicModel;
+use Ramsey\Uuid\Uuid;
+use Auth;
 
 class ThesisTopicController extends Controller {
 
@@ -27,7 +29,7 @@ class ThesisTopicController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('thesis_topic.create');
 	}
 
 	/**
@@ -35,9 +37,21 @@ class ThesisTopicController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$thesis_topic_code = $request->thesis_topic_code;
+		$thesis_topic_name = $request->thesis_topic_name;
+		$creator_id = Auth::user()->id;
+
+		$insert_to_thesis_topic = new ThesisTopicModel();
+		$insert_to_thesis_topic->id = Uuid::uuid4();
+		$insert_to_thesis_topic->status = 1;
+		$insert_to_thesis_topic->creator_id = $creator_id;
+		$insert_to_thesis_topic->thesis_topic_code = $thesis_topic_code;
+		$insert_to_thesis_topic->thesis_topic_name = $thesis_topic_name;
+		$insert_to_thesis_topic->save();
+
+		return redirect(url('thesis_topic'))->with('success', 'Topik TA berhasil ditambahkan!');
 	}
 
 	/**
@@ -48,7 +62,7 @@ class ThesisTopicController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		// 
 	}
 
 	/**
@@ -59,7 +73,9 @@ class ThesisTopicController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$data['thesis_topic'] = ThesisTopicModel::find($id);
+
+		return view('thesis_topic.edit', $data);
 	}
 
 	/**
@@ -68,9 +84,19 @@ class ThesisTopicController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$thesis_topic_code = $request->thesis_topic_code;
+		$thesis_topic_name = $request->thesis_topic_name;
+		$updater_id = Auth::user()->id;
+
+		$insert_to_thesis_topic = ThesisTopicModel::find($id);
+		$insert_to_thesis_topic->updater_id = $updater_id;
+		$insert_to_thesis_topic->thesis_topic_code = $thesis_topic_code;
+		$insert_to_thesis_topic->thesis_topic_name = $thesis_topic_name;
+		$insert_to_thesis_topic->update();
+
+		return redirect(url('thesis_topic'))->with('success', 'Topik TA berhasil diubah!');
 	}
 
 	/**
@@ -81,7 +107,10 @@ class ThesisTopicController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = ThesisTopicModel::find($id);
+		$delete->delete();
+
+		return redirect(url('thesis_topic'))->with('success', 'Topik TA berhasil dihapus!');
 	}
 
 }

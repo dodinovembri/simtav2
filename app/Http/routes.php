@@ -53,6 +53,16 @@ Route::group(['prefix' => 'college_student'], function()
 	Route::post('update/{id}', ['uses' => 'System\CollegeStudentController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentController@destroy']);
 });
+Route::group(['prefix' => 'college_student_thesis'], function()
+{
+	Route::get('', ['uses' => 'System\CollegeStudentThesisController@index']);
+	Route::get('create', ['uses' => 'System\CollegeStudentThesisController@create']);
+	Route::post('store', ['uses' => 'System\CollegeStudentThesisController@store']);
+	Route::get('show/{id}', ['uses' => 'System\CollegeStudentThesisController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentThesisController@edit']);
+	Route::post('update/{id}', ['uses' => 'System\CollegeStudentThesisController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
+});
 Route::group(['prefix' => 'proposal_seminar_requirement'], function()
 {
 	Route::get('', ['uses' => 'System\ProposalSeminarRequirementController@index']);
@@ -78,16 +88,7 @@ Route::group(['prefix' => 'comprehensive_requirement'], function()
  * For Manager
  * Transaction routes
  */
-Route::group(['prefix' => 'college_student_thesis'], function()
-{
-	Route::get('', ['uses' => 'System\CollegeStudentThesisController@index']);
-	Route::get('create', ['uses' => 'System\CollegeStudentThesisController@create']);
-	Route::post('store', ['uses' => 'System\CollegeStudentThesisController@store']);
-	Route::get('show/{id}', ['uses' => 'System\CollegeStudentThesisController@show']);
-	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentThesisController@edit']);
-	Route::post('update/{id}', ['uses' => 'System\CollegeStudentThesisController@update']);
-	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
-});
+
 /** 
  * 
  * Master Data routes

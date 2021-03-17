@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\PersonModel;
+use App\Models\StudentThesisModel;
+use Illuminate\Support\Facades\DB;
 
 class CollegeStudentThesisController extends Controller
 {
@@ -19,18 +21,8 @@ class CollegeStudentThesisController extends Controller
 	 */
 	public function index()
 	{
-		$data['college_student_thesis'] = PersonModel::where('person_type_code', 4)->get();
+		$data['college_student_thesis'] = StudentThesisModel::with('person')->get();
 		return view('college_student_thesis.index', $data);
-	}
-
-	public function create_kkt_file()
-	{
-		return view('college_student_thesis.kkt_file.create');
-	}
-
-	public function store_kkt_file(Request $request)
-	{
-		// 
 	}
 
 	/**
@@ -61,7 +53,13 @@ class CollegeStudentThesisController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$data['college_student_thesis'] = DB::table('student_thesis')
+			->join('person', 'student_thesis.college_student_id', '=', 'person.id')
+			->select('student_thesis.*', 'person.nim as nim', 'person.given_name as given_name', 'person.middle_name as middle_name', 'person.surname as surname', 'person.person_type_code as person_type_code')
+			->where('student_thesis.id', $id)
+			->get();
+		$data['college_student_thesis'] = StudentThesisModel::with('person')->get();
+		return view('college_student_thesis.show', $data);
 	}
 
 	/**

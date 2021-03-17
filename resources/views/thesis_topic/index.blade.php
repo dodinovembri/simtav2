@@ -47,11 +47,11 @@
 						<table id="example1" class="table">
 							<thead>
 								<tr>
-									<th class="wd-20p">No</th>
-									<th class="wd-25p">Kode Topic TA</th>
-									<th class="wd-20p">Nama Topic TA</th>
-									<th class="wd-15p">Status</th>
-									<th class="wd-20p">Actions</th>
+									<th>No</th>
+									<th>Kode Topic TA</th>
+									<th>Nama Topic TA</th>
+									<th>Status</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -81,8 +81,8 @@
 													<p class="mg-b-0">Are you sure want to delete this record? </p>
 												</div>
 												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary rounded-5" data-dismiss="modal">Cancel</button>
-													<a href="{{ url('thesis_topic/destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+													<a href="{{ url('thesis_topic/destroy', $value->id) }}"><button type="button" class="btn btn-danger">Delete</button></a>
 												</div>
 											</div>
 										</div>

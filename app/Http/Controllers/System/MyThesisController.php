@@ -26,6 +26,8 @@ class MyThesisController extends Controller
 	{
 		$college_id = Auth::user()->person_id;
 		$data['my_thesis'] = StudentThesisModel::where('college_student_id', $college_id)->first();
+		$data['person_assets'] = PersonAssetModel::where('person_id', $college_id)->get();
+		
 		return view('my_thesis.index', $data);
 	}
 
