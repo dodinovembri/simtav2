@@ -31,6 +31,10 @@ Route::group(['prefix' => 'college_student_thesis'], function()
 	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentThesisController@edit']);
 	Route::get('update/{id}', ['uses' => 'System\CollegeStudentThesisController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
+
+	// krs, kp dan transkrip nilai (kkt) file routes
+	Route::get('create_kkt_file', ['uses' => 'System\CollegeStudentThesisController@create_kkt_file']);
+	Route::post('store_kkt_file', ['uses' => 'System\CollegeStudentThesisController@store_kkt_file']);
 });
 
 /**

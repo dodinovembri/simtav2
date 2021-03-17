@@ -27,6 +27,9 @@
 					<div class="component">
 						<a href="{{ url('college_student/create') }}">
 							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
+						</a>
+						<a href="{{ url('college_student/create') }}">
+							<button class="btn btn-primary"><i data-feather="upload"></i> Upload Data</button>
 						</a><br><br>
 						@if(session()->has('success'))
 						<div class="alert alert-success alert-dismissible mg-b-0 fade show" role="alert">
