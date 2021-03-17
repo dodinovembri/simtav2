@@ -28,6 +28,14 @@
 
 	<!-- template css -->
 	<link rel="stylesheet" href="{{ asset('theme/assets/css/cassie.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+	<style type="text/css">
+        .error {
+            color: red;
+        }
+    </style>
+	
 </head>
 
 <body>
