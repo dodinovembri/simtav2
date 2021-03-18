@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\MajorsModel;
+use Ramsey\Uuid\Uuid;
+use Auth;
 
 class MajorsController extends Controller {
 
@@ -27,7 +29,7 @@ class MajorsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('majors.create');
 	}
 
 	/**
@@ -35,9 +37,21 @@ class MajorsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$majors_code = $request->majors_code;
+		$majors_name = $request->majors_name;
+		$creator_id = Auth::user()->id;
+
+		$insert_to_majors = new MajorsModel();
+		$insert_to_majors->id = Uuid::uuid4();
+		$insert_to_majors->status = 1;
+		$insert_to_majors->creator_id = $creator_id;
+		$insert_to_majors->majors_code = $majors_code;
+		$insert_to_majors->majors_name = $majors_name;
+		$insert_to_majors->save();
+
+		return redirect(url('majors'))->with('success', 'Jurusan berhasil ditambahkan!');
 	}
 
 	/**
@@ -59,7 +73,9 @@ class MajorsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$data['majors'] = MajorsModel::find($id);
+
+		return view('majors.edit', $data);
 	}
 
 	/**
@@ -68,9 +84,19 @@ class MajorsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$majors_code = $request->majors_code;
+		$majors_name = $request->majors_name;
+		$updater_id = Auth::user()->id;
+
+		$insert_to_majors = MajorsModel::find($id);
+		$insert_to_majors->updater_id = $updater_id;
+		$insert_to_majors->majors_code = $majors_code;
+		$insert_to_majors->majors_name = $majors_name;
+		$insert_to_majors->update();
+
+		return redirect(url('majors'))->with('success', 'Jurusan berhasil diubah!');
 	}
 
 	/**
@@ -81,7 +107,10 @@ class MajorsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = MajorsModel::find($id);
+		$delete->delete();
+
+		return redirect(url('majors'))->with('success', 'Jurusan berhasil dihapus!');
 	}
 
 }

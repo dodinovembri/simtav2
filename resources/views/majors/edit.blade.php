@@ -13,11 +13,11 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('field_of_study') }}">Bidang Studi</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Bidang Studi</li>
+                    <li class="breadcrumb-item"><a href="{{ url('majors') }}">Jurusan</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Jurusan</li>
                 </ol>
             </nav>
-            <h4 class="content-title content-title-xs">Edit Bidang Studi</h4>
+            <h4 class="content-title content-title-xs">Edit Jurusan</h4>
         </div>
     </div>
     <div class="content-body">
@@ -25,34 +25,35 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('field_of_study/update', $field_of_study->id) }}" method="POST">
+                        <form action="{{ url('majors/update', $majors->id) }}" method="POST" id="majorsForm">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
                                 <hr>
                                 <div class="form-group">
-                                    <label class="form-label">Kode Bidang Studi</label>
-                                    <input type="text" class="form-control" name="field_of_study_code" placeholder="Masukkan kode bidang studi" value="{{ $field_of_study->field_of_study_code }}" required>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
-                                </div><!-- form-group -->
+                                    <label class="form-label">Kode Jurusan</label>
+                                    <input type="text" class="form-control" name="majors_code" id="majors_code" value="{{ $majors->majors_code }}" placeholder="Masukkan kode jurusan" required>
+                                </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Nama Bidang Studi</label>
-                                    <input type="text" class="form-control" name="field_of_study_name" value="{{ $field_of_study->field_of_study_name }}" placeholder="Masukkan nama bidang studi" required>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
-                                </div><!-- form-group -->
+                                    <label class="form-label">Nama Jurusan</label>
+                                    <input type="text" class="form-control" name="majors_name" id="majors_name" value="{{ $majors->majors_name }}" placeholder="Masukkan nama jurusan" required>
+                                </div>
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save Product</button>
-                                <a href="{{ url('field_of_study') }}"><button type="button" class="btn btn-white mg-l-2">Cancel Changes</button></a>
-                            </div><!-- tab-pane -->
+                                <button class="btn btn-brand-02">Save Changes</button>
+                                <a href="{{ url('majors') }}"><button type="button" class="btn btn-white mg-l-2">Cancel Changes</button></a>
+                            </div>
                         </form>
-                    </div><!-- tab-content -->
-                </div><!-- card -->
-            </div><!-- col -->
-        </div><!-- row -->
-    </div><!-- content-body -->
+                        <script>
+                            $("#majorsForm").validate();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     @include('components.footer')
