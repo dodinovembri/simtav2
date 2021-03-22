@@ -38,7 +38,7 @@
 											<option value="{{ $value->id }}">{{ $value->nip }}{{ $value->nim }}</option>	
 										<?php } ?>																
 									</select>
-                                </div><!-- form-group -->
+                                </div>
 
                                 <hr class="op-0">
 

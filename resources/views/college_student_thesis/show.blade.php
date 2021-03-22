@@ -45,74 +45,106 @@
 			</div><!-- profile-sidebar-body -->
 		</div><!-- profile-sidebar -->
 		<div class="profile-body">
-			<div class="profile-body-header">
-				<div class="nav-wrapper">
-					<ul class="nav nav-line" id="profileTab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="projects-tab" data-toggle="tab" href="#timeline" role="tab" aria-controls="projects" aria-selected="false">Projects</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="people-tab" data-toggle="tab" href="#people" role="tab" aria-controls="people" aria-selected="false">Connections</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
-						</li>
-					</ul>
-				</div><!-- nav-wrapper -->
-			</div><!-- profile-body-header -->
 			<div class="tab-content pd-15 pd-sm-20">
 				<div id="overview" class="tab-pane active show">
 					<label class="content-label content-label-lg mg-b-15 tx-color-01">KRS, KP dan Transkrip Nilai</label>
-					<div class="stat-profile">
-						<div class="stat-profile-body">
-							<div class="row row-xs">
-								
-							</div><!-- row -->
-						</div><!-- stat-profile-body -->
-					</div><!-- stat-profile -->
-					<div class="stat-profile">
-						<div class="stat-profile-body">
-							<div class="row row-xs">
-								<?php foreach ($person_assets as $key => $value) { ?>
-									<div class="col">
-										<div class="card card-body pd-10 pd-md-15 bd-0 shadow-none bg-primary-light">
-											<a href="{{ asset($value->url) }}/{{ $value->file_name }}" target="_blank"><img src="{{ asset($value->url) }}/{{ $value->file_name }}" class="img-fluid" alt=""></a>
-										</div>
-									</div>
-								<?php } ?>
-							</div><!-- row -->
-						</div><!-- stat-profile-body -->
-					</div><!-- stat-profile -->
-					<div>
-						<a href="" class="btn btn-brand-01 btn-sm btn-uppercase flex-fill">Verifikasi</a>
-						<a href="#rejected" data-toggle="modal" class="btn btn-white btn-sm btn-uppercase flex-fill mg-l-5">Ditolak</a>
-						<div class="modal fade" id="rejected" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h6 class="modal-title" id="exampleModalLabel">Form Alasan Penolakan</h6>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true"><i data-feather="x"></i></span>
+					<?php if (!isset($college_student_thesis_history)) {
+						if ($college_student_thesis->thesis_status_code == 4) { ?>
+							<div class="stat-profile">
+								<div class="stat-profile-body">
+									<div class="alert alert-primary alert-dismissible mg-b-0 fade show" role="alert">
+										<i class="icon fa fa-close"></i> KRS, KP dan Transkrip diterima
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<form action="{{ url('college_student_thesis/store_kkt_file_rejected', $college_student_thesis->id) }}" method="POST">
-										<div class="modal-body">
-											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<label class="form-label">Masukkan Alasan Penolakan</label>
-											<textarea name="rejected_reason" id="" cols="30" rows="3" class="form-control"></textarea>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-											<button type="submit" class="btn btn-danger">Tolak</button>
-										</div>
-									</form>
 								</div>
 							</div>
-						</div>
-					</div>
+						<?php } else { ?>
+							<div class="stat-profile">
+								<div class="stat-profile-body">
+									<div class="row row-xs">
+										<?php foreach ($person_assets as $key => $value) { ?>
+											<div class="col">
+												<div class="card card-body pd-10 pd-md-15 bd-0 shadow-none bg-primary-light">
+													<a href="{{ asset($value->url) }}/{{ $value->file_name }}" target="_blank"><img src="{{ asset($value->url) }}/{{ $value->file_name }}" class="img-fluid" alt=""></a>
+												</div>
+											</div>
+										<?php } ?>
+									</div><!-- row -->
+								</div><!-- stat-profile-body -->
+							</div><!-- stat-profile -->
+							<div>
+								<a href="#verified" data-toggle="modal" class="btn btn-brand-01 btn-sm btn-uppercase flex-fill">Verifikasi</a>
+								<a href="#rejected" data-toggle="modal" class="btn btn-white btn-sm btn-uppercase flex-fill mg-l-5">Ditolak</a>
+								<div class="modal fade" id="verified" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h6 class="modal-title" id="exampleModalLabel">Verifikasi</h6>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true"><i data-feather="x"></i></span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p class="mg-b-0">Anda yakin data ini sudah valid? </p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+												<a href="{{ url('college_student_thesis/updateverified_kkt_file', $value->id) }}"><button type="button" class="btn btn-primary">Verifikasi</button></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal fade" id="rejected" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h6 class="modal-title" id="exampleModalLabel">Form Alasan Penolakan</h6>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true"><i data-feather="x"></i></span>
+												</button>
+											</div>
+											<form action="{{ url('college_student_thesis/store_kkt_file_rejected', $college_student_thesis->id) }}" method="POST">
+												<div class="modal-body">
+													<input type="hidden" name="_token" value="{{ csrf_token() }}">
+													<label class="form-label">Masukkan Alasan Penolakan</label>
+													<textarea name="rejected_reason" id="" cols="30" rows="3" class="form-control"></textarea>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+													<button type="submit" class="btn btn-danger">Tolak</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						<?php } ?>
+						<?php } else {
+						if ($college_student_thesis->thesis_status_code == 4) { ?>
+							<div class="stat-profile">
+								<div class="stat-profile-body">
+									<div class="alert alert-primary alert-dismissible mg-b-0 fade show" role="alert">
+										<i class="icon fa fa-close"></i> KRS, KP dan Transkrip diterima
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						<?php } ?>
+						<div class="stat-profile">
+							<div class="stat-profile-body">
+								<div class="alert alert-danger alert-dismissible mg-b-0 fade show" role="alert">
+									<i class="icon fa fa-close"></i> KRS, KP dan Transkrip ditolak
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</div><!-- stat-profile-body -->
+						</div><!-- stat-profile -->
+					<?php } ?>
 					<hr class="mg-y-15 op-0">
 
 					<label class="content-label content-label-lg mg-b-15 tx-color-01">Work Experience</label>

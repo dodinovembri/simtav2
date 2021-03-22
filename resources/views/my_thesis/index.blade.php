@@ -53,13 +53,21 @@
 											<h6>George Winslett</h6>
 											<span>added a new note to self</span>
 										</div><!-- timeline-header -->
-										<div class="card card-timeline card-timeline-note">
-											<h5>Upload KRS, KP dan Transkrip Nilai.</h5>
-											<p class="mg-b-0">In this lesson, you create a layout in XML that includes a text field and a button. In the next lesson, your app responds when the...<a href="{{ url('my_thesis/create_kkt_file') }}">Upload Sekarang!</a></p>
-										</div>
+										<?php if (isset($my_thesis_history)) { ?>
+											<div class="alert alert-danger alert-dismissible mg-b-0 fade show" role="alert">
+												<i class="icon fa fa-close"></i> KRS, KP dan Transkrip ditolak, Alasan Penolakan: {{$my_thesis_history->description}}
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="card card-timeline card-timeline-note">
+												<h5>Upload KRS, KP dan Transkrip Nilai.</h5>
+												<p class="mg-b-0">In this lesson, you create a layout in XML that includes a text field and a button. In the next lesson, your app responds when the...<a href="{{ url('my_thesis/create_kkt_file') }}">Upload Sekarang!</a></p>
+											</div>
+										<?php } ?>
 									</div><!-- timeline-body -->
 								</div>
-							<?php } else { ?>
+							<?php } elseif ($my_thesis->is_kkt_file_set == 1 && $my_thesis->thesis_status_code != 4) { ?>
 								<div class="col-sm-9">
 									<div class="timeline-body">
 										<div class="timeline-header">
@@ -78,6 +86,22 @@
 										</div>
 									</div><!-- timeline-body -->
 								</div>
+							<?php } elseif ($my_thesis->thesis_status_code == 4) { ?>
+								<div class="col-sm-9">
+									<div class="timeline-body">
+										<div class="timeline-header">
+											<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-primary">r</span></div>
+											<h6>Reynante Labares</h6>
+											<span>uploaded 3 new photos</span>
+										</div><!-- timeline-header -->
+										<div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+											<i class="icon fa fa-close"></i> KRS, KP dan Transkrip diterima
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+									</div><!-- timeline-body -->
+								</div>
 						<?php }
 						} ?>
 					</div><!-- row -->
@@ -93,22 +117,13 @@
 						<div class="col-sm-9">
 							<div class="timeline-body">
 								<div class="timeline-header">
-									<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-primary">r</span></div>
-									<h6>Reynante Labares</h6>
-									<span>uploaded 3 new photos</span>
+									<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-pink">g</span></div>
+									<h6>George Winslett</h6>
+									<span>added a new note to self</span>
 								</div><!-- timeline-header -->
-								<div class="card card-timeline card-timeline-photo">
-									<div class="row row-xs">
-										<div class="col">
-											<img src="https://via.placeholder.com/1000x563/637382/fff" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<img src="https://via.placeholder.com/1000x563/637382/fff" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<img src="https://via.placeholder.com/1000x563/637382/fff" class="img-fluid" alt="">
-										</div>
-									</div><!-- row -->
+								<div class="card card-timeline card-timeline-note">
+									<h5>Input Topik TA.</h5>
+									<p class="mg-b-0">In this lesson, you create a layout in XML that includes a text field and a button. In the next lesson, your app responds when the...<a href="{{ url('my_thesis/create_thesis_topic') }}">Input Sekarang!</a></p>
 								</div>
 							</div><!-- timeline-body -->
 						</div>

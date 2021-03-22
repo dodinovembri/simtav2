@@ -64,6 +64,7 @@ Route::group(['prefix' => 'college_student_thesis'], function()
 	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
 
 	Route::post('store_kkt_file_rejected/{id}', ['uses' => 'System\CollegeStudentThesisController@store_kkt_file_rejected']);
+	Route::get('update_verified_kkt_file/{id}', ['uses' => 'System\CollegeStudentThesisController@update_verified_kkt_file']);
 });
 Route::group(['prefix' => 'proposal_seminar_requirement'], function()
 {
@@ -169,4 +170,6 @@ Route::group(['prefix' => 'my_thesis'], function()
 	// krs, kp dan transkrip nilai (kkt) file routes
 	Route::get('create_kkt_file', ['uses' => 'System\MyThesisController@create_kkt_file']);
 	Route::post('store_kkt_file', ['uses' => 'System\MyThesisController@store_kkt_file']);
+	Route::get('create_thesis_topic', ['uses' => 'System\MyThesisController@create_thesis_topic']);
+	Route::post('store_thesis_topic', ['uses' => 'System\MyThesisController@store_thesis_topic']);
 });

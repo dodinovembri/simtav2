@@ -25,6 +25,11 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
+						<select class="form-control select2" name="month" required="" style="width: 180px">
+							<option value=""></option>
+							<option value="4">Memenuhi Syarat</option>
+							<option value="2">Tidak Memenuhi Syarat</option>
+						</select><br><br>
 						@if(session()->has('success'))
 						<div class="alert alert-success alert-dismissible mg-b-0 fade show" role="alert">
 							<i class="icon fa fa-close"></i> {{ session()->get('success') }}
@@ -40,7 +45,7 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div><br>
-						@endif						
+						@endif
 						@if(session()->has('error'))
 						<div class="alert alert-warning alert-dismissible mg-b-0 fade show" role="alert">
 							<i class="icon fa fa-close"></i> {{ session()->get('error') }}
@@ -66,7 +71,7 @@
 										<td>{{ $no }}</td>
 										<td><a href="{{ url('college_student_thesis/show', $value->id) }}"><b>{{ $value->person->nim }}</b></a></td>
 										<td>{{ $value->person->given_name." ".$value->person->middle_name." ".$value->person->surname }}</td>
-										<td><?php echo CheckStatus($value->status); ?></td>										
+										<td><?php echo CheckStatus($value->status); ?></td>
 									</tr>
 								<?php } ?>
 							</tbody>

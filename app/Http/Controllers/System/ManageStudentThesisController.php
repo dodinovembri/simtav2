@@ -18,8 +18,8 @@ class ManageStudentThesisController extends Controller {
 	public function index()
 	{
 		$lecturer_id = Auth::user()->id;
-		$data['student_thesis'] = StudentThesisModel::where('lecturer_id', $lecturer_id)->get();
-		return view('student_thesis.index', $data);
+		$data['manage_student_thesis'] = StudentThesisModel::where('lecturer_id', $lecturer_id)->get();
+		return view('manage_student_thesis.index', $data);
 	}
 
 	/**

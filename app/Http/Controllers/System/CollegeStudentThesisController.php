@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\System;
-// Collage Student = Mahasiswa
+// Collage Student Thesis = Skripsi Mahasiswa
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -57,31 +57,54 @@ class CollegeStudentThesisController extends Controller
 	public function show($id)
 	{
 		$data['college_student_thesis'] = StudentThesisModel::with('person')->where('id', $id)->first();
-		$data['person_assets'] = PersonAssetModel::where('person_id', $data['college_student_thesis']->college_student_id)->get();
+		$data['college_student_thesis_history'] = StudentThesisHistoryModel::where('history_code', 2)->where('status', 1)->first();
+		$data['person_assets'] = PersonAssetModel::where('person_id', $data['college_student_thesis']->college_student_id)->where('status', 1)->get();
 		return view('college_student_thesis.show', $data);
 	}
 
 	public function store_kkt_file_rejected(Request $request, $id)
 	{		 
 		$rejected_reason = $request->rejected_reason;
-		$creator_id      = Auth::user()->id;
+		$user_id      = Auth::user()->id;
+		$student_thesis = StudentThesisModel::find($id);
 
 		$update_to_student_thesis                     = StudentThesisModel::find($id);
 		$update_to_student_thesis->thesis_status_code = 2;
 		$update_to_student_thesis->is_kkt_file_set    = 0;
 		$update_to_student_thesis->update();
 
+
+		$update_to_person_asset = PersonAssetModel::where('person_id', $student_thesis->college_student_id)->where('status', 1)->get();
+		foreach ($update_to_person_asset as $key => $value) {
+			$update_to_person_asset = PersonAssetModel::find($value->id);
+			$update_to_person_asset->updater_id = $user_id;
+			$update_to_person_asset->status = 0;
+			$update_to_person_asset->update();
+		}
+		
 		$student_thesis                                        = StudentThesisModel::find($id);
 		$insert_to_student_thesis_history                      = new StudentThesisHistoryModel();
 		$insert_to_student_thesis_history->id                  = Uuid::uuid4();
 		$insert_to_student_thesis_history->status              = 1;
-		$insert_to_student_thesis_history->creator_id          = $creator_id;
+		$insert_to_student_thesis_history->creator_id          = $user_id;
 		$insert_to_student_thesis_history->history_code        = 2;
+		$insert_to_student_thesis_history->student_thesis_id  = $student_thesis->id;
 		$insert_to_student_thesis_history->college_student_id  = $student_thesis->college_student_id;
 		$insert_to_student_thesis_history->total_sks_now       = $student_thesis->total_sks_now;
 		$insert_to_student_thesis_history->total_sks_transkrip = $student_thesis->total_sks_transkrip;
 		$insert_to_student_thesis_history->description         = $rejected_reason;
 		$insert_to_student_thesis_history->save();
+
+		return redirect(url('college_student_thesis/show', $id))->with('success', 'Sukses memperbaharui data!');
+	}
+
+	public function update_verified_kkt_file($id)
+	{
+		$user_id      = Auth::user()->id;
+		$find_student_thesis = StudentThesisModel::find($id);
+		$find_student_thesis->updater_id = $user_id;
+		$find_student_thesis->thesis_status_code = 4;
+		$find_student_thesis->update();
 
 		return redirect(url('college_student_thesis/show', $id))->with('success', 'Sukses memperbaharui data!');
 	}
