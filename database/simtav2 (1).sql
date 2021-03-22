@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2021 at 01:44 AM
+-- Generation Time: Mar 22, 2021 at 07:02 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -159,9 +159,15 @@ CREATE TABLE `person_asset` (
 --
 
 INSERT INTO `person_asset` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `information_type_code`, `file_name`, `original_file_name`, `file_size`, `url`, `description`) VALUES
-('0402d2b0-83ee-4a7b-bf9f-072af443c772', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 05:19:08', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '6056d74c87abf.jpg', 'ban.jpg', 7255, 'img/kkt/', NULL),
-('6ee98d32-c9ab-4a21-a391-0cbfc1098d80', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 05:19:08', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '6056d74c73866.jpg', 'gnti_ban.jpg', 50812, 'img/kkt/', NULL),
-('8dc02faf-187d-492a-a0b2-d6bcfd8ecfad', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 05:19:08', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '6056d74c4fe2a.png', 'download.png', 4090, 'img/kkt/', NULL);
+('08fdd8ab-8c0b-4138-b7f8-436e055209eb', 0, NULL, '2021-03-22 03:10:15', '2021-03-22 03:11:17', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '60580a974b714.png', 'user.png', 7150, 'img/kkt/', NULL),
+('2cf05e97-87a6-484e-8ce7-802495dfad00', 0, NULL, '2021-03-22 03:10:15', '2021-03-22 03:11:17', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '60580a9747c2f.png', 'user.png', 7150, 'img/kkt/', NULL),
+('97f67756-4216-4435-a601-e1b1d8e144bc', 1, NULL, '2021-03-22 03:12:16', '2021-03-22 03:12:16', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '60580b10869d2.png', 'user.png', 7150, 'img/kkt/', NULL),
+('c34e5ca3-9129-4845-bc41-5e23394c4119', 1, NULL, '2021-03-22 03:12:16', '2021-03-22 03:12:16', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '60580b108b240.png', 'user.png', 7150, 'img/kkt/', NULL),
+('c74565fe-971d-4361-b9bf-a6923ac2c5c9', 0, NULL, '2021-03-22 03:07:02', '2021-03-22 03:07:19', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '605809d670048.png', 'user.png', 7150, 'img/kkt/', NULL),
+('d0147b30-4143-4f91-b302-b195dc593168', 0, NULL, '2021-03-22 03:07:02', '2021-03-22 03:07:19', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '605809d6773c8.png', 'user.png', 7150, 'img/kkt/', NULL),
+('d7cf6cb0-0f7f-402d-bbb7-a5d7c67eb58a', 0, NULL, '2021-03-22 03:07:02', '2021-03-22 03:07:19', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '605809d6781d0.png', 'user.png', 7150, 'img/kkt/', NULL),
+('ec61af68-e1db-45ac-90bf-1d3c47ee5708', 1, NULL, '2021-03-22 03:12:16', '2021-03-22 03:12:16', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '60580b108a211.png', 'user.png', 7150, 'img/kkt/', NULL),
+('f18ba194-1926-45d0-9eaa-9f0fd7170ba7', 0, NULL, '2021-03-22 03:10:15', '2021-03-22 03:11:17', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '60580a974a6f2.png', 'user.png', 7150, 'img/kkt/', NULL);
 
 -- --------------------------------------------------------
 
@@ -216,7 +222,7 @@ CREATE TABLE `student_thesis` (
 --
 
 INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `thesis_status_code`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`) VALUES
-('78b1ce75-3238-4223-a732-30c4a5677a45', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 15:25:09', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 0);
+('abcbeeb9-1257-4255-90e2-074e1b457283', 1, NULL, '2021-03-22 03:07:02', '2021-03-22 03:27:49', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 4, 1231, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -232,6 +238,7 @@ CREATE TABLE `student_thesis_history` (
   `updated_at` datetime DEFAULT NULL,
   `creator_id` varchar(36) DEFAULT NULL,
   `updater_id` varchar(36) DEFAULT NULL,
+  `student_thesis_id` varchar(36) DEFAULT NULL,
   `lecturer_id` varchar(36) DEFAULT NULL,
   `college_student_id` varchar(36) DEFAULT NULL,
   `history_code` tinyint(4) DEFAULT NULL,
@@ -244,8 +251,35 @@ CREATE TABLE `student_thesis_history` (
 -- Dumping data for table `student_thesis_history`
 --
 
-INSERT INTO `student_thesis_history` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `history_code`, `total_sks_now`, `total_sks_transkrip`, `description`) VALUES
-('bea7eb89-8bef-4e60-b0b6-6445d787d833', 1, NULL, '2021-03-21 16:38:43', '2021-03-21 16:38:43', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 'ga bagus');
+INSERT INTO `student_thesis_history` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `student_thesis_id`, `lecturer_id`, `college_student_id`, `history_code`, `total_sks_now`, `total_sks_transkrip`, `description`) VALUES
+('c260d38a-f8f7-41a8-a10a-615551c8939b', 0, NULL, '2021-03-22 03:07:19', '2021-03-22 03:10:15', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'abcbeeb9-1257-4255-90e2-074e1b457283', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 123, 12, 'ga bagus'),
+('c9631845-fdfc-4419-8cc0-efc85fccfe9d', 0, NULL, '2021-03-22 03:11:17', '2021-03-22 03:12:16', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'abcbeeb9-1257-4255-90e2-074e1b457283', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 123, 12, 'males');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_thesis_supervisor`
+--
+
+CREATE TABLE `student_thesis_supervisor` (
+  `id` varchar(36) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `creator_id` varchar(36) DEFAULT NULL,
+  `updater_id` varchar(36) DEFAULT NULL,
+  `college_student_id` varchar(36) DEFAULT NULL,
+  `lecturer_id` varchar(36) DEFAULT NULL,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student_thesis_supervisor`
+--
+
+INSERT INTO `student_thesis_supervisor` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `college_student_id`, `lecturer_id`, `description`) VALUES
+('1872c064-b6a0-4957-ad59-d903ec466e76', 1, NULL, '2021-03-22 05:57:32', '2021-03-22 05:57:32', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', NULL);
 
 -- --------------------------------------------------------
 
@@ -299,10 +333,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
-('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-21 04:59:53', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$12$wdmMZFDREdMADYtzVqa.bu/1XThATLvAsaAdROBXFQRPUx126G6be', 'SK6gpikhiFARHUaxy9M5AP7ZO9AgSgRrivf81dyOe3T8dOZpPNstBzj5CUa9', 2),
-('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-21 05:24:38', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$12$0z/e9V4KEPeryJKPR0ikNeO2BJaqp72NNIgacnv5E6zl3MzEEI03q', '55uDUmiILcaMEr6rUKZCGBfsVsqs3RjA729Wc1SVc1JVmlZyZE6zpIwNiL6B', 4),
-('b190c023-dda1-42dd-880f-99a647fc616f', 1, NULL, '2021-03-21 05:02:54', '2021-03-21 05:02:54', NULL, NULL, NULL, '197811172006042001', '$2y$10$gCL8ewBQkBcgRxD2uCTgru6IHwhZKqTBeQd0xtW4Zt9EwKAN7krx2', NULL, 3),
-('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-21 05:23:32', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'nxG5nsEP7QB42At1K845kTR9h1Ho5TqcNhV2yT0XNsJdKqmnLeJAQQjLj0XR', 1);
+('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-22 04:21:37', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$12$wdmMZFDREdMADYtzVqa.bu/1XThATLvAsaAdROBXFQRPUx126G6be', 'LSmdJWmFP5dR2HZjgs0h9CIbjNo2mx9WIR86RcB1FdFUQlkyJmV3kHdJhua3', 2),
+('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-22 04:20:59', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$12$0z/e9V4KEPeryJKPR0ikNeO2BJaqp72NNIgacnv5E6zl3MzEEI03q', 'czJwkWzhynkdvqR0zMucOnkxQ0Qu9sOu9m4KzerYJpkAYP061YPhdo1OB7nM', 4),
+('b190c023-dda1-42dd-880f-99a647fc616f', 1, NULL, '2021-03-21 05:02:54', '2021-03-22 03:50:02', NULL, NULL, NULL, '197811172006042001', '$2y$10$gCL8ewBQkBcgRxD2uCTgru6IHwhZKqTBeQd0xtW4Zt9EwKAN7krx2', 'txjYWiHWASaes7gJjGS5K5sEOYkGo3GkH06R2ZrO5yXDe6AIOVJwkdDkXXb5', 3),
+('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-22 04:21:13', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'SWWeNKs3Sw7trLHe5AaqGx5SIngZHfevwG30X4JJ5pfIlvk2jkiWK1CyuNjK', 1);
 
 -- --------------------------------------------------------
 
@@ -380,6 +414,12 @@ ALTER TABLE `student_thesis`
 -- Indexes for table `student_thesis_history`
 --
 ALTER TABLE `student_thesis_history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student_thesis_supervisor`
+--
+ALTER TABLE `student_thesis_supervisor`
   ADD PRIMARY KEY (`id`);
 
 --
