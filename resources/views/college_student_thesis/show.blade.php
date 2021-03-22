@@ -12,7 +12,7 @@
 			<div class="profile-sidebar-header">
 				<div class="avatar"><img src="https://via.placeholder.com/500/637382/fff" class="rounded-circle" alt=""></div>
 
-				<h5>Abigail Johnson</h5>
+				<h5>{{ $college_student_thesis->person->given_name." ".$college_student_thesis->person->middle_name." ".$college_student_thesis->person->surname }}</h5>
 				<p>UI Developer (Savior of Mankind)</p>
 				<span>Bay Area, San Francisco, CA</span>
 
@@ -65,37 +65,54 @@
 			</div><!-- profile-body-header -->
 			<div class="tab-content pd-15 pd-sm-20">
 				<div id="overview" class="tab-pane active show">
-
+					<label class="content-label content-label-lg mg-b-15 tx-color-01">KRS, KP dan Transkrip Nilai</label>
 					<div class="stat-profile">
 						<div class="stat-profile-body">
 							<div class="row row-xs">
-								<div class="col">
-									<div class="card card-body pd-10 pd-md-15 bd-0 shadow-none bg-primary-light">
-										<h1 class="tx-light tx-sans tx-spacing--4 tx-primary mg-b-5">102</h1>
-										<p class="tx-13 tx-lg-14 tx-color-02 mg-b-0">Your profile visitors</p>
-									</div>
-								</div>
-								<div class="col">
-									<div class="card card-body pd-10 pd-md-15 bd-0 shadow-none bg-teal-light">
-										<h1 class="mg-b-5 tx-sans tx-spacing--2 tx-light tx-teal">961</h1>
-										<p class="tx-13 tx-lg-14 tx-color-03 mg-b-0">Search appearances</p>
-									</div>
-								</div>
-								<div class="col">
-									<div class="card card-body pd-10 pd-md-15 bd-0 shadow-none bg-pink-light">
-										<h1 class="mg-b-5 tx-sans tx-spacing--2 tx-light tx-pink">665</h1>
-										<p class="tx-13 tx-lg-14 tx-color-03 mg-b-0">Your activity views</p>
-									</div>
-								</div>
+								
 							</div><!-- row -->
 						</div><!-- stat-profile-body -->
 					</div><!-- stat-profile -->
-
-					<hr class="mg-y-15 op-0">
-
-					<label class="content-label content-label-lg mg-b-15 tx-color-01">Biography</label>
-					<p class="tx-color-03">Redhead, Innovator, Saviour of Mankind, Hopeless Romantic, Attractive 20-something Yogurt Enthusiast. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. </p>
-
+					<div class="stat-profile">
+						<div class="stat-profile-body">
+							<div class="row row-xs">
+								<?php foreach ($person_assets as $key => $value) { ?>
+									<div class="col">
+										<div class="card card-body pd-10 pd-md-15 bd-0 shadow-none bg-primary-light">
+											<a href="{{ asset($value->url) }}/{{ $value->file_name }}" target="_blank"><img src="{{ asset($value->url) }}/{{ $value->file_name }}" class="img-fluid" alt=""></a>
+										</div>
+									</div>
+								<?php } ?>
+							</div><!-- row -->
+						</div><!-- stat-profile-body -->
+					</div><!-- stat-profile -->
+					<div>
+						<a href="" class="btn btn-brand-01 btn-sm btn-uppercase flex-fill">Verifikasi</a>
+						<a href="#rejected" data-toggle="modal" class="btn btn-white btn-sm btn-uppercase flex-fill mg-l-5">Ditolak</a>
+						<div class="modal fade" id="rejected" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h6 class="modal-title" id="exampleModalLabel">Form Alasan Penolakan</h6>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true"><i data-feather="x"></i></span>
+										</button>
+									</div>
+									<form action="{{ url('college_student_thesis/store_kkt_file_rejected', $college_student_thesis->id) }}" method="POST">
+										<div class="modal-body">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<label class="form-label">Masukkan Alasan Penolakan</label>
+											<textarea name="rejected_reason" id="" cols="30" rows="3" class="form-control"></textarea>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+											<button type="submit" class="btn btn-danger">Tolak</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 					<hr class="mg-y-15 op-0">
 
 					<label class="content-label content-label-lg mg-b-15 tx-color-01">Work Experience</label>

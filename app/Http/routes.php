@@ -62,6 +62,8 @@ Route::group(['prefix' => 'college_student_thesis'], function()
 	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentThesisController@edit']);
 	Route::post('update/{id}', ['uses' => 'System\CollegeStudentThesisController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
+
+	Route::post('store_kkt_file_rejected/{id}', ['uses' => 'System\CollegeStudentThesisController@store_kkt_file_rejected']);
 });
 Route::group(['prefix' => 'proposal_seminar_requirement'], function()
 {

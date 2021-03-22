@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2021 at 04:25 PM
+-- Generation Time: Mar 22, 2021 at 01:44 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -19,40 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `simtav2`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `business_entity`
---
-
-CREATE TABLE `business_entity` (
-  `id` varchar(36) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `creator_id` varchar(36) DEFAULT NULL,
-  `updater_id` varchar(36) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `business_entity_document`
---
-
-CREATE TABLE `business_entity_document` (
-  `id` varchar(36) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `creator_id` varchar(36) DEFAULT NULL,
-  `updater_id` varchar(36) DEFAULT NULL,
-  `business_entity_id` varchar(36) NOT NULL,
-  `document_id` varchar(36) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -73,6 +39,13 @@ CREATE TABLE `comprehensive_requirement` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `comprehensive_requirement`
+--
+
+INSERT INTO `comprehensive_requirement` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `comprehensive_requirement_code`, `comprehensive_requirement_name`, `description`) VALUES
+('e202ae50-a4cf-48ad-ba41-a05b1e0de84f', 1, NULL, '2021-03-18 15:01:13', '2021-03-18 15:23:32', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'TN', 'Transkrip Nilai', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +64,13 @@ CREATE TABLE `field_of_study` (
   `field_of_study_name` varchar(256) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `field_of_study`
+--
+
+INSERT INTO `field_of_study` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `field_of_study_code`, `field_of_study_name`, `description`) VALUES
+('c3854cbe-247a-495f-a799-dfd47ef9feed', 1, NULL, '2021-03-18 12:29:31', '2021-03-18 12:33:13', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'IS', 'Information System', NULL);
 
 -- --------------------------------------------------------
 
@@ -111,6 +91,13 @@ CREATE TABLE `majors` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `majors`
+--
+
+INSERT INTO `majors` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `majors_code`, `majors_name`, `description`) VALUES
+('a1e70286-d3ab-4072-8c6d-1d8783b81a44', 1, NULL, '2021-03-18 12:07:52', '2021-03-18 12:07:52', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, 'SI', 'Sistem Informasi', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -122,9 +109,9 @@ CREATE TABLE `person` (
   `status` tinyint(4) NOT NULL,
   `sort` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `modified_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `creator_id` varchar(36) DEFAULT NULL,
-  `modifier_id` varchar(36) DEFAULT NULL,
+  `updater_id` varchar(36) DEFAULT NULL,
   `nim` varchar(40) DEFAULT NULL,
   `nip` varchar(40) DEFAULT NULL,
   `given_name` varchar(128) DEFAULT NULL,
@@ -140,9 +127,9 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`id`, `status`, `sort`, `created_at`, `modified_at`, `creator_id`, `modifier_id`, `nim`, `nip`, `given_name`, `middle_name`, `surname`, `business_entity_id`, `birth_date`, `gender_code`, `person_type_code`) VALUES
+INSERT INTO `person` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `nim`, `nip`, `given_name`, `middle_name`, `surname`, `business_entity_id`, `birth_date`, `gender_code`, `person_type_code`) VALUES
 ('2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', NULL, NULL, NULL, '09031281520102', NULL, 'Dodi', NULL, 'Novembri', NULL, NULL, NULL, 4),
-('48a93040-862b-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', NULL, NULL, NULL, '09031181520124', NULL, 'Tri', 'Ratna', 'Sari', NULL, NULL, NULL, 4);
+('aa96d77c-734d-4b4f-b49e-1649a958a7ff', 1, NULL, '2021-03-21 05:02:53', '2021-03-21 05:02:53', NULL, NULL, NULL, '197811172006042001', 'Endang', 'Lestari', 'Ruskan', NULL, NULL, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -172,9 +159,9 @@ CREATE TABLE `person_asset` (
 --
 
 INSERT INTO `person_asset` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `information_type_code`, `file_name`, `original_file_name`, `file_size`, `url`, `description`) VALUES
-('20f826d2-3ad9-448a-9465-9019c1dd8e8b', 1, NULL, '2021-03-17 10:04:52', '2021-03-17 10:04:52', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '6051d444373ac.png', 'Screenshot (10).png', 238390, 'img/kkt/', NULL),
-('3e0e2f8a-5634-4a8f-a9f8-f424c9e2675f', 1, NULL, '2021-03-17 10:04:52', '2021-03-17 10:04:52', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '6051d4443e1f5.png', 'Screenshot (10).png', 238390, 'img/kkt/', NULL),
-('8673e968-7a42-4d02-bbb3-e4299acab933', 1, NULL, '2021-03-17 10:04:52', '2021-03-17 10:04:52', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '6051d4443d140.png', 'Screenshot (10).png', 238390, 'img/kkt/', NULL);
+('0402d2b0-83ee-4a7b-bf9f-072af443c772', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 05:19:08', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '6056d74c87abf.jpg', 'ban.jpg', 7255, 'img/kkt/', NULL),
+('6ee98d32-c9ab-4a21-a391-0cbfc1098d80', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 05:19:08', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '6056d74c73866.jpg', 'gnti_ban.jpg', 50812, 'img/kkt/', NULL),
+('8dc02faf-187d-492a-a0b2-d6bcfd8ecfad', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 05:19:08', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '6056d74c4fe2a.png', 'download.png', 4090, 'img/kkt/', NULL);
 
 -- --------------------------------------------------------
 
@@ -195,6 +182,13 @@ CREATE TABLE `proposal_seminar_requirement` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `proposal_seminar_requirement`
+--
+
+INSERT INTO `proposal_seminar_requirement` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `proposal_seminar_requirement_code`, `proposal_seminar_requirement_name`, `description`) VALUES
+('eed8b704-6e16-41cd-8d2b-7743f2aab1ad', 1, NULL, '2021-03-18 15:23:06', '2021-03-18 15:23:06', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, 'KRS', 'Kartu Rancangan Studi', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -211,6 +205,7 @@ CREATE TABLE `student_thesis` (
   `updater_id` varchar(36) DEFAULT NULL,
   `lecturer_id` varchar(36) DEFAULT NULL,
   `college_student_id` varchar(36) DEFAULT NULL,
+  `thesis_status_code` tinyint(4) DEFAULT NULL,
   `total_sks_now` int(11) DEFAULT NULL,
   `total_sks_transkrip` int(11) DEFAULT NULL,
   `is_kkt_file_set` tinyint(4) DEFAULT NULL
@@ -220,8 +215,37 @@ CREATE TABLE `student_thesis` (
 -- Dumping data for table `student_thesis`
 --
 
-INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`) VALUES
-('d013947f-a26a-4cf8-bf49-462ecea619cb', 1, NULL, '2021-03-17 10:04:52', '2021-03-17 10:04:52', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 12, 12, 1);
+INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `thesis_status_code`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`) VALUES
+('78b1ce75-3238-4223-a732-30c4a5677a45', 1, NULL, '2021-03-21 05:19:08', '2021-03-21 15:25:09', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_thesis_history`
+--
+
+CREATE TABLE `student_thesis_history` (
+  `id` varchar(36) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `creator_id` varchar(36) DEFAULT NULL,
+  `updater_id` varchar(36) DEFAULT NULL,
+  `lecturer_id` varchar(36) DEFAULT NULL,
+  `college_student_id` varchar(36) DEFAULT NULL,
+  `history_code` tinyint(4) DEFAULT NULL,
+  `total_sks_now` int(11) DEFAULT NULL,
+  `total_sks_transkrip` int(11) DEFAULT NULL,
+  `description` varchar(36) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student_thesis_history`
+--
+
+INSERT INTO `student_thesis_history` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `history_code`, `total_sks_now`, `total_sks_transkrip`, `description`) VALUES
+('bea7eb89-8bef-4e60-b0b6-6445d787d833', 1, NULL, '2021-03-21 16:38:43', '2021-03-21 16:38:43', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 'ga bagus');
 
 -- --------------------------------------------------------
 
@@ -275,10 +299,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
-('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-17 08:33:33', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$10$0l4zMMAsqtlBDb7A8UKVDe6Ipqa/4ozmPTc6SngKASALaAzJdlUw6', 'VumOvZetoTkKoHMKG7ZS4dXhZdaUKcCEPnHsSlWOcNYh5KWrLVpnrL6ppZjt', 2),
-('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-17 13:24:32', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520103', '$2y$10$fTCkfy4wDfSHjmXyT35bBOEdnmwatA1eygIM8fy/lzImzVvNa0Qxa', 'vHGaL1uBc2fZKguY5itFWgkejhJAvvk3raSJLUdmhACtgSnLWkLDUaEv1FUF', 4),
-('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-16 12:54:21', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'xMmctl3kFAPfhNh6Cqu6N3A5c4yrtU5iBG3zIBTgOPhF3oyGgVl57nxQ7iOn', 1),
-('fdd40e9f-ec2c-4987-987b-3024266fbf86', 1, NULL, '2021-03-16 07:59:21', '2021-03-16 07:59:21', NULL, NULL, '48a93040-862b-11eb-8b4d-c0b5d79bd8c4', '09031181520124', '$2y$10$Y0Veggk6CFISpAk5/F9FKeGO5wuny60TeJRAKH6ibLO3NEsL.LlXe', NULL, 3);
+('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-21 04:59:53', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$12$wdmMZFDREdMADYtzVqa.bu/1XThATLvAsaAdROBXFQRPUx126G6be', 'SK6gpikhiFARHUaxy9M5AP7ZO9AgSgRrivf81dyOe3T8dOZpPNstBzj5CUa9', 2),
+('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-21 05:24:38', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$12$0z/e9V4KEPeryJKPR0ikNeO2BJaqp72NNIgacnv5E6zl3MzEEI03q', '55uDUmiILcaMEr6rUKZCGBfsVsqs3RjA729Wc1SVc1JVmlZyZE6zpIwNiL6B', 4),
+('b190c023-dda1-42dd-880f-99a647fc616f', 1, NULL, '2021-03-21 05:02:54', '2021-03-21 05:02:54', NULL, NULL, NULL, '197811172006042001', '$2y$10$gCL8ewBQkBcgRxD2uCTgru6IHwhZKqTBeQd0xtW4Zt9EwKAN7krx2', NULL, 3),
+('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-21 05:23:32', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'nxG5nsEP7QB42At1K845kTR9h1Ho5TqcNhV2yT0XNsJdKqmnLeJAQQjLj0XR', 1);
 
 -- --------------------------------------------------------
 
@@ -300,20 +324,15 @@ CREATE TABLE `year_of_education` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `year_of_education`
+--
+
+INSERT INTO `year_of_education` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `year_of_education_code`, `year_of_education_name`, `description`) VALUES
+('6cb0160a-437c-4d4f-8160-18d4f1283c68', 1, NULL, '2021-03-18 12:14:53', '2021-03-18 12:20:12', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '15', '2015', NULL);
+
+--
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `business_entity`
---
-ALTER TABLE `business_entity`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `business_entity_document`
---
-ALTER TABLE `business_entity_document`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `comprehensive_requirement`
@@ -355,6 +374,12 @@ ALTER TABLE `proposal_seminar_requirement`
 -- Indexes for table `student_thesis`
 --
 ALTER TABLE `student_thesis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student_thesis_history`
+--
+ALTER TABLE `student_thesis_history`
   ADD PRIMARY KEY (`id`);
 
 --

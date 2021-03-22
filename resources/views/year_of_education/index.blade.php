@@ -25,7 +25,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
-						<a href="{{ url('field_of_study/create') }}">
+						<a href="{{ url('year_of_education/create') }}">
 							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
 						</a><br><br>
 						@if(session()->has('success'))
@@ -47,11 +47,11 @@
 						<table id="example1" class="table">
 							<thead>
 								<tr>
-									<th class="wd-20p">No</th>
-									<th class="wd-25p">Kode Angkatan</th>
-									<th class="wd-20p">Nama Angkatan</th>
-									<th class="wd-15p">Status</th>
-									<th class="wd-20p">Actions</th>
+									<th>No</th>
+									<th>Kode Angkatan</th>
+									<th>Nama Angkatan</th>
+									<th>Status</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>

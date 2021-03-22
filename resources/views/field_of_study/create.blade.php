@@ -25,34 +25,35 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('field_of_study/store') }}" method="POST">
+                        <form action="{{ url('field_of_study/store') }}" method="POST" id="fieldForm">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
                                 <hr>
                                 <div class="form-group">
                                     <label class="form-label">Kode Bidang Studi</label>
-                                    <input type="text" class="form-control" name="field_of_study_code" placeholder="Masukkan kode bidang studi" required>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
-                                </div><!-- form-group -->
+                                    <input type="text" class="form-control" name="field_of_study_code" id="field_of_study_code" placeholder="Masukkan kode bidang studi" required>
+                                </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Nama Bidang Studi</label>
-                                    <input type="text" class="form-control" name="field_of_study_name" placeholder="Masukkan nama bidang studi" required>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
-                                </div><!-- form-group -->
+                                    <label class="form-label">Nama Angkatan</label>
+                                    <input type="text" class="form-control" name="field_of_study_name" id="field_of_study_name" placeholder="Masukkan nama bidang studi" required>
+                                </div>
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save Product</button>
-                                <button type="button" class="btn btn-white mg-l-2">Reset Changes</button>
-                            </div><!-- tab-pane -->
+                                <button class="btn btn-brand-02">Save Changes</button>
+                                <a href="{{ url('field_of_study') }}"><button type="button" class="btn btn-white mg-l-2">Cancel Changes</button></a>
+                            </div>
                         </form>
-                    </div><!-- tab-content -->
-                </div><!-- card -->
-            </div><!-- col -->
-        </div><!-- row -->
-    </div><!-- content-body -->
+                        <script>
+                            $("#fieldForm").validate();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     @include('components.footer')

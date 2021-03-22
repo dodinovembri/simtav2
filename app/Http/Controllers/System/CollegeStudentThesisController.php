@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PersonModel;
 use App\Models\StudentThesisModel;
-use Illuminate\Support\Facades\DB;
+use App\Models\StudentThesisHistoryModel;
+use App\Models\PersonAssetModel;
+use Ramsey\Uuid\Uuid;
+use Auth;
 
 class CollegeStudentThesisController extends Controller
 {
@@ -53,13 +56,34 @@ class CollegeStudentThesisController extends Controller
 	 */
 	public function show($id)
 	{
-		$data['college_student_thesis'] = DB::table('student_thesis')
-			->join('person', 'student_thesis.college_student_id', '=', 'person.id')
-			->select('student_thesis.*', 'person.nim as nim', 'person.given_name as given_name', 'person.middle_name as middle_name', 'person.surname as surname', 'person.person_type_code as person_type_code')
-			->where('student_thesis.id', $id)
-			->get();
-		$data['college_student_thesis'] = StudentThesisModel::with('person')->get();
+		$data['college_student_thesis'] = StudentThesisModel::with('person')->where('id', $id)->first();
+		$data['person_assets'] = PersonAssetModel::where('person_id', $data['college_student_thesis']->college_student_id)->get();
 		return view('college_student_thesis.show', $data);
+	}
+
+	public function store_kkt_file_rejected(Request $request, $id)
+	{		 
+		$rejected_reason = $request->rejected_reason;
+		$creator_id      = Auth::user()->id;
+
+		$update_to_student_thesis                     = StudentThesisModel::find($id);
+		$update_to_student_thesis->thesis_status_code = 2;
+		$update_to_student_thesis->is_kkt_file_set    = 0;
+		$update_to_student_thesis->update();
+
+		$student_thesis                                        = StudentThesisModel::find($id);
+		$insert_to_student_thesis_history                      = new StudentThesisHistoryModel();
+		$insert_to_student_thesis_history->id                  = Uuid::uuid4();
+		$insert_to_student_thesis_history->status              = 1;
+		$insert_to_student_thesis_history->creator_id          = $creator_id;
+		$insert_to_student_thesis_history->history_code        = 2;
+		$insert_to_student_thesis_history->college_student_id  = $student_thesis->college_student_id;
+		$insert_to_student_thesis_history->total_sks_now       = $student_thesis->total_sks_now;
+		$insert_to_student_thesis_history->total_sks_transkrip = $student_thesis->total_sks_transkrip;
+		$insert_to_student_thesis_history->description         = $rejected_reason;
+		$insert_to_student_thesis_history->save();
+
+		return redirect(url('college_student_thesis/show', $id))->with('success', 'Sukses memperbaharui data!');
 	}
 
 	/**

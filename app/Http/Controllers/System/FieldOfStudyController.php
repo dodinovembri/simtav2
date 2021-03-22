@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FieldOfStudyModel;
 use Ramsey\Uuid\Uuid;
+use Auth;
 
 class FieldOfStudyController extends Controller
 {
@@ -41,14 +42,19 @@ class FieldOfStudyController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$insert                      = new FieldOfStudyModel();
-		$insert->id                  = Uuid::uuid4();
-		$insert->status              = 1;
-		$insert->field_of_study_code = $request->field_of_study_code;
-		$insert->field_of_study_name = $request->field_of_study_name;
-		$insert->save();
+		$field_of_study_code = $request->field_of_study_code;
+		$field_of_study_name = $request->field_of_study_name;
+		$creator_id = Auth::user()->id;
 
-		return redirect(url('field_of_study'))->with('success', "Berhasil menambahkan Bidang Studi!");
+		$insert_to_field_of_study = new FieldOfStudyModel();
+		$insert_to_field_of_study->id = Uuid::uuid4();
+		$insert_to_field_of_study->status = 1;
+		$insert_to_field_of_study->creator_id = $creator_id;
+		$insert_to_field_of_study->field_of_study_code = $field_of_study_code;
+		$insert_to_field_of_study->field_of_study_name = $field_of_study_name;
+		$insert_to_field_of_study->save();
+
+		return redirect(url('field_of_study'))->with('success', 'Bidang Studi berhasil ditambahkan!');
 	}
 
 	/**
@@ -82,13 +88,17 @@ class FieldOfStudyController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$update                      = FieldOfStudyModel::find($id);
-		$update->status              = 1;
-		$update->field_of_study_code = $request->field_of_study_code;
-		$update->field_of_study_name = $request->field_of_study_name;
-		$update->update();
+		$field_of_study_code = $request->field_of_study_code;
+		$field_of_study_name = $request->field_of_study_name;
+		$updater_id = Auth::user()->id;
 
-		return redirect(url('field_of_study'))->with('success', "Berhasil mengubah Bidang Studi!");
+		$insert_to_field_of_study = FieldOfStudyModel::find($id);
+		$insert_to_field_of_study->updater_id = $updater_id;
+		$insert_to_field_of_study->field_of_study_code = $field_of_study_code;
+		$insert_to_field_of_study->field_of_study_name = $field_of_study_name;
+		$insert_to_field_of_study->update();
+
+		return redirect(url('field_of_study'))->with('success', 'Bidang Studi berhasil diubah!');
 	}
 
 	/**

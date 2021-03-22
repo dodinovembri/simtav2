@@ -47,11 +47,11 @@
 						<table id="example1" class="table">
 							<thead>
 								<tr>
-									<th class="wd-20p">No</th>
-									<th class="wd-25p">Kode Syarat Sempro</th>
-									<th class="wd-20p">Nama Syarat Sempro</th>
-									<th class="wd-15p">Status</th>
-									<th class="wd-20p">Actions</th>
+									<th>No</th>
+									<th>Kode Syarat Sempro</th>
+									<th>Nama Syarat Sempro</th>
+									<th>Status</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>

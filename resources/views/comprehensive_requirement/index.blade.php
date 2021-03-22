@@ -25,7 +25,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
-						<a href="{{ url('proposal_seminar_requirement/create') }}">
+						<a href="{{ url('comprehensive_requirement/create') }}">
 							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
 						</a><br><br>
 						@if(session()->has('success'))
@@ -47,11 +47,11 @@
 						<table id="example1" class="table">
 							<thead>
 								<tr>
-									<th class="wd-20p">No</th>
-									<th class="wd-25p">Kode Syarat Kompre</th>
-									<th class="wd-20p">Nama Syarat Kompre</th>
-									<th class="wd-15p">Status</th>
-									<th class="wd-20p">Actions</th>
+									<th>No</th>
+									<th>Kode Syarat Kompre</th>
+									<th>Nama Syarat Kompre</th>
+									<th>Status</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -60,11 +60,11 @@
 									$no++; ?>
 									<tr>
 										<td>{{ $no }}</td>
-										<td>{{ $value->proposal_seminar_requirement_code }}</td>
-										<td>{{ $value->proposal_seminar_requirement_name }}</td>
+										<td>{{ $value->comprehensive_requirement_code }}</td>
+										<td>{{ $value->comprehensive_requirement_name }}</td>
 										<td><?php echo CheckStatus($value->status); ?></td>
 										<td>
-											<a href="{{ url('proposal_seminar_requirement/edit', $value->id) }}"><i class="fa fa-edit" style="margin-left: 8px"></i></a>
+											<a href="{{ url('comprehensive_requirement/edit', $value->id) }}"><i class="fa fa-edit" style="margin-left: 8px"></i></a>
 											<a href="#modal1{{$value->id}}" data-toggle="modal"><i class="fa fa-trash" style="margin-left: 8px"></i></a>
 										</td>
 									</tr>
@@ -82,7 +82,7 @@
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary rounded-5" data-dismiss="modal">Cancel</button>
-													<a href="{{ url('proposal_seminar_requirement/destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
+													<a href="{{ url('comprehensive_requirement/destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
 												</div>
 											</div>
 										</div>

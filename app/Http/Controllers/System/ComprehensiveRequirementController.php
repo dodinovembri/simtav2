@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\ComprehensiveRequirementModel;
+use Ramsey\Uuid\Uuid;
+use Auth;
 
 class ComprehensiveRequirementController extends Controller {
 
@@ -27,7 +29,7 @@ class ComprehensiveRequirementController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('comprehensive_requirement.create');
 	}
 
 	/**
@@ -35,9 +37,21 @@ class ComprehensiveRequirementController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$comprehensive_requirement_code = $request->comprehensive_requirement_code;
+		$comprehensive_requirement_name = $request->comprehensive_requirement_name;
+		$creator_id = Auth::user()->id;
+
+		$insert_to_comprehensive_requirement = new ComprehensiveRequirementModel();
+		$insert_to_comprehensive_requirement->id = Uuid::uuid4();
+		$insert_to_comprehensive_requirement->status = 1;
+		$insert_to_comprehensive_requirement->creator_id = $creator_id;
+		$insert_to_comprehensive_requirement->comprehensive_requirement_code = $comprehensive_requirement_code;
+		$insert_to_comprehensive_requirement->comprehensive_requirement_name = $comprehensive_requirement_name;
+		$insert_to_comprehensive_requirement->save();
+
+		return redirect(url('comprehensive_requirement'))->with('success', 'Syarat Kompre berhasil diubah!');
 	}
 
 	/**
@@ -59,7 +73,8 @@ class ComprehensiveRequirementController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$data['comprehensive_requirement'] = ComprehensiveRequirementModel::find($id);
+		return view('comprehensive_requirement.edit', $data);
 	}
 
 	/**
@@ -68,9 +83,19 @@ class ComprehensiveRequirementController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$comprehensive_requirement_code = $request->comprehensive_requirement_code;
+		$comprehensive_requirement_name = $request->comprehensive_requirement_name;
+		$updater_id = Auth::user()->id;
+
+		$insert_to_comprehensive_requirement = ComprehensiveRequirementModel::find($id);
+		$insert_to_comprehensive_requirement->updater_id = $updater_id;
+		$insert_to_comprehensive_requirement->comprehensive_requirement_code = $comprehensive_requirement_code;
+		$insert_to_comprehensive_requirement->comprehensive_requirement_name = $comprehensive_requirement_name;
+		$insert_to_comprehensive_requirement->update();
+
+		return redirect(url('comprehensive_requirement'))->with('success', 'Angkatan berhasil diubah!');
 	}
 
 	/**
@@ -81,7 +106,10 @@ class ComprehensiveRequirementController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = ComprehensiveRequirementModel::find($id);
+		$delete->delete();
+
+		return redirect(url('comprehensive_requirement'))->with('success', 'Syarat Kompre berhasil dihapus!');
 	}
 
 }

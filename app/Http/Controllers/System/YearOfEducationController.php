@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\YearOfEducationModel;
+use Ramsey\Uuid\Uuid;
+use Auth;
 
 class YearOfEducationController extends Controller {
 
@@ -27,7 +29,7 @@ class YearOfEducationController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('year_of_education.create');
 	}
 
 	/**
@@ -35,9 +37,21 @@ class YearOfEducationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$year_of_education_code = $request->year_of_education_code;
+		$year_of_education_name = $request->year_of_education_name;
+		$creator_id = Auth::user()->id;
+
+		$insert_to_year_of_education = new YearOfEducationModel();
+		$insert_to_year_of_education->id = Uuid::uuid4();
+		$insert_to_year_of_education->status = 1;
+		$insert_to_year_of_education->creator_id = $creator_id;
+		$insert_to_year_of_education->year_of_education_code = $year_of_education_code;
+		$insert_to_year_of_education->year_of_education_name = $year_of_education_name;
+		$insert_to_year_of_education->save();
+
+		return redirect(url('year_of_education'))->with('success', 'Angkatan berhasil ditambahkan!');
 	}
 
 	/**
@@ -59,7 +73,9 @@ class YearOfEducationController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$data['year_of_education'] = YearOfEducationModel::find($id);
+
+		return view('year_of_education.edit', $data);
 	}
 
 	/**
@@ -68,9 +84,19 @@ class YearOfEducationController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$year_of_education_code = $request->year_of_education_code;
+		$year_of_education_name = $request->year_of_education_name;
+		$updater_id = Auth::user()->id;
+
+		$insert_to_year_of_education = YearOfEducationModel::find($id);
+		$insert_to_year_of_education->updater_id = $updater_id;
+		$insert_to_year_of_education->year_of_education_code = $year_of_education_code;
+		$insert_to_year_of_education->year_of_education_name = $year_of_education_name;
+		$insert_to_year_of_education->update();
+
+		return redirect(url('year_of_education'))->with('success', 'Angkatan berhasil diubah!');
 	}
 
 	/**
@@ -81,7 +107,10 @@ class YearOfEducationController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = YearOfEducationModel::find($id);
+		$delete->delete();
+
+		return redirect(url('year_of_education'))->with('success', 'Angkatan berhasil dihapus!');
 	}
 
 }
