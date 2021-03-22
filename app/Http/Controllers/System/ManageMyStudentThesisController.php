@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\StudentThesisModel;
 
-class ManageStudentThesisController extends Controller {
+class ManageMyStudentThesisController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -17,9 +17,11 @@ class ManageStudentThesisController extends Controller {
 	 */
 	public function index()
 	{
-		$lecturer_id = Auth::user()->id;
-		return $data['manage_student_thesis'] = StudentThesisModel::where('lecturer_id', $lecturer_id)->get();
-		return view('manage_student_thesis.index', $data);
+		$lecturer_id = Auth::user()->person_id;
+
+		$data['manage_my_student_thesis'] = StudentThesisModel::with('person')->where('lecturer_id', $lecturer_id)->where('status', 1)->get();
+
+		return view('manage_my_student_thesis.index', $data);
 	}
 
 	/**
@@ -50,7 +52,7 @@ class ManageStudentThesisController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return view('manage_my_student_thesis.show');
 	}
 
 	/**

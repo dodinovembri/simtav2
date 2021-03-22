@@ -28,9 +28,33 @@
 						<a href="{{ url('college_student/create') }}">
 							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
 						</a>
-						<a href="{{ url('college_student/create') }}">
+						<a href="#upload_data" data-toggle="modal">
 							<button class="btn btn-primary"><i data-feather="upload"></i> Upload Data</button>
 						</a><br><br>
+						<div class="modal fade" id="upload_data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h6 class="modal-title" id="exampleModalLabel">Delete Confirm</h6>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true"><i data-feather="x"></i></span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="form-label">Data Mahasiswa</label>
+											<input type="file" class="form-control" name="kkt_file[1]" id="kp_file" required>
+											<input type="hidden" name="information_type_code[]" value="2">
+											<small class="text-infor">*File yang diterima hanya berekstensi .jpeg, .jpg, .png, .pdf dan ukuran maks. 5 MB</small>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Download Template</button>
+										<a href=""><button type="button" class="btn btn-primary">Upload</button></a>
+									</div>
+								</div>
+							</div>
+						</div>
 						@if(session()->has('success'))
 						<div class="alert alert-success alert-dismissible mg-b-0 fade show" role="alert">
 							<i class="icon fa fa-close"></i> {{ session()->get('success') }}
@@ -46,7 +70,7 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div><br>
-						@endif						
+						@endif
 						@if(session()->has('error'))
 						<div class="alert alert-warning alert-dismissible mg-b-0 fade show" role="alert">
 							<i class="icon fa fa-close"></i> {{ session()->get('error') }}

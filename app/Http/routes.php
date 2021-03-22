@@ -91,6 +91,16 @@ Route::group(['prefix' => 'comprehensive_requirement'], function()
  * For Manager
  * Transaction routes
  */
+Route::group(['prefix' => 'manage_student_thesis'], function()
+{
+	Route::get('', ['uses' => 'System\ManageStudentThesisController@index']);
+	Route::get('create', ['uses' => 'System\ManageStudentThesisController@create']);
+	Route::post('store', ['uses' => 'System\ManageStudentThesisController@store']);
+	Route::get('show/{id}', ['uses' => 'System\ManageStudentThesisController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\ManageStudentThesisController@edit']);
+	Route::post('update/{id}', ['uses' => 'System\ManageStudentThesisController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\ManageStudentThesisController@destroy']);
+});
 
 /** 
  * 
@@ -142,15 +152,15 @@ Route::group(['prefix' => 'thesis_topic'], function()
  * For Lecturer
  * Transactions routes
  */
-Route::group(['prefix' => 'manage_student_thesis'], function()
+Route::group(['prefix' => 'manage_my_student_thesis'], function()
 {
-	Route::get('', ['uses' => 'System\ManageStudentThesisController@index']);
-	Route::get('create', ['uses' => 'System\ManageStudentThesisController@create']);
-	Route::post('store', ['uses' => 'System\ManageStudentThesisController@store']);
-	Route::get('show/{id}', ['uses' => 'System\ManageStudentThesisController@show']);
-	Route::get('edit/{id}', ['uses' => 'System\ManageStudentThesisController@edit']);
-	Route::post('update/{id}', ['uses' => 'System\ManageStudentThesisController@update']);
-	Route::get('destroy/{id}', ['uses' => 'System\ManageStudentThesisController@destroy']);
+	Route::get('', ['uses' => 'System\ManageMyStudentThesisController@index']);
+	Route::get('create', ['uses' => 'System\ManageMyStudentThesisController@create']);
+	Route::post('store', ['uses' => 'System\ManageMyStudentThesisController@store']);
+	Route::get('show/{id}', ['uses' => 'System\ManageMyStudentThesisController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\ManageMyStudentThesisController@edit']);
+	Route::post('update/{id}', ['uses' => 'System\ManageMyStudentThesisController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\ManageMyStudentThesisController@destroy']);
 });
 
 /**
@@ -172,4 +182,5 @@ Route::group(['prefix' => 'my_thesis'], function()
 	Route::post('store_kkt_file', ['uses' => 'System\MyThesisController@store_kkt_file']);
 	Route::get('create_thesis_topic', ['uses' => 'System\MyThesisController@create_thesis_topic']);
 	Route::post('store_thesis_topic', ['uses' => 'System\MyThesisController@store_thesis_topic']);
+	Route::get('create_extension_proposal_seminar', ['uses' => 'System\MyThesisController@create_extension_proposal_seminar']);
 });

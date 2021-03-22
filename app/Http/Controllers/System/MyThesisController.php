@@ -204,7 +204,10 @@ class MyThesisController extends Controller
 	public function store_thesis_topic(Request $request)
 	{
 		$user_id = Auth::user()->id;
+		$person_id = Auth::user()->person_id;
 		$supervisor = $request->supervisor;
+		$thesis_topic = $request->thesis_topic;
+		$title_of_thesis = $request->title_of_thesis;
 
 		// save to student thesis supervisor
 		foreach ($supervisor as $key => $value) {
@@ -218,7 +221,18 @@ class MyThesisController extends Controller
 		}
 
 		// update student thesis
-		$update_to_student_thesis = StudentThesisModel::where('college_student_id', $user_id)->first();
-		// $update_to_student_thesis->
+		$update_to_student_thesis = StudentThesisModel::where('college_student_id', $person_id)->first();
+		$update_to_student_thesis->updater_id = $user_id;
+		$update_to_student_thesis->thesis_status_code = 5;
+		$update_to_student_thesis->thesis_topic_id = $thesis_topic;
+		$update_to_student_thesis->title_of_thesis = $title_of_thesis;
+		$update_to_student_thesis->update();
+
+		return redirect(url('my_thesis'))->with('success', 'Topik TA berhasil di upload.');
+	}
+
+	public function create_extension_proposal_seminar()
+	{
+		return view('my_thesis.proposal_seminar.create_extension_proposal_seminar');
 	}
 }

@@ -20,262 +20,231 @@
 		</div>
 	</div><!-- content-header -->
 	<div class="content-body">
-		<div class="row row-sm">
-			<div class="col-xl-8">
-				<div class="timeline-item">
-					<div class="row row-sm">
-						<div class="col-sm-3 col-lg-2">
-							<div class="date-wrapper">
-								<span class="timeline-date">Today, Jul 01, 2019</span>
-								<h6 class="timeline-time">08:40<span>pm</span></h6>
+		<div class="row row-xs">
+			<div class="col-md-4">
+				<ul class="list-group list-group-settings">
+					<li class="list-group-item list-group-item-action">
+						<a href="#paneProfile" data-toggle="tab" class="media active">
+							<i data-feather="user"></i>
+							<div class="media-body">
+								<h6>KRS, KP & Transkrip Nilai</h6>
+								<span>About your personal information</span>
 							</div>
-						</div>
-						<?php if (!isset($my_thesis)) { ?>
-							<div class="col-sm-9">
-								<div class="timeline-body">
-									<div class="timeline-header">
-										<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-pink">g</span></div>
-										<h6>George Winslett</h6>
-										<span>added a new note to self</span>
-									</div><!-- timeline-header -->
-									<div class="card card-timeline card-timeline-note">
-										<h5>Upload KRS, KP dan Transkrip Nilai.</h5>
-										<p class="mg-b-0">In this lesson, you create a layout in XML that includes a text field and a button. In the next lesson, your app responds when the...<a href="{{ url('my_thesis/create_kkt_file') }}">Upload Sekarang!</a></p>
-									</div>
-								</div><!-- timeline-body -->
-							</div>
-							<?php } else {
-							if ($my_thesis->is_kkt_file_set != 1) { ?>
-								<div class="col-sm-9">
-									<div class="timeline-body">
-										<div class="timeline-header">
-											<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-pink">g</span></div>
-											<h6>George Winslett</h6>
-											<span>added a new note to self</span>
-										</div><!-- timeline-header -->
-										<?php if (isset($my_thesis_history)) { ?>
-											<div class="alert alert-danger alert-dismissible mg-b-0 fade show" role="alert">
-												<i class="icon fa fa-close"></i> KRS, KP dan Transkrip ditolak, Alasan Penolakan: {{$my_thesis_history->description}}
-												<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="card card-timeline card-timeline-note">
-												<h5>Upload KRS, KP dan Transkrip Nilai.</h5>
-												<p class="mg-b-0">In this lesson, you create a layout in XML that includes a text field and a button. In the next lesson, your app responds when the...<a href="{{ url('my_thesis/create_kkt_file') }}">Upload Sekarang!</a></p>
-											</div>
-										<?php } ?>
-									</div><!-- timeline-body -->
-								</div>
-							<?php } elseif ($my_thesis->is_kkt_file_set == 1 && $my_thesis->thesis_status_code != 4) { ?>
-								<div class="col-sm-9">
-									<div class="timeline-body">
-										<div class="timeline-header">
-											<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-primary">r</span></div>
-											<h6>Reynante Labares</h6>
-											<span>uploaded 3 new photos</span>
-										</div><!-- timeline-header -->
-										<div class="card card-timeline card-timeline-photo">
-											<div class="row row-xs">
-												<?php foreach ($person_assets as $key => $value) { ?>
-													<div class="col">
-														<a href="{{ asset($value->url) }}/{{ $value->file_name }}" target="_blank"><img src="{{ asset($value->url) }}/{{ $value->file_name }}" class="img-fluid" alt=""></a>
-													</div>
-												<?php } ?>
-											</div><!-- row -->
-										</div>
-									</div><!-- timeline-body -->
-								</div>
-							<?php } elseif ($my_thesis->thesis_status_code == 4) { ?>
-								<div class="col-sm-9">
-									<div class="timeline-body">
-										<div class="timeline-header">
-											<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-primary">r</span></div>
-											<h6>Reynante Labares</h6>
-											<span>uploaded 3 new photos</span>
-										</div><!-- timeline-header -->
-										<div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
-											<i class="icon fa fa-close"></i> KRS, KP dan Transkrip diterima
-											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-									</div><!-- timeline-body -->
-								</div>
-						<?php }
-						} ?>
-					</div><!-- row -->
-				</div><!-- timeline -->
-				<div class="timeline-item">
-					<div class="row row-sm">
-						<div class="col-sm-3 col-lg-2">
-							<div class="date-wrapper">
-								<span class="timeline-date">Today, Jul 01, 2019</span>
-								<h6 class="timeline-time">07:20<span>pm</span></h6>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="timeline-body">
-								<div class="timeline-header">
-									<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-pink">g</span></div>
-									<h6>George Winslett</h6>
-									<span>added a new note to self</span>
-								</div><!-- timeline-header -->
-								<div class="card card-timeline card-timeline-note">
-									<h5>Input Topik TA.</h5>
-									<p class="mg-b-0">In this lesson, you create a layout in XML that includes a text field and a button. In the next lesson, your app responds when the...<a href="{{ url('my_thesis/create_thesis_topic') }}">Input Sekarang!</a></p>
-								</div>
-							</div><!-- timeline-body -->
-						</div>
-					</div><!-- row -->
-				</div><!-- timeline-item -->
-				<div class="timeline-item">
-					<div class="row row-sm">
-						<div class="col-sm-3 col-lg-2">
-							<div class="date-wrapper">
-								<span class="timeline-date">Sun, Jun 27, 2019</span>
-								<h6 class="timeline-time">11:30<span>am</span></h6>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="timeline-body">
-								<div class="timeline-header">
-									<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-success">s</span></div>
-									<h6>Socrates Itumay</h6>
-									<span>shared an article</span>
-								</div><!-- timeline-header -->
-								<div class="card card-timeline card-timeline-article">
-									<div class="media d-block d-sm-flex">
-										<a href="" class="d-block wd-150"><img src="../assets/img/img16.png" class="img-fluid" alt=""></a>
-										<div class="media-body mg-t-15 mg-sm-t-0 mg-sm-l-20">
-											<h5><a href="" class="link-01">Responsive typography and web design for beginners</a></h5>
-											<p class="tx-13 mg-b-0">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-										</div><!-- media-body -->
-									</div><!-- media -->
-								</div>
-							</div><!-- timeline-body -->
-						</div>
-					</div><!-- row -->
-				</div><!-- timeline-item -->
-				<div class="timeline-item">
-					<div class="row row-sm">
-						<div class="col-sm-3 col-lg-2">
-							<div class="date-wrapper">
-								<span class="timeline-date">Sun, Jun 27, 2019</span>
-								<h6 class="timeline-time">10:48<span>am</span></h6>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="timeline-body">
-								<div class="timeline-header">
-									<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-success">s</span></div>
-									<h6>Socrates Itumay</h6>
-									<span>shared an article</span>
-								</div><!-- timeline-header -->
-								<div class="card card-timeline card-timeline-article">
-									<div class="media d-block d-sm-flex">
-										<a href="" class="d-block wd-150"><img src="../assets/img/img17.jpg" class="img-fluid" alt=""></a>
-										<div class="media-body mg-t-15 mg-sm-t-0 mg-sm-l-20">
-											<h5><a href="" class="link-01">CSS3 Secondary Expandable Navigation</a></h5>
-											<p class="tx-13 mg-b-0">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-										</div><!-- media-body -->
-									</div><!-- media -->
-								</div>
-							</div><!-- timeline-body -->
-						</div>
-					</div><!-- row -->
-				</div><!-- timeline -->
-				<div class="timeline-item">
-					<div class="row row-sm">
-						<div class="col-sm-3 col-lg-2">
-							<div class="date-wrapper">
-								<span class="timeline-date">Fri, Jun 24, 2019</span>
-								<h6 class="timeline-time">04:32<span>pm</span></h6>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="timeline-body">
-								<div class="timeline-header">
-									<div class="avatar avatar-xs avatar-offline"><span class="avatar-initial rounded-circle bg-danger">r</span></div>
-									<h6>Dyanne Aceron</h6>
-									<span>uploaded 2 new photos</span>
-								</div><!-- timeline-header -->
-								<div class="card card-timeline card-timeline-photo">
-									<div class="row row-xs">
-										<div class="col">
-											<img src="../assets/img/img18.png" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<img src="../assets/img/img19.jpg" class="img-fluid" alt="">
-										</div>
-									</div><!-- row -->
-								</div>
-							</div><!-- timeline-body -->
-						</div>
-					</div><!-- row -->
-				</div><!-- timeline-item -->
-			</div><!-- col -->
-			<div class="col-xl-4 d-none d-xl-block">
-				<h6 class="tx-uppercase tx-semibold mg-b-15">Upcoming Events</h6>
-				<ul class="list-unstyled timeline-list-event">
-					<li>
-						<div class="card card-timeline-event">
-							<h6 class="tx-14 tx-semibold mg-b-2"><a href="" class="link-01">Boost Revenue Workshop Seminar</a></h6>
-							<p class="mg-b-2">Saturday, July 31, 2019</p>
-							<p class="tx-sm tx-color-04"><strong>9am - 3pm</strong> Manila, Philippines</p>
-							<p class="tx-sm tx-color-04 mg-b-10"><span class="tx-danger">Sold Out</span> (5000+ tickets sold)</p>
-							<div class="d-flex align-items-center">
-								<div class="avatar-group">
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-dark">r</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-teal">a</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-pink">y</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-orange">m</span></div>
-								</div>
-								<span class="avatar-group-more tx-12">18+ more</span>
-							</div>
-						</div><!-- card -->
+						</a>
 					</li>
-					<li>
-						<div class="card card-timeline-event">
-							<h6 class="tx-14 tx-semibold mg-b-2"><a href="" class="link-01">PH World Mall Lantern Festival</a></h6>
-							<p class="mg-b-2">Tuesday, August 05, 2019</p>
-							<p class="tx-sm tx-color-04"><strong>8am - 4pm</strong> Bay Area, San Francisco</p>
-							<p class="tx-sm tx-color-04 mg-b-10"><span class="tx-success">Free Registration</span> (Limited seats only)</p>
-							<div class="d-flex">
-								<div class="avatar-group">
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-danger">r</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-primary">a</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-success">m</span></div>
-								</div>
+					<li class="list-group-item list-group-item-action">
+						<a href="#paneAccount" data-toggle="tab" class="media">
+							<i data-feather="settings"></i>
+							<div class="media-body">
+								<h6>Topik TA</h6>
+								<span>Manage your account setting options</span>
 							</div>
-						</div><!-- card -->
+						</a>
 					</li>
-					<li>
-						<div class="card card-timeline-event">
-							<h6 class="tx-14 tx-semibold mg-b-2"><a href="" class="link-01">Asia Pacific Generation Workshop</a></h6>
-							<p class="mg-b-2">Friday, August 08, 2019</p>
-							<p class="tx-sm tx-color-04"><strong>9am - 10pm</strong> Frankel, Singapore</p>
-							<p class="tx-sm tx-color-04 mg-b-10"><span class="tx-warning">Sold out soon</span> (15 tickets left)</p>
-							<div class="d-flex align-items-center">
-								<div class="avatar-group">
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-teal">r</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-purple">a</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-info">y</span></div>
-									<div class="avatar avatar-xs"><span class="avatar-initial rounded-circle bg-pink">m</span></div>
-								</div>
-								<span class="avatar-group-more tx-12">18+ more</span>
+					<li class="list-group-item list-group-item-action">
+						<a href="#paneSecurity" data-toggle="tab" class="media">
+							<i data-feather="shield"></i>
+							<div class="media-body">
+								<h6>Perpanjangan TA</h6>
+								<span>Manage your security information</span>
 							</div>
-						</div><!-- card -->
+						</a>
 					</li>
-					<li>
-						<div class="card card-timeline-event">
-							<h6 class="tx-14 tx-semibold mg-b-2"><a href="" class="link-01">Japan Smart Technology Show</a></h6>
-							<p class="mg-b-2">Wednesday, August 15, 2019</p>
-							<p class="tx-sm tx-color-04"><strong>8am - 11am</strong> Tokyo, Japan</p>
-							<p class="tx-sm tx-color-04 mg-b-0"><span class="tx-success">Free Registration</span> (1 ticket sold)</p>
-						</div><!-- card -->
+					<li class="list-group-item list-group-item-action">
+						<a href="#paneNotification" data-toggle="tab" class="media">
+							<i data-feather="bell"></i>
+							<div class="media-body">
+								<h6>Seminar Proposal</h6>
+								<span>Choose how you receive notifications</span>
+							</div>
+						</a>
+					</li>
+					<li class="list-group-item list-group-item-action">
+						<a href="#paneBilling" data-toggle="tab" class="media">
+							<i data-feather="credit-card"></i>
+							<div class="media-body">
+								<h6>Kompre</h6>
+								<span>Your billing and payment information</span>
+							</div>
+						</a>
 					</li>
 				</ul>
+			</div><!-- col -->
+			<div class="col-md-8">
+				<div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
+					<div class="tab-content">
+						<div id="paneProfile" class="tab-pane active show">
+							<h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Your Profile Information</h6>
+							<hr>
+							<div class="form-settings">
+								<div class="form-group">
+									<label class="form-label">Full Name</label>
+									<input type="text" class="form-control" placeholder="Enter your fullname" value="Dwayne Johnson">
+									<div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
+								</div><!-- form-group -->
+
+								<div class="form-group">
+									<label class="form-label">Your Bio</label>
+									<textarea class="form-control" rows="3" placeholder="Write something about you">A front-end developer that focus more on user interface design, a web interface wizard, a connector of awesomeness and a long lost twin of Vin Diesel.</textarea>
+								</div><!-- form-group -->
+
+								<div class="form-group">
+									<label class="form-label">URL</label>
+									<input type="text" class="form-control" placeholder="Enter your website address" value="http://themepixels.me">
+								</div><!-- form-group -->
+
+								<div class="form-group">
+									<label class="form-label">Location</label>
+									<input type="text" class="form-control" placeholder="Enter your location" value="San Francisco, CA">
+								</div><!-- form-group -->
+
+								<div class="form-group tx-13 tx-color-04">
+									All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
+								</div>
+
+								<hr class="op-0">
+
+								<button class="btn btn-brand-02">Update Profile</button>
+								<button class="btn btn-white mg-l-2">Reset Changes</button>
+							</div>
+						</div><!-- tab-pane -->
+						<div id="paneAccount" class="tab-pane">
+							<h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Account Settings</h6>
+
+							<hr>
+							<div class="form-settings">
+								<div class="form-group">
+									<label class="form-label">Username</label>
+									<input type="text" class="form-control" placeholder="Enter your username" value="dwayne.johnson">
+									<div class="tx-11 tx-sans tx-color-04 mg-t-5">After changing your username, your old username becomes available for anyone else to claim.</div>
+								</div><!-- form-group -->
+
+								<hr>
+
+								<div class="form-group">
+									<label class="form-label text-danger">Delete Account</label>
+									<p class="tx-sm tx-color-04">Once you delete your account, there is no going back. Please be certain.</p>
+									<button class="btn btn-sm btn-danger">Delete Account</button>
+								</div><!-- form-group -->
+							</div><!-- form-settings -->
+						</div><!-- tab-pane -->
+						<div id="paneSecurity" class="tab-pane">
+							<h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Security Settings</h6>
+							<hr>
+							<div class="form-settings">
+								<div class="form-group">
+									<label class="form-label">Change Old Password</label>
+									<input type="text" class="form-control" placeholder="Enter your old password">
+									<input type="text" class="form-control mg-t-5" placeholder="New password">
+									<input type="text" class="form-control mg-t-5" placeholder="Confirm new password">
+								</div><!-- form-group -->
+
+								<hr>
+
+								<div class="form-group">
+									<label class="form-label">Two Factor Authentication</label>
+									<button class="btn btn-brand-02 tx-sm">Enable two-factor authentication</button>
+									<div class="tx-11 tx-sans tx-color-04 mg-t-7">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</div>
+								</div><!-- form-group -->
+
+								<hr>
+
+								<div class="form-group">
+									<label class="form-label">Sessions</label>
+									<p class="tx-sm tx-color-03">This is a list of devices that have logged into your account. Revoke any sessions that you do not recognize.</p>
+
+									<ul class="list-group list-group-session">
+										<li class="list-group-item">
+											<div>
+												<h6>San Francisco City 190.24.335.55</h6>
+												<span>Your current session seen in United States</span>
+											</div>
+											<a href="" class="btn btn-xs btn-white">More Info</a>
+										</li>
+									</ul>
+								</div><!-- form-group -->
+							</div><!-- form-settings -->
+						</div><!-- tab-pane -->
+						<div id="paneNotification" class="tab-pane">
+							<h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Notification Settings</h6>
+							<hr>
+							<div class="form-settings mx-wd-100p">
+								<div class="form-group">
+									<label class="form-label mg-b-2">Security Alerts</label>
+									<p class="tx-sm tx-color-04">Receive security alert notifications via email</p>
+
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customCheck1">
+										<label class="custom-control-label" for="customCheck1">Email each time a vulnerability is found</label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customCheck2">
+										<label class="custom-control-label" for="customCheck2">Email a digest summary of vulnerabilities</label>
+									</div>
+								</div><!-- form-group -->
+
+								<div class="form-group">
+									<label class="form-label">SMS Notifications</label>
+									<ul class="list-group list-group-notification">
+										<li class="list-group-item">
+											<p class="mg-b-0">Comments</p>
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="customSwitch1">
+												<label class="custom-control-label" for="customSwitch1">&nbsp;</label>
+											</div>
+										</li>
+										<li class="list-group-item">
+											<p class="mg-b-0">Updates From People</p>
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="customSwitch2">
+												<label class="custom-control-label" for="customSwitch2">&nbsp;</label>
+											</div>
+										</li>
+										<li class="list-group-item">
+											<p class="mg-b-0">Reminders</p>
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="customSwitch3">
+												<label class="custom-control-label" for="customSwitch3">&nbsp;</label>
+											</div>
+										</li>
+										<li class="list-group-item">
+											<p class="mg-b-0">Events</p>
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="customSwitch4">
+												<label class="custom-control-label" for="customSwitch4">&nbsp;</label>
+											</div>
+										</li>
+										<li class="list-group-item">
+											<p class="mg-b-0">Pages You Follow</p>
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="customSwitch5">
+												<label class="custom-control-label" for="customSwitch5">&nbsp;</label>
+											</div>
+										</li>
+									</ul>
+								</div><!-- form-group -->
+							</div><!-- form-setting -->
+						</div><!-- tab-pane -->
+						<div id="paneBilling" class="tab-pane">
+							<h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Billing Settings</h6>
+							<hr>
+							<div class="form-settings mx-wd-100p">
+								<div class="form-group">
+									<label class="form-label mg-b-2">Payment Method</label>
+									<p class="tx-color-04 tx-13">You have not added a payment method</p>
+									<button class="btn btn-brand-02 btn-sm">Add Payment Method</button>
+								</div><!-- form-group -->
+
+								<div class="form-group">
+									<label class="form-label">Payment History</label>
+									<div class="bd bg-gray-100 pd-20 tx-center">
+										<p class="tx-13 mg-b-0">You have not made any payment.</p>
+									</div>
+								</div><!-- form-group -->
+							</div><!-- form-settings -->
+						</div><!-- tab-pane -->
+					</div><!-- tab-content -->
+				</div><!-- card -->
 			</div><!-- col -->
 		</div><!-- row -->
 	</div><!-- content-body -->
