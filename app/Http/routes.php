@@ -35,7 +35,7 @@ Route::group(['prefix' => 'user'], function()
 });
 Route::group(['prefix' => 'lecturer'], function()
 {
-	Route::get('', ['uses' => 'System\LecturerController@index']);
+	Route::get('', ['uses' => 'System\LecturerController@index'])->middleware('auth');;
 	Route::get('create', ['uses' => 'System\LecturerController@create']);
 	Route::post('store', ['uses' => 'System\LecturerController@store']);
 	Route::get('show/{id}', ['uses' => 'System\LecturerController@show']);

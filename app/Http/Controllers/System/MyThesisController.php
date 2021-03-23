@@ -43,7 +43,7 @@ class MyThesisController extends Controller
 
 	public function store_kkt_file(Request $request)
 	{
-		$user_id            = Auth::user()->id;
+		$user_id               = Auth::user()->id;
 		$person_id             = Auth::user()->person_id;
 		$information_type_code = $request->information_type_code;
 		$kkt_file              = $request->file('kkt_file');
@@ -56,15 +56,15 @@ class MyThesisController extends Controller
 			$kkt_file[$key]->move("img/kkt/", $filename);
 			$insert_to_person_asset = Uuid::uuid4();
 			
-			$insert_to_person_asset                            = new PersonAssetModel();
+			$insert_to_person_asset                        = new PersonAssetModel();
 			$insert_to_person_asset->id                    = Uuid::uuid4();
-			$insert_to_person_asset->status                = 1;	
-			$insert_to_person_asset->creator_id            = $user_id;		
-			$insert_to_person_asset->person_id                 = $person_id;
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = $user_id;
+			$insert_to_person_asset->person_id             = $person_id;
 			$insert_to_person_asset->information_type_code = $value;
 			$insert_to_person_asset->file_name             = $filename;
 			$insert_to_person_asset->original_file_name    = $kkt_file[$key]->getClientOriginalName();
-			$insert_to_person_asset->file_size    = $kkt_file[$key]->getClientSize();
+			$insert_to_person_asset->file_size             = $kkt_file[$key]->getClientSize();
 			$insert_to_person_asset->url                   = "img/kkt/";
 			$insert_to_person_asset->save();
 		}
@@ -72,25 +72,25 @@ class MyThesisController extends Controller
 		// save to student thesis
 		$find_if_exsit = StudentThesisModel::where('college_student_id', $person_id)->first();
 		if (!isset($find_if_exsit)) {
-			$insert_to_student_thesis = new StudentThesisModel();
-			$insert_to_student_thesis->id                    = Uuid::uuid4();
-			$insert_to_student_thesis->status                = 1;	
-			$insert_to_student_thesis->creator_id            = $user_id;
-			$insert_to_student_thesis->college_student_id            = $person_id;
-			$insert_to_student_thesis->total_sks_now            = $total_sks_now;
-			$insert_to_student_thesis->total_sks_transkrip            = $total_sks_transkrip;
-			$insert_to_student_thesis->is_kkt_file_set            = 1;
+			$insert_to_student_thesis                      = new StudentThesisModel();
+			$insert_to_student_thesis->id                  = Uuid::uuid4();
+			$insert_to_student_thesis->status              = 1;
+			$insert_to_student_thesis->creator_id          = $user_id;
+			$insert_to_student_thesis->college_student_id  = $person_id;
+			$insert_to_student_thesis->total_sks_now       = $total_sks_now;
+			$insert_to_student_thesis->total_sks_transkrip = $total_sks_transkrip;
+			$insert_to_student_thesis->is_kkt_file_set     = 1;
 			$insert_to_student_thesis->save();
 
 			return redirect(url('my_thesis'))->with('success', "Anda telah berhasil menambahkan KRS, KP dan Transkrip File!");
 		}else{
-			$update_to_student_thesis = $find_if_exsit;
-			$update_to_student_thesis->status                = 1;	
-			$update_to_student_thesis->updater_id            = $user_id;
-			$update_to_student_thesis->college_student_id            = $person_id;
-			$update_to_student_thesis->total_sks_now            = $total_sks_now;
-			$update_to_student_thesis->total_sks_transkrip            = $total_sks_transkrip;
-			$update_to_student_thesis->is_kkt_file_set            = 1;
+			$update_to_student_thesis                      = $find_if_exsit;
+			$update_to_student_thesis->status              = 1;
+			$update_to_student_thesis->updater_id          = $user_id;
+			$update_to_student_thesis->college_student_id  = $person_id;
+			$update_to_student_thesis->total_sks_now       = $total_sks_now;
+			$update_to_student_thesis->total_sks_transkrip = $total_sks_transkrip;
+			$update_to_student_thesis->is_kkt_file_set     = 1;
 			$update_to_student_thesis->update();
 
 			// update history
