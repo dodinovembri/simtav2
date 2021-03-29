@@ -25,6 +25,14 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
+						@if(session()->has('success'))
+						<div class="alert alert-success alert-dismissible mg-b-0 fade show" role="alert">
+							<i class="icon fa fa-close"></i> {{ session()->get('success') }}
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div><br>
+						@endif
 						<select class="form-control select2" name="month" required="" style="width: 180px">
 							<option value=""></option>
 							<option value="4">Memenuhi Syarat</option>
@@ -47,7 +55,7 @@
 									$no++; ?>
 									<tr>
 										<td>{{ $no }}</td>
-										<td><a href="{{url('manage_my_student_thesis/show', $value->person->nim)}}"><b>{{ $value->person->nim }}</b></a></td>
+										<td><a href="{{url('manage_my_student_thesis/show', $value->id)}}"><b>{{ $value->person->nim }}</b></a></td>
 										<td>{{ $value->person->given_name." ".$value->person->middle_name." ".$value->person->surname }}</td>
 										<td><?php echo CheckUserType($value->person->person_type_code); ?></td>
 										<td><?php echo CheckStatus($value->status); ?></td>

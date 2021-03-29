@@ -24,7 +24,7 @@ class CollegeStudentThesisController extends Controller
 	 */
 	public function index()
 	{
-		$data['college_student_thesis'] = StudentThesisModel::with('person')->get();
+		$data['college_student_thesis'] = StudentThesisModel::where('thesis_status_code', '!=', 2)->where('thesis_status_code', '!=', 4)->with('person')->get();
 		return view('college_student_thesis.index', $data);
 	}
 
@@ -82,6 +82,7 @@ class CollegeStudentThesisController extends Controller
 			$update_to_person_asset->update();
 		}
 		
+		// save to student history
 		$student_thesis                                        = StudentThesisModel::find($id);
 		$insert_to_student_thesis_history                      = new StudentThesisHistoryModel();
 		$insert_to_student_thesis_history->id                  = Uuid::uuid4();
@@ -95,10 +96,10 @@ class CollegeStudentThesisController extends Controller
 		$insert_to_student_thesis_history->description         = $rejected_reason;
 		$insert_to_student_thesis_history->save();
 
-		return redirect(url('college_student_thesis/show', $id))->with('success', 'Sukses memperbaharui data!');
+		return redirect(url('college_student_thesis'))->with('success', 'Sukses memperbaharui data!');
 	}
 
-	public function update_verified_kkt_file($id)
+	public function verified_kkt_file($id)
 	{
 		$user_id      = Auth::user()->id;
 		$find_student_thesis = StudentThesisModel::find($id);
@@ -106,7 +107,7 @@ class CollegeStudentThesisController extends Controller
 		$find_student_thesis->thesis_status_code = 4;
 		$find_student_thesis->update();
 
-		return redirect(url('college_student_thesis/show', $id))->with('success', 'Sukses memperbaharui data!');
+		return redirect(url('college_student_thesis'))->with('success', 'Sukses memperbaharui data!');
 	}
 
 	/**

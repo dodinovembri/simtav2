@@ -1,15 +1,23 @@
-<?php namespace App\Http\Controllers\System;
+<?php
+
+namespace App\Http\Controllers\System;
 // Collage Student = Mahasiswa
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Models\MajorsModel;
 use Illuminate\Http\Request;
 use App\Models\PersonModel;
 use App\Models\UserModel;
+use App\Models\YearOfEducationModel;
+use App\Models\StudentAcademicSupervisorModel;
+use App\Models\StudentThesisModel;
 use Ramsey\Uuid\Uuid;
+use Excel;
+use DB;
 
-class CollegeStudentController extends Controller {
+class CollegeStudentController extends Controller
+{
 
 	/**
 	 * Display a listing of the resource.
@@ -18,7 +26,10 @@ class CollegeStudentController extends Controller {
 	 */
 	public function index()
 	{
-		$data['college_students'] = PersonModel::where('person_type_code', 4)->get();
+		$data['majors'] = MajorsModel::where('status', '!=', 0)->get();
+		$data['year_of_educations'] = YearOfEducationModel::where('status', '!=', 0)->get();
+		$data['college_students'] = PersonModel::where('person_type_code', 4)->where('status', '!=', 0)->get();
+
 		return view('college_student.index', $data);
 	}
 
@@ -42,24 +53,26 @@ class CollegeStudentController extends Controller {
 		$check = PersonModel::where('nim', $request->nim)->first();
 		if ($check) {
 			return redirect(url('college_student'))->with('info', "Data Mahasiswa sudah tersedia!");
-		}else{
-			$insert                   = new PersonModel();
-			$insert->id               = Uuid::uuid4();
-			$insert->status           = 1;
-			$insert->nim              = $request->nim;
-			$insert->given_name       = $request->given_name;
-			$insert->middle_name      = $request->middle_name;
-			$insert->surname          = $request->surname;
-			$insert->person_type_code = 4;
-			$insert->save();
+		} else {
+			// insert to person
+			$insert_to_person                   = new PersonModel();
+			$insert_to_person->id               = Uuid::uuid4();
+			$insert_to_person->status           = 1;
+			$insert_to_person->nim              = $request->nim;
+			$insert_to_person->given_name       = $request->given_name;
+			$insert_to_person->middle_name      = $request->middle_name;
+			$insert_to_person->surname          = $request->surname;
+			$insert_to_person->person_type_code = 4;
+			$insert_to_person->save();
 
-			$insert_user                 = new UserModel();
-			$insert_user->id             = Uuid::uuid4();
-			$insert_user->status         = 1;
-			$insert_user->username       = $request->nim;
-			$insert_user->password       = bcrypt($request->nim);
-			$insert_user->user_type_code = 4;
-			$insert_user->save();
+			// insert to user
+			$insert_to_user                 = new UserModel();
+			$insert_to_user->id             = Uuid::uuid4();
+			$insert_to_user->status         = 1;
+			$insert_to_user->username       = $request->nim;
+			$insert_to_user->password       = bcrypt($request->nim);
+			$insert_to_user->user_type_code = 4;
+			$insert_to_user->save();
 
 			return redirect(url('college_student'))->with('success', "Berhasil menambahkan data Mahasiswa!");
 		}
@@ -84,7 +97,8 @@ class CollegeStudentController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$data['college_student'] = PersonModel::find($id);
+		return view('college_student/edit', $data);
 	}
 
 	/**
@@ -93,9 +107,17 @@ class CollegeStudentController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$update_to_person              = PersonModel::find($id);
+		$update_to_person->status      = $request->status;
+		$update_to_person->nim         = $request->nim;
+		$update_to_person->given_name  = $request->given_name;
+		$update_to_person->middle_name = $request->middle_name;
+		$update_to_person->surname     = $request->surname;
+		$update_to_person->update();
+
+		return redirect(url('college_student'))->with('success', "Berhasil memperbaharui data Mahasiswa!");
 	}
 
 	/**
@@ -107,9 +129,96 @@ class CollegeStudentController extends Controller {
 	public function destroy($id)
 	{
 		$delete = PersonModel::find($id);
-		$delete->delete();
+		$delete->status = 0;
+		$delete->update();
 
 		return redirect(url('college_student'))->with('success', "Berhasil menghapus data Mahasiswa!");
 	}
 
+	/**
+	 * Download college student template.
+	 *
+	 * @return Response
+	 */
+	public function download_template(Request $request)
+	{
+		$file_name = 'mhs_template_' . date('Y-m-d_H-i-s');
+		Excel::create($file_name, function ($excel) use ($request) {
+
+			$excel->sheet('Template', function ($sheet) use ($request) {
+				$sheet->setColumnFormat(array(
+					'A' => '@',
+					'B' => '@',
+					'E' => '@',
+				));
+
+				$data['majors'] = $request->majors;
+				$data['year_of_education'] = $request->year_of_education;
+				$sheet->loadView('exports.mhs', $data);
+			});
+		})->download('xlsx');
+	}
+
+	/**
+	 * Store college student template.
+	 *
+	 * @return Response
+	 */
+	public function store_college_student(Request $request)
+	{
+		$path = $request->file('college_student')->getRealPath();
+		$data = Excel::load($path)->get();
+
+		if ($data->count() > 0) {
+			$insert_data = [];
+
+			foreach ($data->toArray() as $key => $value) {
+				$check_lecturer = PersonModel::where('nip', $value['nip_pa'])->first();
+
+				if (!empty($check_lecturer)) {
+					$check_college_student       = PersonModel::where('nim', $value['nim'])->first();
+					$exists_mhs                  = [];
+					$not_found_year_of_education = [];
+					$not_found_majors            = [];
+					$imported_college_student    = [];
+					
+					if (empty($check_college_student)) {
+						$year_of_education = YearOfEducationModel::where('year_of_education_name', $value['angkatan'])->first();
+						$majors = MajorsModel::where('majors_name', $value['jurusan'])->first();
+						if (empty($year_of_education)) {
+							array_push($not_found_year_of_education, $value['nim']);
+						} else if (empty($majors)) {
+							array_push($not_found_majors, $value['nim']);
+						} else {
+							$insert_data[] = array(
+								'id'                    => Uuid::uuid4(),
+								'status'                => 1,
+								'nim'                   => $value['nim'],
+								'given_name'            => $value['nama'],
+								'person_type_code'      => 4,
+								'academic_lecturer_nip' => $value['nip_pa'],
+								'year_of_education_id'  => $year_of_education->id,
+								'majors_id'             => $majors->id,
+								'created_at'            => date('Y-m-d H:i:s')
+							);
+
+							array_push($imported_college_student, $value['nim']);
+						}
+					} else {
+						return redirect('college_student')->withMessage('Mahasiswa dengan NIM ' . $value['nim'] . ' sudah ada !');
+						array_push($exists_mhs, $value['nim']);
+					}
+				} else {
+					return redirect('college_student')->withMessage('Dosen dengan NIP ' . $value['nip_pa'] . ' tidak tersedia !');
+				}
+			}
+
+
+			if (!empty($insert_data)) {
+				DB::table('person')->insert($insert_data);
+			}
+
+			return redirect('college_student')->withMessage('Mahasiswa sukses ditambahkan !');
+		}
+	}
 }

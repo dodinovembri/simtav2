@@ -12,11 +12,11 @@
         <div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dosen</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mahasiswa</li>
                 </ol>
             </nav>
-            <h4 class="content-title content-title-xs">List Dosen</h4>
+            <h4 class="content-title content-title-xs">List Mahasiswa</h4>
         </div>
     </div>
     <div class="content-body">
@@ -31,8 +31,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <label class="form-label">NIM</label>
-                                    <input type="text" class="form-control" name="nim" placeholder="Masukkan NIM">
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
+                                    <input type="text" class="form-control" name="nim" placeholder="Masukkan NIM">                                    
                                 </div><!-- form-group -->
 
                                 <div class="form-group">
@@ -43,14 +42,13 @@
                                             <td><input type="text" name="middle_name" class="form-control" placeholder="Enter your middle name"></td>
                                             <td><input type="text" name="surname" class="form-control" placeholder="Enter your last name"></td>
                                         </tr>
-                                    </table>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
+                                    </table>                                    
                                 </div><!-- form-group -->
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save Product</button>
-                                <button type="button" class="btn btn-white mg-l-2">Reset Changes</button>
+                                <button class="btn btn-brand-01">Simpan</button>
+                                <a href="{{ url('college_student') }}"><button type="button" class="btn btn-white mg-l-2">Batal</button></a>
                             </div><!-- tab-pane -->
                         </form>
                     </div><!-- tab-content -->

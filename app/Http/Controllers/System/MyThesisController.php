@@ -33,6 +33,7 @@ class MyThesisController extends Controller
 		$data['my_thesis'] = StudentThesisModel::where('college_student_id', $college_id)->where('status', 1)->first();
 		$data['person_assets'] = PersonAssetModel::where('person_id', $college_id)->where('status', 1)->get();
 		
+		$data['topic_ta_history'] = StudentThesisHistoryModel::where('history_code', 7)->where('status', 1)->where('college_student_id', $college_id)->first();
 		return view('my_thesis.index', $data);
 	}
 
@@ -77,6 +78,7 @@ class MyThesisController extends Controller
 			$insert_to_student_thesis->status              = 1;
 			$insert_to_student_thesis->creator_id          = $user_id;
 			$insert_to_student_thesis->college_student_id  = $person_id;
+			$insert_to_student_thesis->thesis_status_code  = 1;
 			$insert_to_student_thesis->total_sks_now       = $total_sks_now;
 			$insert_to_student_thesis->total_sks_transkrip = $total_sks_transkrip;
 			$insert_to_student_thesis->is_kkt_file_set     = 1;
@@ -88,6 +90,7 @@ class MyThesisController extends Controller
 			$update_to_student_thesis->status              = 1;
 			$update_to_student_thesis->updater_id          = $user_id;
 			$update_to_student_thesis->college_student_id  = $person_id;
+			$update_to_student_thesis->thesis_status_code  = 1;
 			$update_to_student_thesis->total_sks_now       = $total_sks_now;
 			$update_to_student_thesis->total_sks_transkrip = $total_sks_transkrip;
 			$update_to_student_thesis->is_kkt_file_set     = 1;
@@ -95,9 +98,11 @@ class MyThesisController extends Controller
 
 			// update history
 			$update_to_student_thesis_history = StudentThesisHistoryModel::where('status', 1)->where('college_student_id', $find_if_exsit->college_student_id)->where('history_code', 2)->first();
-			$update_to_student_thesis_history->updater_id = $user_id;
-			$update_to_student_thesis_history->status = 0;
-			$update_to_student_thesis_history->update();
+			if (isset($update_to_student_thesis_history)) {				
+				$update_to_student_thesis_history->updater_id = $user_id;
+				$update_to_student_thesis_history->status = 0;
+				$update_to_student_thesis_history->update();
+			}
 			
 			return redirect(url('my_thesis'))->with('success', "Anda telah berhasil memperbaharui KRS, KP dan Transkrip File!");
 		}
@@ -208,17 +213,37 @@ class MyThesisController extends Controller
 		$supervisor = $request->supervisor;
 		$thesis_topic = $request->thesis_topic;
 		$title_of_thesis = $request->title_of_thesis;
+		$consultation_file = $request->file('consultation_file');
 
 		// save to student thesis supervisor
-		foreach ($supervisor as $key => $value) {
-			$insert_to_student_thesis_supervisor = new StudentThesisSupervisorModel();
-			$insert_to_student_thesis_supervisor->id               = Uuid::uuid4();
-			$insert_to_student_thesis_supervisor->status           = 1;
-			$insert_to_student_thesis_supervisor->creator_id = $user_id;
-			$insert_to_student_thesis_supervisor->college_student_id = $user_id;
-			$insert_to_student_thesis_supervisor->lecturer_id = $value;
-			$insert_to_student_thesis_supervisor->save();
+		foreach ($supervisor as $key => $value) {			
+			$check_if_exist = StudentThesisSupervisorModel::where('college_student_id', $person_id)->where('lecturer_id', $value)->first();
+			if (!isset($check_if_exist)) {
+				$insert_to_student_thesis_supervisor                     = new StudentThesisSupervisorModel();
+				$insert_to_student_thesis_supervisor->id                 = Uuid::uuid4();
+				$insert_to_student_thesis_supervisor->status             = 1;
+				$insert_to_student_thesis_supervisor->creator_id         = $user_id;
+				$insert_to_student_thesis_supervisor->college_student_id = Auth::user()->person_id;
+				$insert_to_student_thesis_supervisor->lecturer_id        = $value;
+				$insert_to_student_thesis_supervisor->save();			
+			}
 		}
+
+		// store consultation file to person asset
+		$filename = uniqid() . '.' . $consultation_file->getClientOriginalExtension();
+		$consultation_file->move("img/consultation_file/", $filename);
+
+		$insert_to_person_asset                        = new PersonAssetModel();
+		$insert_to_person_asset->id                    = Uuid::uuid4();
+		$insert_to_person_asset->status                = 1;
+		$insert_to_person_asset->creator_id            = $user_id;
+		$insert_to_person_asset->person_id             = $person_id;
+		$insert_to_person_asset->information_type_code = 4;
+		$insert_to_person_asset->file_name             = $filename;
+		$insert_to_person_asset->original_file_name    = $consultation_file->getClientOriginalName();
+		$insert_to_person_asset->file_size             = $consultation_file->getClientSize();
+		$insert_to_person_asset->url                   = "img/consultation_file/";
+		$insert_to_person_asset->save();
 
 		// update student thesis
 		$update_to_student_thesis = StudentThesisModel::where('college_student_id', $person_id)->first();

@@ -52,6 +52,10 @@ Route::group(['prefix' => 'college_student'], function()
 	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentController@edit']);
 	Route::post('update/{id}', ['uses' => 'System\CollegeStudentController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentController@destroy']);
+
+
+	Route::post('download_template', ['uses' => 'System\CollegeStudentController@download_template']);	
+	Route::post('store_college_student', ['uses' => 'System\CollegeStudentController@store_college_student']);	
 });
 Route::group(['prefix' => 'college_student_thesis'], function()
 {
@@ -64,7 +68,18 @@ Route::group(['prefix' => 'college_student_thesis'], function()
 	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentThesisController@destroy']);
 
 	Route::post('store_kkt_file_rejected/{id}', ['uses' => 'System\CollegeStudentThesisController@store_kkt_file_rejected']);
-	Route::get('update_verified_kkt_file/{id}', ['uses' => 'System\CollegeStudentThesisController@update_verified_kkt_file']);
+	Route::get('verified_kkt_file/{id}', ['uses' => 'System\CollegeStudentThesisController@verified_kkt_file']);
+});
+Route::group(['prefix' => 'college_student_classification'], function()
+{
+	Route::get('', ['uses' => 'System\CollegeStudentClassificationController@index']);
+	Route::get('/{id}', ['uses' => 'System\CollegeStudentClassificationController@index']);
+	Route::get('create', ['uses' => 'System\CollegeStudentClassificationController@create']);
+	Route::post('store', ['uses' => 'System\CollegeStudentClassificationController@store']);
+	Route::get('show/{id}', ['uses' => 'System\CollegeStudentClassificationController@show']);
+	Route::get('edit/{id}', ['uses' => 'System\CollegeStudentClassificationController@edit']);
+	Route::post('update/{id}', ['uses' => 'System\CollegeStudentClassificationController@update']);
+	Route::get('destroy/{id}', ['uses' => 'System\CollegeStudentClassificationController@destroy']);
 });
 Route::group(['prefix' => 'proposal_seminar_requirement'], function()
 {
@@ -161,6 +176,9 @@ Route::group(['prefix' => 'manage_my_student_thesis'], function()
 	Route::get('edit/{id}', ['uses' => 'System\ManageMyStudentThesisController@edit']);
 	Route::post('update/{id}', ['uses' => 'System\ManageMyStudentThesisController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\ManageMyStudentThesisController@destroy']);
+
+	Route::get('agree/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree']);	
+	Route::post('reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject']);	
 });
 
 /**

@@ -11,6 +11,7 @@
 				<li class="nav-label"><label class="content-label">Transactions</label></li>
 				<li class="nav-item"><a href="{{ url('home') }}" class="nav-link {{ (Request::is('home')) ? 'active' : '' }}"><i data-feather="bar-chart-2"></i> Dashboard </a></li>
 				<li class="nav-item"><a href="{{ url('college_student_thesis') }}" class="nav-link {{ (Request::is('college_student_thesis')) || (Request::is('college_student_thesis/*')) ? 'active' : '' }}"><i data-feather="activity"></i> Kelola Skripsi Mahasiswa </a></li>
+				<li class="nav-item"><a href="{{ url('college_student_classification') }}" class="nav-link {{ (Request::is('college_student_classification')) || (Request::is('college_student_classification/*')) ? 'active' : '' }}"><i data-feather="users"></i> Pengelompokan Mahasiswa </a></li>
 
 				<li class="nav-label"><label class="content-label">Data</label></li>
 				<li class="nav-item"><a href="{{ url('lecturer') }}" class="nav-link  {{ (Request::is('lecturer')) || (Request::is('lecturer/*')) ? 'active' : '' }}"><i data-feather="user"></i> Dosen </a></li>
@@ -28,6 +29,7 @@
 				<li class="nav-label"><label class="content-label">Transactions</label></li>
 				<li class="nav-item"><a href="{{ url('home') }}" class="nav-link {{ (Request::is('home')) ? 'active' : '' }}"><i data-feather="bar-chart-2"></i> Dashboard </a></li>
 				<li class="nav-item"><a href="{{ url('manage_student_thesis') }}" class="nav-link {{ (Request::is('manage_student_thesis')) || (Request::is('manage_student_thesis/*')) ? 'active' : '' }}"><i data-feather="activity"></i> Kelola Skripsi Mahasiswa </a></li>
+				<li class="nav-item"><a href="{{ url('college_student_classification') }}" class="nav-link {{ (Request::is('college_student_classification')) || (Request::is('college_student_classification/*')) ? 'active' : '' }}"><i data-feather="users"></i> Pengelompokan Mahasiswa </a></li>
 			<?php }elseif (Auth::user()->user_type_code == 3){ ?>
 				<li class="nav-label"><label class="content-label">Transactions</label></li>
 				<li class="nav-item"><a href="{{ url('home') }}" class="nav-link {{ (Request::is('home')) ? 'active' : '' }}"><i data-feather="bar-chart-2"></i> Dashboard </a></li>
