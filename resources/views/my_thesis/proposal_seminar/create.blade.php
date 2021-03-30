@@ -25,37 +25,15 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('my_thesis/store_thesis_topic') }}" method="POST" enctype="multipart/form-data" id="formValidation">
+                        <form action="{{ url('my_thesis/store_extension_proposal_seminar') }}" method="POST" enctype="multipart/form-data" id="formValidation">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
                                 <hr>
                                 <div class="form-group">
-                                    <label class="form-label">Dosen Pembimbing</label>
-                                    <select class="form-control select2" name="supervisor[]" required="" multiple="multiple">
-										<option value="">Pilih</option>
-										<?php foreach ($supervisor as $key => $value) { ?>
-											<option value="{{ $value->id }}">{{ $value->nip }}{{ $value->nim }}</option>	
-										<?php } ?>																
-									</select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Topik TA</label>
-                                    <select class="form-control select2" name="thesis_topic" required="">
-										<option value="">Pilih</option>
-										<?php foreach ($thesis_topics as $key => $value) { ?>
-											<option value="{{ $value->id }}">{{ $value->thesis_topic_name }}</option>	
-										<?php } ?>																
-									</select>
-                                </div>
-                                <div class="form-group">
                                     <label class="form-label">File Konsultasi</label>
                                     <input type="file" class="form-control" name="consultation_file" id="consultation_file" required>
                                     <small class="text-infor">*File yang diterima hanya berekstensi .jpeg, .jpg, .png, .pdf dan ukuran maks. 5 MB</small>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Judul TA</label>
-                                    <input type="text" class="form-control" name="title_of_thesis" id="title_of_thesis" required>
                                 </div>
 
                                 <hr class="op-0">

@@ -178,7 +178,9 @@ Route::group(['prefix' => 'manage_my_student_thesis'], function()
 	Route::get('destroy/{id}', ['uses' => 'System\ManageMyStudentThesisController@destroy']);
 
 	Route::get('agree/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree']);	
-	Route::post('reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject']);	
+	Route::post('reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject']);
+	Route::get('agree_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree_for_extend_proposal']);	
+	Route::post('reject_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject_to_extend_proposal']);	
 });
 
 /**
@@ -201,4 +203,5 @@ Route::group(['prefix' => 'my_thesis'], function()
 	Route::get('create_thesis_topic', ['uses' => 'System\MyThesisController@create_thesis_topic']);
 	Route::post('store_thesis_topic', ['uses' => 'System\MyThesisController@store_thesis_topic']);
 	Route::get('create_extension_proposal_seminar', ['uses' => 'System\MyThesisController@create_extension_proposal_seminar']);
+	Route::post('store_extension_proposal_seminar', ['uses' => 'System\MyThesisController@store_extension_proposal_seminar']);
 });

@@ -20,7 +20,7 @@ class ManageMyStudentThesisController extends Controller {
 	public function index()
 	{
 		$lecturer_id = Auth::user()->person_id;
-		$data['manage_my_student_thesis'] = StudentThesisModel::with('person')->where('lecturer_id', $lecturer_id)->where('status', '!=', 0)->where('thesis_status_code', 5)->get();
+		$data['manage_my_student_thesis'] = StudentThesisModel::with('person')->where('lecturer_id', $lecturer_id)->where('status', '!=', 0)->where('thesis_status_code', 5)->orWhere('thesis_status_code', 8)->get();
 
 		return view('manage_my_student_thesis.index', $data);
 	}
@@ -56,6 +56,7 @@ class ManageMyStudentThesisController extends Controller {
 		$data['student_thesis'] = StudentThesisModel::find($id);
 		$person_id = $data['student_thesis']->college_student_id;
 		$data['person_assets'] = PersonAssetModel::where('person_id', $person_id)->where('information_type_code', 4)->where('status', '!=', 0)->get();
+		$data['extend_proposal_seminar'] = PersonAssetModel::where('person_id', $person_id)->where('information_type_code', 5)->where('status', '!=', 0)->first();
 
 		return view('manage_my_student_thesis.show', $data);
 	}
@@ -129,4 +130,40 @@ class ManageMyStudentThesisController extends Controller {
 		return redirect(url('manage_my_student_thesis'))->with('success', 'Topik TA tidak disetujui.');
 	}
 
+	public function agree_to_extend_proposal($id)
+	{		
+		return $id;
+		$find_to_update = StudentThesisModel::find($id);
+		$find_to_update->updater_id = Auth::user()->id;
+		$find_to_update->thesis_status_code = 9;
+		$find_to_update->update();
+		
+		return redirect(url('manage_my_student_thesis'))->with('success', 'Proposal seminar berhasil di setujui.');
+	}
+
+	public function reject_to_extend_proposal(Request $request, $id)
+	{
+		// start create object student thesis
+		$find_to_update = StudentThesisModel::find($id);
+
+		// update student thesis
+		$find_to_update->updater_id = Auth::user()->id;
+		$find_to_update->thesis_status_code = 7;
+		$find_to_update->update();
+
+		// save to student history
+		$insert_to_student_thesis_history                      = new StudentThesisHistoryModel();
+		$insert_to_student_thesis_history->id                  = Uuid::uuid4();
+		$insert_to_student_thesis_history->status              = 1;
+		$insert_to_student_thesis_history->creator_id          = Auth::user()->id;
+		$insert_to_student_thesis_history->history_code        = 7;
+		$insert_to_student_thesis_history->student_thesis_id   = $find_to_update->id;
+		$insert_to_student_thesis_history->college_student_id  = $find_to_update->college_student_id;
+		$insert_to_student_thesis_history->total_sks_now       = $find_to_update->total_sks_now;
+		$insert_to_student_thesis_history->total_sks_transkrip = $find_to_update->total_sks_transkrip;
+		$insert_to_student_thesis_history->description         = $request->rejected_reason;
+		$insert_to_student_thesis_history->save();		
+		
+		return redirect(url('manage_my_student_thesis'))->with('success', 'Topik TA tidak disetujui.');
+	}
 }

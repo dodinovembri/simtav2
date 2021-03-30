@@ -258,6 +258,50 @@ class MyThesisController extends Controller
 
 	public function create_extension_proposal_seminar()
 	{
-		return view('my_thesis.proposal_seminar.create_extension_proposal_seminar');
+		return view('my_thesis.proposal_seminar.create');
+	}
+
+	public function store_extension_proposal_seminar(Request $request)
+	{
+		$consultation_file = $request->file('consultation_file');
+		$filename = uniqid() . '.' . $consultation_file->getClientOriginalExtension();
+		$consultation_file->move("img/consultation_file/", $filename);
+
+		// save to person asset
+		$check_if_exist = PersonAssetModel::where('person_id', Auth::user()->person_id)->where('information_type_code', 5)->where('status', '!=', 0)->first();
+		if (!isset($check_if_exist)) {			
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = Auth::user()->id;
+			$insert_to_person_asset->person_id             = Auth::user()->person_id;
+			$insert_to_person_asset->information_type_code = 5;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $consultation_file->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $consultation_file->getClientSize();
+			$insert_to_person_asset->url                   = "img/consultation_file/";
+			$insert_to_person_asset->save();
+		}else{
+			$check_if_exist->delete();
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = Auth::user()->id;
+			$insert_to_person_asset->person_id             = Auth::user()->person_id;
+			$insert_to_person_asset->information_type_code = 5;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $consultation_file->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $consultation_file->getClientSize();
+			$insert_to_person_asset->url                   = "img/consultation_file/";
+			$insert_to_person_asset->save();			
+		}
+
+		// update student thesis
+		$update_to_student_thesis = StudentThesisModel::where('college_student_id', Auth::user()->person_id)->first();
+		$update_to_student_thesis->updater_id = Auth::user()->person_id;
+		$update_to_student_thesis->thesis_status_code = 8;
+		$update_to_student_thesis->update();
+
+		return redirect(url('my_thesis'))->with('success', 'File perpanjang seminar propsal berhasil ditambahkan');
 	}
 }
