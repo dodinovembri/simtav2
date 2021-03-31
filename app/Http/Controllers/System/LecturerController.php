@@ -44,24 +44,27 @@ class LecturerController extends Controller {
 		if ($check) {
 			return redirect(url('lecturer'))->with('info', "Data Dosen sudah tersedia!");
 		}else{
-			$insert                     = new PersonModel();
-			$insert->id                 = Uuid::uuid4();
-			$insert->status             = 1;
-			$insert->nip                = $request->nip;
-			$insert->given_name         = $request->given_name;
-			$insert->middle_name        = $request->middle_name;
-			$insert->surname            = $request->surname;
-			$insert->person_type_code   = 3;
-			$insert->is_registered_user = 1;
-			$insert->save();
+			$insert_to_person                     = new PersonModel();
+			$insert_to_person->id                 = Uuid::uuid4();
+			$insert_to_person->status             = 1;
+			$insert_to_person->nip                = $request->nip;
+			$insert_to_person->given_name         = $request->given_name;
+			$insert_to_person->middle_name        = $request->middle_name;
+			$insert_to_person->surname            = $request->surname;
+			$insert_to_person->person_type_code   = 3;
+			$insert_to_person->is_registered_user = 1;
+			$insert_to_person->save();
 
-			$insert_user                 = new UserModel();
-			$insert_user->id             = Uuid::uuid4();
-			$insert_user->status         = 1;
-			$insert_user->username       = $request->nip;
-			$insert_user->password       = bcrypt($request->nip);
-			$insert_user->user_type_code = 3;
-			$insert_user->save();
+			$person = PersonModel::where('nip', $request->nip)->first();
+			
+			$insert_to_user                 = new UserModel();
+			$insert_to_user->id             = Uuid::uuid4();
+			$insert_to_user->status         = 1;
+			$insert_to_user->person_id      = $person->id;
+			$insert_to_user->username       = $request->nip;
+			$insert_to_user->password       = bcrypt($request->nip);
+			$insert_to_user->user_type_code = 3;
+			$insert_to_user->save();
 
 			return redirect(url('lecturer'))->with('success', "Berhasil menambahkan data Dosen!");
 		}

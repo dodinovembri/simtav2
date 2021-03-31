@@ -56,13 +56,12 @@
                                             <td>Jumlah SKS Transkrip<input type="text" name="total_sks_transkrip" class="form-control" placeholder="Jumlah SKS Transkrip" id="total_sks_transkrip" required></td>
                                         </tr>
                                     </table>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
                                 </div><!-- form-group -->
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save</button>
-                                <a href="{{ url('my_thesis') }}"><button type="button" class="btn btn-white mg-l-2">Cancel</button></a>
+                                <button class="btn btn-brand-01">Simpan</button>
+                                <a href="{{ url('my_thesis') }}"><button type="button" class="btn btn-white mg-l-2">Batal</button></a>
                             </div><!-- tab-pane -->
                         </form>
                         <script>

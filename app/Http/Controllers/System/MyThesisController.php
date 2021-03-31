@@ -29,10 +29,9 @@ class MyThesisController extends Controller
 	{
 		$college_id = Auth::user()->person_id;
 
-		$data['my_thesis_history'] = StudentThesisHistoryModel::where('history_code', 2)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
 		$data['my_thesis'] = StudentThesisModel::where('college_student_id', $college_id)->where('status', '!=', 0)->first();
 		$data['person_assets'] = PersonAssetModel::where('person_id', $college_id)->where('status', '!=', 0)->get();
-		
+		$data['my_thesis_history'] = StudentThesisHistoryModel::where('history_code', 2)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
 		$data['topic_ta_history'] = StudentThesisHistoryModel::where('history_code', 7)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
 		$data['extend_proposal_rejected_reason'] = StudentThesisHistoryModel::where('history_code', 10)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
 		
@@ -72,6 +71,10 @@ class MyThesisController extends Controller
 			$insert_to_person_asset->save();
 		}
 		
+		// find lecturer
+		$find_to_person = PersonModel::find($person_id);
+		$find_lecturer = PersonModel::where('nip', $find_to_person->academic_lecturer_nip)->first();
+
 		// save to student thesis
 		$find_if_exsit = StudentThesisModel::where('college_student_id', $person_id)->first();
 		if (!isset($find_if_exsit)) {
@@ -79,6 +82,7 @@ class MyThesisController extends Controller
 			$insert_to_student_thesis->id                  = Uuid::uuid4();
 			$insert_to_student_thesis->status              = 1;
 			$insert_to_student_thesis->creator_id          = $user_id;
+			$insert_to_student_thesis->lecturer_id		   = $find_lecturer->id;
 			$insert_to_student_thesis->college_student_id  = $person_id;
 			$insert_to_student_thesis->thesis_status_code  = 1;
 			$insert_to_student_thesis->total_sks_now       = $total_sks_now;

@@ -21,8 +21,8 @@
 			</div><!-- profile-body-header -->
 			<div class="tab-content pd-15 pd-sm-20">
 				<div id="overview" class="tab-pane active show">
-					<div class="timeline-item">
-						<?php if ($student_thesis->thesis_status_code == 5) { ?>
+					<?php if ($student_thesis->thesis_status_code == 5) { ?>
+						<div class="timeline-item">
 							<div class="row row-sm">
 								<div class="col-sm-3 col-lg-2"></div>
 								<div class="col-sm-9">
@@ -49,28 +49,45 @@
 									</div>
 								</div>
 							</div><!-- row -->
-						<?php } elseif ($student_thesis->thesis_status_code == 8) { ?>
+						</div>
+					<?php } elseif ($student_thesis->thesis_status_code == 8) { ?>
+						<div class="timeline-item">
+							<div class="row row-sm">
+								<div class="col-sm-3 col-lg-2"></div>
+								<div class="col-sm-9">
+									<div class="timeline-body">
+										<div class="card card-timeline card-timeline-note">
+											<div class="alert alert-danger alert-dismissible mg-b-0 fade show" role="alert">
+												<i class="icon fa fa-close"></i> KRS, KP dan Transkrip ditolak, Alasan Penolakan: {{$my_thesis_history->description}}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- row -->
+						</div><!-- timeline-item -->
+						<div class="timeline-item">
 							<div class="row row-sm">
 								<div class="col-sm-3 col-lg-2"></div>
 								<div class="col-sm-9">
 									<div class="timeline-header">
 										<span>File Konsultasi Perpanjangan Seminar Proposal</span>
 									</div><!-- timeline-header -->
-									<div class="card card-timeline card-timeline-photo">
-										<div class="row row-xs">
-											<div class="col">
-												<a href="{{ asset($extend_proposal_seminar->url) }}/{{ $extend_proposal_seminar->file_name }}" target="_blank"><img src="{{ asset($extend_proposal_seminar->url) }}/{{ $extend_proposal_seminar->file_name }}" class="img-fluid" alt=""></a>
-											</div>
-										</div><!-- row -->
+									<div class="timeline-body">
+										<div class="card card-timeline card-timeline-note">
+											<div class="row row-xs">
+												<div class="col">
+													<a href="{{ asset($extend_proposal_seminar->url) }}/{{ $extend_proposal_seminar->file_name }}" target="_blank"><img src="{{ asset($extend_proposal_seminar->url) }}/{{ $extend_proposal_seminar->file_name }}" class="img-fluid" alt=""></a>
+												</div>
+											</div><!-- row -->
+										</div>
 									</div>
 									<div>
 										@include('manage_my_student_thesis.components.extend_proposal')
 									</div>
 								</div>
 							</div><!-- row -->
-						<?php } ?>
-					</div><!-- timeline-item -->
-
+						</div>
+					<?php } ?>
 				</div>
 			</div><!-- tab-content -->
 		</div><!-- profile-body -->
