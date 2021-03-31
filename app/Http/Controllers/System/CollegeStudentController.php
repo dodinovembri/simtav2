@@ -110,11 +110,11 @@ class CollegeStudentController extends Controller
 	public function update(Request $request, $id)
 	{
 		$update_to_person              = PersonModel::find($id);
-		$update_to_person->status      = $request->status;
 		$update_to_person->nim         = $request->nim;
 		$update_to_person->given_name  = $request->given_name;
 		$update_to_person->middle_name = $request->middle_name;
 		$update_to_person->surname     = $request->surname;
+		$update_to_person->address     = $request->address;
 		$update_to_person->update();
 
 		return redirect(url('college_student'))->with('success', "Berhasil memperbaharui data Mahasiswa!");
@@ -128,9 +128,9 @@ class CollegeStudentController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$delete = PersonModel::find($id);
-		$delete->status = 0;
-		$delete->update();
+		$find_to_delete = PersonModel::find($id);
+		$find_to_delete->status = 0;
+		$find_to_delete->update();
 
 		return redirect(url('college_student'))->with('success', "Berhasil menghapus data Mahasiswa!");
 	}
@@ -190,15 +190,24 @@ class CollegeStudentController extends Controller
 						} else if (empty($majors)) {
 							array_push($not_found_majors, $value['nim']);
 						} else {
+							$name = explode(" ", $value['nama']);
+							if (count($name) == 2) {
+								$name[2] = $name[1];
+								$name[1] = NULL;
+							}
 							$insert_data[] = array(
 								'id'                    => Uuid::uuid4(),
 								'status'                => 1,
 								'nim'                   => $value['nim'],
-								'given_name'            => $value['nama'],
+								'given_name'            => $name[0],
+								'middle_name'           => isset($name[1]) ? $name[1] : NULL,
+								'surname'               => isset($name[2]) ? $name[2] : NULL,
 								'person_type_code'      => 4,
 								'academic_lecturer_nip' => $value['nip_pa'],
 								'year_of_education_id'  => $year_of_education->id,
 								'majors_id'             => $majors->id,
+								'address'               => $value['alamat'],
+								'is_registered_user'    => 0,
 								'created_at'            => date('Y-m-d H:i:s')
 							);
 
@@ -218,7 +227,7 @@ class CollegeStudentController extends Controller
 				DB::table('person')->insert($insert_data);
 			}
 
-			return redirect('college_student')->withMessage('Mahasiswa sukses ditambahkan !');
+			return redirect('college_student')->with('success', 'Mahasiswa sukses ditambahkan !');
 		}
 	}
 }

@@ -18,7 +18,7 @@ class YearOfEducationController extends Controller {
 	 */
 	public function index()
 	{
-		$data['year_of_educations'] = YearOfEducationModel::all();
+		$data['year_of_educations'] = YearOfEducationModel::where('status', '!=', 0)->get();
 		return view('year_of_education.index', $data);
 	}
 
@@ -107,8 +107,9 @@ class YearOfEducationController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$delete = YearOfEducationModel::find($id);
-		$delete->delete();
+		$find_to_delete = YearOfEducationModel::find($id);
+		$find_to_delete->status = 0;
+		$find_to_delete->update();
 
 		return redirect(url('year_of_education'))->with('success', 'Angkatan berhasil dihapus!');
 	}

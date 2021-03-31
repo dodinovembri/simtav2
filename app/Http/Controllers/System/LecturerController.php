@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\PersonModel;
 use App\Models\UserModel;
 use Ramsey\Uuid\Uuid;
+use Auth;
 
 class LecturerController extends Controller {
 
@@ -18,7 +19,7 @@ class LecturerController extends Controller {
 	 */
 	public function index()
 	{
-		$data['lecturers'] = PersonModel::where('person_type_code', 3)->get();
+		$data['lecturers'] = PersonModel::where('person_type_code', 3)->where('status', '!=', 0)->orderBy('created_at', 'ASC')->get();
 		return view('lecturer.index', $data);
 	}
 
@@ -43,19 +44,20 @@ class LecturerController extends Controller {
 		if ($check) {
 			return redirect(url('lecturer'))->with('info', "Data Dosen sudah tersedia!");
 		}else{
-			$insert                   = new PersonModel();
-			$insert->id               = Uuid::uuid4();
-			$insert->status           = 1;
-			$insert->nip              = $request->nip;
-			$insert->given_name       = $request->given_name;
-			$insert->middle_name      = $request->middle_name;
-			$insert->surname          = $request->surname;
-			$insert->person_type_code = 3;
+			$insert                     = new PersonModel();
+			$insert->id                 = Uuid::uuid4();
+			$insert->status             = 1;
+			$insert->nip                = $request->nip;
+			$insert->given_name         = $request->given_name;
+			$insert->middle_name        = $request->middle_name;
+			$insert->surname            = $request->surname;
+			$insert->person_type_code   = 3;
+			$insert->is_registered_user = 1;
 			$insert->save();
 
 			$insert_user                 = new UserModel();
-			$insert_user->id               = Uuid::uuid4();
-			$insert_user->status           = 1;
+			$insert_user->id             = Uuid::uuid4();
+			$insert_user->status         = 1;
 			$insert_user->username       = $request->nip;
 			$insert_user->password       = bcrypt($request->nip);
 			$insert_user->user_type_code = 3;
@@ -94,7 +96,7 @@ class LecturerController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
 		$update                   = PersonModel::find($id);
 		$update->status           = 1;
@@ -102,6 +104,7 @@ class LecturerController extends Controller {
 		$update->given_name       = $request->given_name;
 		$update->middle_name      = $request->middle_name;
 		$update->surname          = $request->surname;
+		$update->address          = $request->address;
 		$update->update();
 
 		return redirect(url('lecturer'))->with('success', "Berhasil mengubah data Dosen!");
@@ -115,8 +118,10 @@ class LecturerController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$delete = PersonModel::find($id);
-		$delete->delete();
+		$find_to_delete = PersonModel::find($id);
+		$find_to_delete->status = 0;
+		$find_to_delete->updater_id = Auth::user()->id;
+		$find_to_delete->update();
 
 		return redirect(url('lecturer'))->with('success', "Berhasil menghapus data Dosen!");
 	}

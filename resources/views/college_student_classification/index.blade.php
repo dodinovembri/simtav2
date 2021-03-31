@@ -25,26 +25,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
-						<select class="form-control select2" name="month" required="" onchange="window.location.href=this.value;" style="width: 180px">
-							<?php if (isset($id)) { ?>
-								<option value="{{ url('college_student_classification', $id) }}">
-									<?php if ($id == 4) {
-										echo "Memenuhi Syarat";
-									} elseif ($id == 2) {
-										echo "Tidak Memenuhi Syarat";
-									} ?>
-								</option>
-								<?php if ($id == 4) { ?>
-									<option value="{{ url('college_student_classification', 2) }}">Tidak Memenuhi Syarat</option>
-								<?php } elseif ($id == 2) { ?>
-									<option value="{{ url('college_student_classification', 4) }}">Memenuhi Syarat</option>
-								<?php } ?>
-							<?php }else{ ?>
-									<option value="">Pilih</option>
-									<option value="{{ url('college_student_classification', 4) }}">Memenuhi Syarat</option>
-									<option value="{{ url('college_student_classification', 2) }}">Tidak Memenuhi Syarat</option>
-							<?php } ?>
-						</select><br><br>
+						@include('college_student_classification.components.filter')
 						<table id="example1" class="table">
 							<thead>
 								<tr>

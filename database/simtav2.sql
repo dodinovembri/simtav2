@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2021 at 02:26 AM
+-- Generation Time: Mar 31, 2021 at 02:26 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -39,13 +39,6 @@ CREATE TABLE `comprehensive_requirement` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `comprehensive_requirement`
---
-
-INSERT INTO `comprehensive_requirement` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `comprehensive_requirement_code`, `comprehensive_requirement_name`, `description`) VALUES
-('e202ae50-a4cf-48ad-ba41-a05b1e0de84f', 1, NULL, '2021-03-18 15:01:13', '2021-03-18 15:23:32', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'TN', 'Transkrip Nilai', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -70,7 +63,7 @@ CREATE TABLE `field_of_study` (
 --
 
 INSERT INTO `field_of_study` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `field_of_study_code`, `field_of_study_name`, `description`) VALUES
-('c3854cbe-247a-495f-a799-dfd47ef9feed', 1, NULL, '2021-03-18 12:29:31', '2021-03-18 12:33:13', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'IS', 'Information System', NULL);
+('1f0c5269-17a6-4b23-a4bf-e22f5bc656bb', 1, NULL, '2021-03-30 13:31:52', '2021-03-30 14:23:16', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'SI', 'Sistem Informasi', NULL);
 
 -- --------------------------------------------------------
 
@@ -96,7 +89,8 @@ CREATE TABLE `majors` (
 --
 
 INSERT INTO `majors` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `majors_code`, `majors_name`, `description`) VALUES
-('a1e70286-d3ab-4072-8c6d-1d8783b81a44', 1, NULL, '2021-03-18 12:07:52', '2021-03-18 12:07:52', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, 'SI', 'Sistem Informasi', NULL);
+('55f95e71-2d43-48b0-ad57-729984e42561', 1, NULL, '2021-03-30 14:19:02', '2021-03-30 14:19:02', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, 'SIBIL', 'Sistem Informasi Bilingual', NULL),
+('5f113601-6805-47dd-85c7-00c68bc27e99', 1, NULL, '2021-03-30 13:57:30', '2021-03-30 13:58:33', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'SIREG', 'Sistem Informasi Reguler', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,17 +117,23 @@ CREATE TABLE `person` (
   `person_type_code` int(11) DEFAULT NULL,
   `academic_lecturer_nip` varchar(40) DEFAULT NULL,
   `year_of_education_id` varchar(36) DEFAULT NULL,
-  `majors_id` varchar(36) DEFAULT NULL
+  `majors_id` varchar(36) DEFAULT NULL,
+  `is_registered_user` tinyint(4) DEFAULT NULL,
+  `address` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `nim`, `nip`, `given_name`, `middle_name`, `surname`, `business_entity_id`, `birth_date`, `gender_code`, `person_type_code`, `academic_lecturer_nip`, `year_of_education_id`, `majors_id`) VALUES
-('2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', NULL, NULL, NULL, '09031281520102', NULL, 'Dodi', NULL, 'Novembri', NULL, NULL, NULL, 4, NULL, NULL, NULL),
-('862c83c6-5272-4ed1-89e7-b3a1d33b6e4f', 1, NULL, '2021-03-27 04:15:02', '2021-03-27 04:47:18', NULL, NULL, '09031181520124', NULL, 'Tri', 'Ratna', 'Sari', NULL, NULL, NULL, 4, NULL, NULL, NULL),
-('aa96d77c-734d-4b4f-b49e-1649a958a7ff', 1, NULL, '2021-03-21 05:02:53', '2021-03-21 05:02:53', NULL, NULL, NULL, '197811172006042001', 'Endang', 'Lestari', 'Ruskan', NULL, NULL, NULL, 3, NULL, NULL, NULL);
+INSERT INTO `person` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `nim`, `nip`, `given_name`, `middle_name`, `surname`, `business_entity_id`, `birth_date`, `gender_code`, `person_type_code`, `academic_lecturer_nip`, `year_of_education_id`, `majors_id`, `is_registered_user`, `address`) VALUES
+('2565d964-e434-4050-9a18-e0524eb35f80', 1, NULL, '2021-03-30 16:41:14', '2021-03-30 16:41:27', NULL, NULL, NULL, '197811172006042001', 'Endang', 'Lestari', 'Ruskan', NULL, NULL, NULL, 3, NULL, NULL, NULL, 1, 'Palembang'),
+('384fbed3-b727-495a-a9c6-d8b7c0c14f29', 1, NULL, '2021-03-30 16:23:27', '2021-03-30 16:53:46', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '09031182520124', NULL, 'Tri', 'Ratna', 'Sari', NULL, NULL, NULL, 4, '198706302015041001', '3ad56671-59f3-444e-a890-26c1f7fafddb', '5f113601-6805-47dd-85c7-00c68bc27e99', 1, 'Jakarta Barat'),
+('3e6bf132-e192-4764-ad1f-3d04164bc1b4', 1, NULL, '2021-03-30 15:48:19', '2021-03-30 15:48:19', NULL, NULL, NULL, '198201132015042001', 'Dwi', 'Rosa', 'Indah', NULL, NULL, NULL, 3, NULL, NULL, NULL, 1, NULL),
+('4f42ea73-7fc2-4994-87af-6d43f600ed30', 1, NULL, '2021-03-30 15:57:39', '2021-03-30 15:57:39', NULL, NULL, NULL, '198305132015109201', 'Allsela', '', 'Meirizia', NULL, NULL, NULL, 3, NULL, NULL, NULL, 1, NULL),
+('5656cd73-c09c-4f87-b14a-94fca8ad18e0', 1, NULL, '2021-03-30 15:47:56', '2021-03-30 16:41:32', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, '197107212005011005', 'Jaidan', '', 'Jauhari', NULL, NULL, NULL, 3, NULL, NULL, NULL, 1, NULL),
+('aba1df87-cbb5-432f-a44c-b0502bf1c75c', 1, NULL, '2021-03-30 16:01:52', '2021-03-30 16:01:52', NULL, NULL, NULL, '198706302015041001', 'Rahmat', 'Izwan', 'Heroza', NULL, NULL, NULL, 3, NULL, NULL, NULL, 1, NULL),
+('faa1de1d-3846-488b-9db1-f5b9bf867c8e', 1, NULL, '2021-03-30 16:23:27', '2021-03-30 16:53:47', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '09031281520102', NULL, 'Dodi', NULL, 'Novembri', NULL, NULL, NULL, 4, '198201132015042001', '3ad56671-59f3-444e-a890-26c1f7fafddb', '5f113601-6805-47dd-85c7-00c68bc27e99', 1, 'Jakarta Barat');
 
 -- --------------------------------------------------------
 
@@ -158,30 +158,6 @@ CREATE TABLE `person_asset` (
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `person_asset`
---
-
-INSERT INTO `person_asset` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `information_type_code`, `file_name`, `original_file_name`, `file_size`, `url`, `description`) VALUES
-('0574c119-5f73-4c6a-b13e-576c6c4c891c', 1, NULL, '2021-03-28 14:29:28', '2021-03-28 14:29:28', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '4', '606092c89fa81.png', 'download.png', 4090, 'img/consultation_file/', NULL),
-('250af652-db3f-494c-8fd5-2945094ef9cf', 1, NULL, '2021-03-27 07:54:09', '2021-03-27 07:54:09', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '605ee4a1ef2df.png', 'download.png', 4090, 'img/kkt/', NULL),
-('30b240d8-760c-4194-9e80-236d7714399d', 0, NULL, '2021-03-27 07:28:08', '2021-03-27 07:53:13', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '605ede885d05f.jpg', 'gnti_ban.jpg', 50812, 'img/kkt/', NULL),
-('3a9e5a82-1e46-4a63-a077-61c708e7e000', 0, NULL, '2021-03-27 07:16:53', '2021-03-27 07:18:39', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '605edbe5565e2.png', 'download.png', 4090, 'img/kkt/', NULL),
-('4de1030c-0622-4b5a-831f-020cb3080fcf', 1, NULL, '2021-03-28 14:24:27', '2021-03-28 14:24:27', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '4', '6060919b06fb7.png', 'download.png', 4090, 'img/consultation_file/', NULL),
-('60eccc4e-7fbe-48df-8cbb-7728fdb7a3eb', 1, NULL, '2021-03-28 14:18:40', '2021-03-28 14:18:40', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '4', '60609040a401e.png', 'download.png', 4090, 'img/consultation_file/', NULL),
-('83056195-30f4-4f17-888d-50d6a36f6e4f', 0, NULL, '2021-03-27 07:24:25', '2021-03-27 07:27:22', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '605edda9ae899.jpg', 'kode_ban_mobil.jpg', 8536, 'img/kkt/', NULL),
-('921891c9-da28-4ddd-8a53-a074c2ea2888', 0, NULL, '2021-03-27 07:28:08', '2021-03-27 07:53:13', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '605ede8844d7d.jpg', 'ban.jpg', 7255, 'img/kkt/', NULL),
-('94ac0ff3-02cf-4f88-b177-db60ffc94325', 0, NULL, '2021-03-27 07:24:25', '2021-03-27 07:27:23', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '605edda9c4439.jpg', 'gnti_ban.jpg', 50812, 'img/kkt/', NULL),
-('b42f6fe8-11e7-44da-a37c-501167e56922', 0, NULL, '2021-03-27 07:16:53', '2021-03-27 07:18:39', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '3', '605edbe5b3e58.jpg', 'sisi_luar_ban.jpg', 5724, 'img/kkt/', NULL),
-('b48df0df-740d-4308-bf31-3f3b771e1032', 1, NULL, '2021-03-28 14:28:40', '2021-03-28 14:28:40', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '4', '60609298c7c21.png', 'download.png', 4090, 'img/consultation_file/', NULL),
-('b5a38033-1f44-4fd9-9d6d-be4f7f9f94f5', 1, NULL, '2021-03-27 07:54:09', '2021-03-27 07:54:09', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '605ee4a1c0244.jpg', 'sisi_luar_ban.jpg', 5724, 'img/kkt/', NULL),
-('cefb2040-ef1c-4b7d-b3f2-d5cf2408109a', 0, NULL, '2021-03-27 07:16:53', '2021-03-27 07:18:39', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '605edbe5a9283.jpg', 'ban.jpg', 7255, 'img/kkt/', NULL),
-('cf95f090-533b-4207-9716-60e925106312', 0, NULL, '2021-03-27 07:24:25', '2021-03-27 07:27:23', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '605edda990399.png', 'download.png', 4090, 'img/kkt/', NULL),
-('d103e4a5-e521-4828-8ddd-5c0b19e4192f', 0, NULL, '2021-03-27 07:28:08', '2021-03-27 07:53:13', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '1', '605ede8826cd1.png', 'download.png', 4090, 'img/kkt/', NULL),
-('e2cfa85e-f9f3-4a18-b346-cd883c0d8f9e', 1, NULL, '2021-03-27 16:54:11', '2021-03-27 16:54:11', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '4', '605f6333023de.png', 'download.png', 4090, 'img/consultation_file/', NULL),
-('ec719ab6-0a32-4e47-9a7d-479518740ed9', 1, NULL, '2021-03-27 07:54:09', '2021-03-27 07:54:09', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '2', '605ee4a1dfbe4.png', 'download.png', 4090, 'img/kkt/', NULL),
-('ef227efb-8bde-41c2-abd1-8674ce7d9f35', 1, NULL, '2021-03-29 14:24:49', '2021-03-29 14:24:49', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '5', '6061e3310f29a.png', 'download.png', 4090, 'img/consultation_file/', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -200,13 +176,6 @@ CREATE TABLE `proposal_seminar_requirement` (
   `proposal_seminar_requirement_name` varchar(256) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `proposal_seminar_requirement`
---
-
-INSERT INTO `proposal_seminar_requirement` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `proposal_seminar_requirement_code`, `proposal_seminar_requirement_name`, `description`) VALUES
-('eed8b704-6e16-41cd-8d2b-7743f2aab1ad', 1, NULL, '2021-03-18 15:23:06', '2021-03-18 15:23:06', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, 'KRS', 'Kartu Rancangan Studi', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,13 +201,6 @@ CREATE TABLE `student_thesis` (
   `title_of_thesis` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `student_thesis`
---
-
-INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `thesis_status_code`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`, `thesis_topic_id`, `title_of_thesis`) VALUES
-('86d99c0e-7adc-486a-b407-dd15d3a25f1b', 1, NULL, '2021-03-27 07:16:53', '2021-03-29 14:24:49', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 8, 12, 12, 1, '2b54d07f-8c89-4fc1-a57c-50dec3c2c006', 'SPK Pemilihan Bujang Gadis Pada Fasilkom Universitas Sriwijaya');
-
 -- --------------------------------------------------------
 
 --
@@ -262,16 +224,6 @@ CREATE TABLE `student_thesis_history` (
   `description` varchar(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `student_thesis_history`
---
-
-INSERT INTO `student_thesis_history` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `student_thesis_id`, `lecturer_id`, `college_student_id`, `history_code`, `total_sks_now`, `total_sks_transkrip`, `description`) VALUES
-('3dc9364c-6f05-4284-b051-d240566bce5e', 1, NULL, '2021-03-28 14:07:53', '2021-03-28 14:07:53', 'b190c023-dda1-42dd-880f-99a647fc616f', NULL, '86d99c0e-7adc-486a-b407-dd15d3a25f1b', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 7, 12, 12, 'sd'),
-('5f75b84b-1a6e-41ea-b1d1-3ca50220ea23', 0, NULL, '2021-03-27 07:53:13', '2021-03-27 07:54:10', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', '86d99c0e-7adc-486a-b407-dd15d3a25f1b', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 'males cong'),
-('7dc76968-8c9d-4117-8642-3d921dcb3e58', 0, NULL, '2021-03-27 07:27:23', '2021-03-27 07:28:08', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', '86d99c0e-7adc-486a-b407-dd15d3a25f1b', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 'madar'),
-('a82aaf07-81c0-4b40-b39c-b9127a6042ce', 0, NULL, '2021-03-27 07:18:40', '2021-03-27 07:24:25', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', '86d99c0e-7adc-486a-b407-dd15d3a25f1b', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 2, 12, 12, 'krs kurang');
-
 -- --------------------------------------------------------
 
 --
@@ -290,17 +242,6 @@ CREATE TABLE `student_thesis_supervisor` (
   `lecturer_id` varchar(36) DEFAULT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `student_thesis_supervisor`
---
-
-INSERT INTO `student_thesis_supervisor` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `college_student_id`, `lecturer_id`, `description`) VALUES
-('07ea02f1-7c2f-44a5-b96f-4c20bfe7e3a9', 1, NULL, '2021-03-28 14:18:40', '2021-03-28 14:18:40', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', NULL),
-('11a039a5-a7e4-4f09-907c-603f3c73fd8b', 1, NULL, '2021-03-28 14:28:40', '2021-03-28 14:28:40', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', NULL),
-('885af4e1-8746-43e8-a924-10d4b1e56ff8', 1, NULL, '2021-03-28 14:24:26', '2021-03-28 14:24:26', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', NULL),
-('a2a92f97-4476-463c-a010-71d570f18be2', 1, NULL, '2021-03-27 16:54:10', '2021-03-27 16:54:10', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', NULL),
-('aa26a423-4076-4e66-837a-71a41b3badad', 1, NULL, '2021-03-27 11:59:22', '2021-03-27 11:59:22', '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', NULL, '695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', NULL);
 
 -- --------------------------------------------------------
 
@@ -326,7 +267,8 @@ CREATE TABLE `thesis_topic` (
 --
 
 INSERT INTO `thesis_topic` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `thesis_topic_code`, `thesis_topic_name`, `description`) VALUES
-('2b54d07f-8c89-4fc1-a57c-50dec3c2c006', 1, NULL, '2021-03-17 15:08:23', '2021-03-17 15:13:49', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'SPK', 'Sistem Pendukung Keputusan', NULL);
+('1b47d82e-09ac-44ab-ae72-940de9b69ca8', 1, NULL, '2021-03-30 14:30:25', '2021-03-30 14:31:50', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'SPK', 'Sistem Pendukung Keputusan', NULL),
+('1c379f0d-9d48-44ba-91d7-3deda06c81b9', 1, NULL, '2021-03-30 14:32:09', '2021-03-30 14:32:09', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', NULL, 'CRM', 'Customer Relationship Management', NULL);
 
 -- --------------------------------------------------------
 
@@ -354,11 +296,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
-('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-27 11:44:03', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$12$wdmMZFDREdMADYtzVqa.bu/1XThATLvAsaAdROBXFQRPUx126G6be', 'IL1A0o7hdQDen4Egab5XrEerzWGWXgr5LWPQKvJk3nzWTREeukXfTUZeeHDl', 2),
-('695efb3d-f83d-4f9d-916a-eb8e0228f1d4', 1, NULL, '2021-03-16 12:35:00', '2021-03-29 14:28:33', NULL, NULL, '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', '09031281520102', '$2y$12$0jjEAd3PaBUJO.SBSRUWquQfwYcaOt6fRo0HFGpsSMjWAP1Qmjcdu', 'GLD5OFj1iVfRJnpO4AqSs8rCqyPDLQBgzZ7qMmCSue2CZCLc10BP6FsQFp8N', 4),
-('b190c023-dda1-42dd-880f-99a647fc616f', 1, NULL, '2021-03-21 05:02:54', '2021-03-28 14:08:13', NULL, NULL, 'aa96d77c-734d-4b4f-b49e-1649a958a7ff', '197811172006042001', '$2y$10$gCL8ewBQkBcgRxD2uCTgru6IHwhZKqTBeQd0xtW4Zt9EwKAN7krx2', 'IXyHMWjAYJHILN1FcB2vfk5p5FqejBNGuSfxvcl9GXuUMmxdMT0Zw1Uygng6', 3),
-('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-27 16:05:34', NULL, NULL, NULL, 'admin', '$2y$12$YJJKvLXoJqG13lubV4hC8epwGCABPQ7e1VS6N2aNJea7uI3aw2V.i', 'DLSLFSyzfEMNFGDA0gxeZHvgNrRAQXGA3EZDVg9Xfm8FgfgCdacEXOaki5Dw', 1),
-('ba2ff0d8-9347-4889-9f5b-55f8524f1f42', 1, NULL, '2021-03-27 04:15:02', '2021-03-27 04:15:02', NULL, NULL, NULL, '09031181520124', '$2y$10$W/eMK5vO0PrjmTmiomGBiOe/i43v500b8pGJWJoUBi4or8lpLwLEW', NULL, 4);
+('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-30 15:26:12', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$10$wrKLWT8uvneD20VvrsC7FexwrTJ8wmquWB17ITXuJLiDPXv7G1Fma', 'yYHXIz6TcXHoYDXn75tDHpDNmSpuCtbEz6tfB06xAlMcCXeomjR2uv7u8Pr4', 2),
+('42f34444-b2f5-437e-8b02-cbe3db2764dd', 1, NULL, '2021-03-30 15:57:39', '2021-03-30 15:57:39', NULL, NULL, NULL, '198305132015109201', '$2y$10$mSIGkl.AzISn5dTztiw3c.wSaRNlyeDqnTpMC62b.l7qnR6uyO5Fq', NULL, 3),
+('64a53a82-8fb7-47e2-80a9-b1f89c571386', 1, NULL, '2021-03-30 16:41:14', '2021-03-30 16:41:14', NULL, NULL, NULL, '197811172006042001', '$2y$10$3.wRQvUSVOmkm5Jms108aOxAJnMhZQATG/8rwayu/gNqvV9UoK9z2', NULL, 3),
+('9ac7c76e-e63e-4d3f-a622-4f28e50469ff', 1, NULL, '2021-03-30 15:48:19', '2021-03-30 15:48:19', NULL, NULL, NULL, '198201132015042001', '$2y$10$bjRhjJuI3Ozki5FOl3fTG.Y8taI3Ax8c.yhAFppygdctxMaIuHMF.', NULL, 3),
+('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-30 16:54:00', NULL, NULL, NULL, 'admin', '$2y$10$6jqZkNklKwDiKTPfDMy60.L7tCppkG47dldgzBAmYUMztMDy4WdxO', '1YnWmm1omcC0TsStWN9jYSfRPnNaN7LeNZFsEh5WNmoeIokUET61dXvHFbk1', 1),
+('b7486ac4-ed1a-434f-b376-a137023053a0', 1, NULL, '2021-03-30 16:53:47', '2021-03-30 16:53:47', NULL, NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '09031281520102', '$2y$10$esf22oYUizbSojAgLKPC8.9XPrZE/4tDUdpeUeYVFw0zgLSagbBP6', NULL, 4),
+('bbb7d7aa-94bc-4e51-8257-bb05cfb9b5d8', 1, NULL, '2021-03-30 15:47:56', '2021-03-30 15:47:56', NULL, NULL, NULL, '197107212005011005', '$2y$10$9qibf4M19pVmzVA25sn1qeX8PgeIP6hgZ.Jo84xMjCVQin9e/OmjG', NULL, 3),
+('c1a9d730-a691-49b7-8269-5dfc8ebd08ca', 1, NULL, '2021-03-30 15:47:27', '2021-03-30 15:47:27', NULL, NULL, NULL, '197811172006042001', '$2y$10$bCFSNi7RrqPbQcri74h2ueQvsdhhYT0CxyvwAli4DxAW8alv4HYCO', NULL, 3),
+('c3480e04-885c-4f2d-9b99-48e70f9677ef', 1, NULL, '2021-03-30 16:53:46', '2021-03-30 16:53:46', NULL, NULL, '384fbed3-b727-495a-a9c6-d8b7c0c14f29', '09031182520124', '$2y$10$5reXwlU.gknL3sYUpfXP7Ozn.GJKxwe3pfBhiIDZGt7TQuHHk7p2.', NULL, 4),
+('f02e3c85-f470-4f1a-8f31-26f08ac92636', 1, NULL, '2021-03-30 16:01:52', '2021-03-30 16:01:52', NULL, NULL, NULL, '198706302015041001', '$2y$10$fhdFUDc3akDstr.8JYVhyOjr.nVQ43qXwuHoso5.kZvV3hunK/R3O', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -384,7 +331,7 @@ CREATE TABLE `year_of_education` (
 --
 
 INSERT INTO `year_of_education` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `year_of_education_code`, `year_of_education_name`, `description`) VALUES
-('6cb0160a-437c-4d4f-8160-18d4f1283c68', 1, NULL, '2021-03-18 12:14:53', '2021-03-18 12:20:12', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '15', '2015', NULL);
+('3ad56671-59f3-444e-a890-26c1f7fafddb', 1, NULL, '2021-03-30 13:36:42', '2021-03-30 13:37:17', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '15', '2015', NULL);
 
 --
 -- Indexes for dumped tables

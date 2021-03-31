@@ -21,7 +21,7 @@ class FieldOfStudyController extends Controller
 	 */
 	public function index()
 	{
-		$data['field_of_studies'] = FieldOfStudyModel::all();
+		$data['field_of_studies'] = FieldOfStudyModel::where('status', '!=', 0)->get();
 		return view('field_of_study.index', $data);
 	}
 
@@ -109,8 +109,9 @@ class FieldOfStudyController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$delete = FieldOfStudyModel::find($id);
-		$delete->delete();
+		$find_to_delete = FieldOfStudyModel::find($id);
+		$find_to_delete->status = 0;
+		$find_to_delete->update();
 
 		return redirect(url('field_of_study'))->with('success', "Berhasil menghapus Bidang Studi!");
 	}

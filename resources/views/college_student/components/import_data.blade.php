@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label class="form-label">Data Mahasiswa</label>
                         <input type="file" class="form-control" name="college_student" required>
-                        <small class="text-infor">*File yang diterima hanya berekstensi .jpeg, .jpg, .png, .pdf dan ukuran maks. 5 MB</small>
+                        <small class="text-infor">*Pilih file dari template yang sudah diisi</small>
                     </div>
                 </div>
                 <div class="modal-footer">

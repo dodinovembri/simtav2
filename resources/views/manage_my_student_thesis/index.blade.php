@@ -33,11 +33,7 @@
 							</button>
 						</div><br>
 						@endif
-						<select class="form-control select2" name="month" required="" style="width: 180px">
-							<option value=""></option>
-							<option value="4">Memenuhi Syarat</option>
-							<option value="2">Tidak Memenuhi Syarat</option>
-						</select><br><br>
+						@include('manage_my_student_thesis.components.filter')
 						<table id="example1" class="table">
 							<thead>
 								<tr>

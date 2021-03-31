@@ -25,9 +25,6 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="component">
-						<a href="{{ url('college_student/create') }}">
-							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
-						</a>
 						<a href="#export_template" data-toggle="modal">
 							<button class="btn btn-primary"><i data-feather="download"></i> Download Template</button>
 						</a>

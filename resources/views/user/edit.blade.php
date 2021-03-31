@@ -13,11 +13,11 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('field_of_study') }}">Bidang Studi</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Bidang Studi</li>
+                    <li class="breadcrumb-item"><a href="{{ url('user') }}">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit User</li>
                 </ol>
             </nav>
-            <h4 class="content-title content-title-xs">Edit Bidang Studi</h4>
+            <h4 class="content-title content-title-xs">Edit User</h4>
         </div>
     </div>
     <div class="content-body">
@@ -25,29 +25,34 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('field_of_study/update', $field_of_study->id) }}" method="POST">
+                        <form action="{{ url('user/update', $user->id) }}" method="POST" id="fieldForm">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
                                 <hr>
                                 <div class="form-group">
-                                    <label class="form-label">Kode Bidang Studi</label>
-                                    <input type="text" class="form-control" name="field_of_study_code" placeholder="Masukkan kode bidang studi" value="{{ $field_of_study->field_of_study_code }}" required>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" name="username" value="{{ $user->username }}" disabled>
                                 </div><!-- form-group -->
 
                                 <div class="form-group">
-                                    <label class="form-label">Nama Bidang Studi</label>
-                                    <input type="text" class="form-control" name="field_of_study_name" value="{{ $field_of_study->field_of_study_name }}" placeholder="Masukkan nama bidang studi" required>
-                                    <div class="tx-11 tx-sans tx-color-04 mg-t-5">Your name may appear around here where you are mentioned. You can change or remove it at any time.</div>
-                                </div><!-- form-group -->
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Konfirmasi Password</label>
+                                    <input type="password" class="form-control" name="password_confirm" required>
+                                </div>
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save Product</button>
-                                <a href="{{ url('field_of_study') }}"><button type="button" class="btn btn-white mg-l-2">Cancel Changes</button></a>
+                                <button class="btn btn-brand-01">Simpan</button>
+                                <a href="{{ url('user') }}"><button type="button" class="btn btn-white mg-l-2">Batal</button></a>
                             </div><!-- tab-pane -->
                         </form>
+                        <script>
+                            $("#fieldForm").validate();
+                        </script>
                     </div><!-- tab-content -->
                 </div><!-- card -->
             </div><!-- col -->

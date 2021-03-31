@@ -18,7 +18,7 @@ class ThesisTopicController extends Controller {
 	 */
 	public function index()
 	{
-		$data['thesis_topics'] = ThesisTopicModel::all();
+		$data['thesis_topics'] = ThesisTopicModel::where('status', '!=', 0)->get();
 		return view('thesis_topic.index', $data);
 	}
 
@@ -107,8 +107,9 @@ class ThesisTopicController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$delete = ThesisTopicModel::find($id);
-		$delete->delete();
+		$find_to_delete = ThesisTopicModel::find($id);
+		$find_to_delete->status = 0;
+		$find_to_delete->update();
 
 		return redirect(url('thesis_topic'))->with('success', 'Topik TA berhasil dihapus!');
 	}

@@ -132,8 +132,8 @@ class ManageMyStudentThesisController extends Controller {
 
 	public function agree_to_extend_proposal($id)
 	{		
-		return $id;
-		$find_to_update = StudentThesisModel::find($id);
+		$find_student_thesis_id = StudentThesisModel::where('college_student_id', $id)->where('status', '!=', 0)->first();
+		$find_to_update = StudentThesisModel::find($find_student_thesis_id->id);
 		$find_to_update->updater_id = Auth::user()->id;
 		$find_to_update->thesis_status_code = 9;
 		$find_to_update->update();
@@ -143,12 +143,12 @@ class ManageMyStudentThesisController extends Controller {
 
 	public function reject_to_extend_proposal(Request $request, $id)
 	{
-		// start create object student thesis
-		$find_to_update = StudentThesisModel::find($id);
+		$find_student_thesis_id = StudentThesisModel::where('college_student_id', $id)->where('status', '!=', 0)->first();
+		$find_to_update = StudentThesisModel::find($find_student_thesis_id->id);
 
 		// update student thesis
 		$find_to_update->updater_id = Auth::user()->id;
-		$find_to_update->thesis_status_code = 7;
+		$find_to_update->thesis_status_code = 10;
 		$find_to_update->update();
 
 		// save to student history
@@ -156,7 +156,7 @@ class ManageMyStudentThesisController extends Controller {
 		$insert_to_student_thesis_history->id                  = Uuid::uuid4();
 		$insert_to_student_thesis_history->status              = 1;
 		$insert_to_student_thesis_history->creator_id          = Auth::user()->id;
-		$insert_to_student_thesis_history->history_code        = 7;
+		$insert_to_student_thesis_history->history_code        = 10;
 		$insert_to_student_thesis_history->student_thesis_id   = $find_to_update->id;
 		$insert_to_student_thesis_history->college_student_id  = $find_to_update->college_student_id;
 		$insert_to_student_thesis_history->total_sks_now       = $find_to_update->total_sks_now;

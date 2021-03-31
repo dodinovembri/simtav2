@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card card-body pd-sm-40 pd-md-30 pd-xl-y-35 pd-xl-x-40">
                     <div class="tab-content">
-                        <form action="{{ url('user/store') }}" method="POST">
+                        <form action="{{ url('user/store') }}" method="POST" id="fieldForm">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div id="paneProfile" class="tab-pane active show">
                                 <h6 class="tx-uppercase tx-semibold tx-color-01 mg-b-0">Information</h6>
@@ -42,10 +42,13 @@
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save User</button>
-                                <button type="button" class="btn btn-white mg-l-2">Reset Changes</button>
+                                <button class="btn btn-brand-01">Simpan</button>
+                                <a href="{{ url('user') }}"><button type="button" class="btn btn-white mg-l-2">Batal</button></a>
                             </div><!-- tab-pane -->
                         </form>
+                        <script>
+                            $("#fieldForm").validate();
+                        </script>
                     </div><!-- tab-content -->
                 </div><!-- card -->
             </div><!-- col -->

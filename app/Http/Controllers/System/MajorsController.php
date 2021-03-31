@@ -18,7 +18,7 @@ class MajorsController extends Controller {
 	 */
 	public function index()
 	{
-		$data['majors'] = MajorsModel::all();
+		$data['majors'] = MajorsModel::where('status', '!=', 0)->get();
 		return view('majors.index', $data);
 	}
 
@@ -107,8 +107,9 @@ class MajorsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$delete = MajorsModel::find($id);
-		$delete->delete();
+		$find_to_delete = MajorsModel::find($id);
+		$find_to_delete->status = 0;
+		$find_to_delete->update();
 
 		return redirect(url('majors'))->with('success', 'Jurusan berhasil dihapus!');
 	}

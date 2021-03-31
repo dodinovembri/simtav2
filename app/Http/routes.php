@@ -179,7 +179,7 @@ Route::group(['prefix' => 'manage_my_student_thesis'], function()
 
 	Route::get('agree/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree']);	
 	Route::post('reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject']);
-	Route::get('agree_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree_for_extend_proposal']);	
+	Route::get('agree_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree_to_extend_proposal']);	
 	Route::post('reject_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject_to_extend_proposal']);	
 });
 

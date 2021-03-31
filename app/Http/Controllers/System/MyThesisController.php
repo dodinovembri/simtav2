@@ -29,11 +29,13 @@ class MyThesisController extends Controller
 	{
 		$college_id = Auth::user()->person_id;
 
-		$data['my_thesis_history'] = StudentThesisHistoryModel::where('history_code', 2)->where('status', 1)->where('college_student_id', $college_id)->first();
-		$data['my_thesis'] = StudentThesisModel::where('college_student_id', $college_id)->where('status', 1)->first();
-		$data['person_assets'] = PersonAssetModel::where('person_id', $college_id)->where('status', 1)->get();
+		$data['my_thesis_history'] = StudentThesisHistoryModel::where('history_code', 2)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
+		$data['my_thesis'] = StudentThesisModel::where('college_student_id', $college_id)->where('status', '!=', 0)->first();
+		$data['person_assets'] = PersonAssetModel::where('person_id', $college_id)->where('status', '!=', 0)->get();
 		
-		$data['topic_ta_history'] = StudentThesisHistoryModel::where('history_code', 7)->where('status', 1)->where('college_student_id', $college_id)->first();
+		$data['topic_ta_history'] = StudentThesisHistoryModel::where('history_code', 7)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
+		$data['extend_proposal_rejected_reason'] = StudentThesisHistoryModel::where('history_code', 10)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
+		
 		return view('my_thesis.index', $data);
 	}
 

@@ -12,7 +12,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="{{ url('college_student/destroy', $value->id) }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                <a href="{{ url('field_of_study/destroy', $value->id) }}"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>
         </div>
     </div>

@@ -36,14 +36,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label">Nama Angkatan</label>
+                                    <label class="form-label">Nama Bidang Studi</label>
                                     <input type="text" class="form-control" name="field_of_study_name" id="field_of_study_name" value="{{ $field_of_study->field_of_study_name }}" placeholder="Masukkan nama bidang studi" required>
                                 </div>
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save Changes</button>
-                                <a href="{{ url('field_of_study') }}"><button type="button" class="btn btn-white mg-l-2">Cancel Changes</button></a>
+                                <button class="btn btn-brand-01">Simpan</button>
+                                <a href="{{ url('field_of_study') }}"><button type="button" class="btn btn-white mg-l-2">Batal</button></a>
                             </div>
                         </form>
                         <script>
