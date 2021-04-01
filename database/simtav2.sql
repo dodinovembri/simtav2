@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 08:34 AM
+-- Generation Time: Apr 01, 2021 at 02:05 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -163,10 +163,17 @@ CREATE TABLE `person_asset` (
 --
 
 INSERT INTO `person_asset` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `information_type_code`, `file_name`, `original_file_name`, `file_size`, `url`, `description`) VALUES
-('5fc1f906-360e-4f2a-bdb2-2f024ff81736', 1, NULL, '2021-03-31 06:15:29', '2021-03-31 06:15:29', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '2', '60641381a2ff0.png', 'Screenshot (6).png', 124066, 'img/kkt/', NULL),
-('7ffeef73-0ce0-4fba-aaea-aaa1b4405985', 1, NULL, '2021-03-31 06:15:29', '2021-03-31 06:15:29', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '3', '60641381a3bb0.png', 'Screenshot (25).png', 552245, 'img/kkt/', NULL),
-('df1ef8b9-a795-4f03-b372-c8a2c5421940', 1, NULL, '2021-03-31 06:16:30', '2021-03-31 06:16:30', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4', '606413bead1d4.png', 'Screenshot (10).png', 238390, 'img/consultation_file/', NULL),
-('f7982a45-e18b-484c-9aef-69fa7bbfc9ae', 1, NULL, '2021-03-31 06:15:29', '2021-03-31 06:15:29', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '1', '606413819c634.png', 'Screenshot (18).png', 258775, 'img/kkt/', NULL);
+('34af6fe6-359e-44c9-b087-05e099d7c5c6', 1, NULL, '2021-03-31 12:37:59', '2021-03-31 12:37:59', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '3', '60646d2722e38.jpg', 'product3.jpg', 9668, 'img/kkt/', NULL),
+('425dbb31-47a4-4481-aebd-8831c37a9813', 1, NULL, '2021-03-31 17:37:01', '2021-03-31 17:37:01', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4', '6064b33dc9f28.jpg', 'product2.jpg', 10821, 'img/consultation_file/', NULL),
+('673c8406-259e-4ba0-840c-00f2f4c097be', 1, NULL, '2021-03-31 12:37:59', '2021-03-31 12:37:59', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '2', '60646d27094f8.jpg', 'product2.jpg', 10821, 'img/kkt/', NULL),
+('77383e9c-e2a3-4181-840a-e9363d261ba1', 1, NULL, '2021-03-31 17:36:04', '2021-03-31 17:36:04', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4', '6064b30497ff3.jpg', 'product3.jpg', 9668, 'img/consultation_file/', NULL),
+('7d499d91-0a65-4a6f-adbe-cfe3dda21ae3', 1, NULL, '2021-03-31 17:27:30', '2021-03-31 17:27:30', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4', '6064b102e1207.jpg', 'product3.jpg', 9668, 'img/consultation_file/', NULL),
+('9aaf5b3f-4faf-4bc4-95a3-61a09f8d261a', 0, NULL, '2021-03-31 12:28:42', '2021-03-31 12:36:12', 'b7486ac4-ed1a-434f-b376-a137023053a0', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '2', '60646afaa50fb.jpg', 'product6.jpg', 9928, 'img/kkt/', NULL),
+('a7387ee6-cd48-44e9-b295-04f633790bdd', 0, NULL, '2021-03-31 12:28:42', '2021-03-31 12:36:12', 'b7486ac4-ed1a-434f-b376-a137023053a0', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '3', '60646afab48a3.jpg', 'product3.jpg', 9668, 'img/kkt/', NULL),
+('b9be99b1-aa0c-4b7d-8da6-12ae3294891e', 1, NULL, '2021-03-31 13:00:44', '2021-03-31 13:00:44', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4', '6064727cc4763.jpg', 'product1.jpg', 8978, 'img/consultation_file/', NULL),
+('b9eb237c-242d-4792-9665-17cfa4db0541', 0, NULL, '2021-03-31 12:28:42', '2021-03-31 12:36:12', 'b7486ac4-ed1a-434f-b376-a137023053a0', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '1', '60646af9f0b19.jpg', 'product2.jpg', 10821, 'img/kkt/', NULL),
+('c57562b5-5d36-4396-882b-dded030a2826', 1, NULL, '2021-03-31 12:37:58', '2021-03-31 12:37:58', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '1', '60646d26dadea.jpg', 'product1.jpg', 8978, 'img/kkt/', NULL),
+('ddc73285-9ef0-47d3-9061-a93c83687a6d', 1, NULL, '2021-03-31 13:18:31', '2021-03-31 13:18:31', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4', '606476a7cea44.jpg', 'product2.jpg', 10821, 'img/consultation_file/', NULL);
 
 -- --------------------------------------------------------
 
@@ -208,15 +215,16 @@ CREATE TABLE `student_thesis` (
   `total_sks_transkrip` int(11) DEFAULT NULL,
   `is_kkt_file_set` tinyint(4) DEFAULT NULL,
   `thesis_topic_id` varchar(36) DEFAULT NULL,
-  `title_of_thesis` text
+  `title_of_thesis` text,
+  `date_agree` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_thesis`
 --
 
-INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `thesis_status_code`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`, `thesis_topic_id`, `title_of_thesis`) VALUES
-('3a295493-f761-4f9a-8b2e-547cf7a5daf9', 1, NULL, '2021-03-31 06:15:29', '2021-03-31 06:33:18', 'b7486ac4-ed1a-434f-b376-a137023053a0', '9ac7c76e-e63e-4d3f-a622-4f28e50469ff', '3e6bf132-e192-4764-ad1f-3d04164bc1b4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 6, 87, 24, 1, '1b47d82e-09ac-44ab-ae72-940de9b69ca8', 'Sistem Pendukung keputusan Pemilihan Topik Tugas Akhir');
+INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `thesis_status_code`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`, `thesis_topic_id`, `title_of_thesis`, `date_agree`) VALUES
+('c0bc00c2-e544-4d02-a671-44facb185f82', 1, NULL, '2021-03-31 12:28:42', '2021-03-31 17:52:09', 'b7486ac4-ed1a-434f-b376-a137023053a0', 'b7486ac4-ed1a-434f-b376-a137023053a0', '3e6bf132-e192-4764-ad1f-3d04164bc1b4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 11, 24, 87, 1, '1b47d82e-09ac-44ab-ae72-940de9b69ca8', 'SPK Pemilihan Bujang Gadis Pada Fasilkom Universitas Sriwijaya', '2021-03-31');
 
 -- --------------------------------------------------------
 
@@ -240,6 +248,15 @@ CREATE TABLE `student_thesis_history` (
   `total_sks_transkrip` int(11) DEFAULT NULL,
   `description` varchar(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student_thesis_history`
+--
+
+INSERT INTO `student_thesis_history` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `student_thesis_id`, `lecturer_id`, `college_student_id`, `history_code`, `total_sks_now`, `total_sks_transkrip`, `description`) VALUES
+('26159a8b-5e21-4c7c-9016-4afde932baa3', 1, NULL, '2021-03-31 17:36:34', '2021-03-31 17:36:34', '9ac7c76e-e63e-4d3f-a622-4f28e50469ff', NULL, 'c0bc00c2-e544-4d02-a671-44facb185f82', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 7, 24, 87, 'ssdd'),
+('42d45acc-5a6c-43a5-9625-8988ea6b0ce5', 0, NULL, '2021-03-31 12:36:12', '2021-03-31 12:37:59', 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 'b7486ac4-ed1a-434f-b376-a137023053a0', 'c0bc00c2-e544-4d02-a671-44facb185f82', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 2, 24, 87, 'krs tidak lengkap'),
+('dba01ebc-d6ee-4497-a04b-e61ce6eff4a5', 1, NULL, '2021-03-31 13:16:59', '2021-03-31 13:16:59', '9ac7c76e-e63e-4d3f-a622-4f28e50469ff', NULL, 'c0bc00c2-e544-4d02-a671-44facb185f82', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 7, 24, 87, 'kurang menarik');
 
 -- --------------------------------------------------------
 
@@ -265,7 +282,7 @@ CREATE TABLE `student_thesis_supervisor` (
 --
 
 INSERT INTO `student_thesis_supervisor` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `college_student_id`, `lecturer_id`, `description`) VALUES
-('36ee1dd7-2bb5-4aa0-9a5d-45271391fcd9', 1, NULL, '2021-03-31 06:16:30', '2021-03-31 06:16:30', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '2565d964-e434-4050-9a18-e0524eb35f80', NULL);
+('5b135b4b-4ca1-4d06-8ab5-51fea61f996b', 1, NULL, '2021-03-31 13:00:44', '2021-03-31 13:00:44', 'b7486ac4-ed1a-434f-b376-a137023053a0', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '2565d964-e434-4050-9a18-e0524eb35f80', NULL);
 
 -- --------------------------------------------------------
 
@@ -320,12 +337,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
-('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-30 15:26:12', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$10$wrKLWT8uvneD20VvrsC7FexwrTJ8wmquWB17ITXuJLiDPXv7G1Fma', 'yYHXIz6TcXHoYDXn75tDHpDNmSpuCtbEz6tfB06xAlMcCXeomjR2uv7u8Pr4', 2),
+('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-31 12:54:53', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$10$wrKLWT8uvneD20VvrsC7FexwrTJ8wmquWB17ITXuJLiDPXv7G1Fma', 'DRjYXFUuodiai7H2UrgdPRIz8qwCrD2gbUqOzTvkK2MV43bMrRHABlAdmzrd', 2),
 ('42f34444-b2f5-437e-8b02-cbe3db2764dd', 1, NULL, '2021-03-30 15:57:39', '2021-03-30 15:57:39', NULL, NULL, '4f42ea73-7fc2-4994-87af-6d43f600ed30', '198305132015109201', '$2y$10$mSIGkl.AzISn5dTztiw3c.wSaRNlyeDqnTpMC62b.l7qnR6uyO5Fq', NULL, 3),
-('64a53a82-8fb7-47e2-80a9-b1f89c571386', 1, NULL, '2021-03-30 16:41:14', '2021-03-30 16:41:14', NULL, NULL, '2565d964-e434-4050-9a18-e0524eb35f80', '197811172006042001', '$2y$10$3.wRQvUSVOmkm5Jms108aOxAJnMhZQATG/8rwayu/gNqvV9UoK9z2', NULL, 3),
-('9ac7c76e-e63e-4d3f-a622-4f28e50469ff', 1, NULL, '2021-03-30 15:48:19', '2021-03-31 06:33:29', NULL, NULL, '3e6bf132-e192-4764-ad1f-3d04164bc1b4', '198201132015042001', '$2y$10$bjRhjJuI3Ozki5FOl3fTG.Y8taI3Ax8c.yhAFppygdctxMaIuHMF.', 'MVcsOUR1dJPc3DqzEjKghdHZICkNpDedde8U1FnMafUPaTIyDQTkoVkPrEyK', 3),
-('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-31 06:15:52', NULL, NULL, NULL, 'admin', '$2y$10$6jqZkNklKwDiKTPfDMy60.L7tCppkG47dldgzBAmYUMztMDy4WdxO', 'H7f4bTc0yZlfrPZLD3RVN6OlBHE2WaZG18h27kf141M3TxvKtPUICYkNoRGX', 1),
-('b7486ac4-ed1a-434f-b376-a137023053a0', 1, NULL, '2021-03-30 16:53:47', '2021-03-31 06:16:51', NULL, NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '09031281520102', '$2y$10$esf22oYUizbSojAgLKPC8.9XPrZE/4tDUdpeUeYVFw0zgLSagbBP6', '0icTJxoLiXjooowOAFWMPTZma5k8gEtAkVtmlCKNLOnuTVOCuzBP2da9bFbs', 4),
+('64a53a82-8fb7-47e2-80a9-b1f89c571386', 1, NULL, '2021-03-30 16:41:14', '2021-03-31 12:21:51', NULL, NULL, '2565d964-e434-4050-9a18-e0524eb35f80', '197811172006042001', '$2y$10$3.wRQvUSVOmkm5Jms108aOxAJnMhZQATG/8rwayu/gNqvV9UoK9z2', 'zvq5REJKZIxBXSOexwyz3ymw7jcUH5T1R2Rhroz7h0i4xgGb3YFjP9YRut5I', 3),
+('9ac7c76e-e63e-4d3f-a622-4f28e50469ff', 1, NULL, '2021-03-30 15:48:19', '2021-03-31 17:38:11', NULL, NULL, '3e6bf132-e192-4764-ad1f-3d04164bc1b4', '198201132015042001', '$2y$10$bjRhjJuI3Ozki5FOl3fTG.Y8taI3Ax8c.yhAFppygdctxMaIuHMF.', 'f33wLa0PKh5cBHwz0InqTtuPnz6ObbMxA1ROh2M4hz3PRQ3IjhLlZQruXTvg', 3),
+('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-31 16:48:48', NULL, NULL, NULL, 'admin', '$2y$10$6jqZkNklKwDiKTPfDMy60.L7tCppkG47dldgzBAmYUMztMDy4WdxO', '4KzCK73mlzlDHqZEwl690bhqZ0KwZwiAOIu85g6DVWYFmNTrRse19hPtzcIT', 1),
+('b7486ac4-ed1a-434f-b376-a137023053a0', 1, NULL, '2021-03-30 16:53:47', '2021-03-31 17:37:22', NULL, NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '09031281520102', '$2y$10$esf22oYUizbSojAgLKPC8.9XPrZE/4tDUdpeUeYVFw0zgLSagbBP6', '2plJ3OKgwzzKC4QUnSsVCvO8ei4PBRyLrXBMUZvy3QZ8181PbUHYHUTI3LxQ', 4),
 ('bbb7d7aa-94bc-4e51-8257-bb05cfb9b5d8', 1, NULL, '2021-03-30 15:47:56', '2021-03-30 15:47:56', NULL, NULL, '5656cd73-c09c-4f87-b14a-94fca8ad18e0', '197107212005011005', '$2y$10$9qibf4M19pVmzVA25sn1qeX8PgeIP6hgZ.Jo84xMjCVQin9e/OmjG', NULL, 3),
 ('c1a9d730-a691-49b7-8269-5dfc8ebd08ca', 1, NULL, '2021-03-30 15:47:27', '2021-03-30 15:47:27', NULL, NULL, '2565d964-e434-4050-9a18-e0524eb35f80', '197811172006042001', '$2y$10$bCFSNi7RrqPbQcri74h2ueQvsdhhYT0CxyvwAli4DxAW8alv4HYCO', NULL, 3),
 ('c3480e04-885c-4f2d-9b99-48e70f9677ef', 1, NULL, '2021-03-30 16:53:46', '2021-03-30 16:53:46', NULL, NULL, '384fbed3-b727-495a-a9c6-d8b7c0c14f29', '09031182520124', '$2y$10$5reXwlU.gknL3sYUpfXP7Ozn.GJKxwe3pfBhiIDZGt7TQuHHk7p2.', NULL, 4),

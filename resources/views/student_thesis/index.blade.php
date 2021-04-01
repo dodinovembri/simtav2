@@ -28,22 +28,7 @@
 						<a href="{{ url('thesis_topic/create') }}">
 							<button class="btn btn-primary"><i data-feather="plus"></i> Add New</button>
 						</a><br><br>
-						@if(session()->has('success'))
-						<div class="alert alert-success alert-dismissible mg-b-0 fade show" role="alert">
-							<i class="icon fa fa-close"></i> {{ session()->get('success') }}
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div><br>
-						@endif
-						@if(session()->has('error'))
-						<div class="alert alert-warning alert-dismissible mg-b-0 fade show" role="alert">
-							<i class="icon fa fa-close"></i> {{ session()->get('error') }}
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div><br>
-						@endif
+						@include('components.flash')
 						<table id="example1" class="table">
 							<thead>
 								<tr>

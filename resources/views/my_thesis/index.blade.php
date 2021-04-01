@@ -37,7 +37,7 @@
 							<i data-feather="settings"></i>
 							<div class="media-body">
 								<h6>Topik TA</h6>
-								<span>Manage your account setting options</span>
+								<span>Inputan untuk topik Tugas Akhir</span>
 							</div>
 						</a>
 					</li>
@@ -46,7 +46,7 @@
 							<i data-feather="bell"></i>
 							<div class="media-body">
 								<h6>Seminar Proposal</h6>
-								<span>Choose how you receive notifications</span>
+								<span>Managemen seminar proposal</span>
 							</div>
 						</a>
 					</li>
@@ -55,7 +55,7 @@
 							<i data-feather="credit-card"></i>
 							<div class="media-body">
 								<h6>Kompre</h6>
-								<span>Your billing and payment information</span>
+								<span>Managemen komprehensive</span>
 							</div>
 						</a>
 					</li>
@@ -64,7 +64,7 @@
 							<i data-feather="shield"></i>
 							<div class="media-body">
 								<h6>Rapat</h6>
-								<span>Manage your security information</span>
+								<span>Keputusan berdasarkan hasil rapat</span>
 							</div>
 						</a>
 					</li>

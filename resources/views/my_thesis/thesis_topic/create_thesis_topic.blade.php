@@ -35,7 +35,7 @@
                                     <select class="form-control select2" name="supervisor[]" required="" multiple="multiple">
 										<option value="">Pilih</option>
 										<?php foreach ($supervisor as $key => $value) { ?>
-											<option value="{{ $value->id }}">{{ $value->nip }}{{ $value->nim }}</option>	
+											<option value="{{ $value->id }}">{{ $value->nip }} - {{ $value->given_name." ".$value->middle_name." ".$value->surname }}</option>	
 										<?php } ?>																
 									</select>
                                 </div>

@@ -24,9 +24,6 @@ class CollegeStudentClassificationController extends Controller
 	 */
 	public function index($id = null)
 	{
-		$data['majors'] = MajorsModel::where('status', '!=', 0)->get();
-		$data['year_of_educations'] = YearOfEducationModel::where('status', '!=', 0)->get();
-
 		if (isset($id)) {
 			$data['id'] = $id;
 			$data['college_student_classification'] = StudentThesisModel::with('person')->where('thesis_status_code', $id)->where('status', '!=', 0)->get();

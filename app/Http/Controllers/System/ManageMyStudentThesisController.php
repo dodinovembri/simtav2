@@ -99,6 +99,7 @@ class ManageMyStudentThesisController extends Controller {
 		$find_to_update = StudentThesisModel::find($id);
 		$find_to_update->updater_id = Auth::user()->id;
 		$find_to_update->thesis_status_code = 6;
+		$find_to_update->date_agree = date("Y-m-d");
 		$find_to_update->update();
 		
 		return redirect(url('manage_my_student_thesis'))->with('success', 'Topik TA sukses disetujui.');

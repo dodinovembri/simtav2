@@ -204,4 +204,5 @@ Route::group(['prefix' => 'my_thesis'], function()
 	Route::post('store_thesis_topic', ['uses' => 'System\MyThesisController@store_thesis_topic']);
 	Route::get('create_extension_proposal_seminar', ['uses' => 'System\MyThesisController@create_extension_proposal_seminar']);
 	Route::post('store_extension_proposal_seminar', ['uses' => 'System\MyThesisController@store_extension_proposal_seminar']);
+	Route::get('register_proposal_seminar', ['uses' => 'System\MyThesisController@register_proposal_seminar']);
 });

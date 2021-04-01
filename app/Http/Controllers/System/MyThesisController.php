@@ -310,4 +310,17 @@ class MyThesisController extends Controller
 
 		return redirect(url('my_thesis'))->with('success', 'File perpanjang seminar propsal berhasil ditambahkan');
 	}
+
+	public function register_proposal_seminar()
+	{
+		$person_id = Auth::user()->person_id;
+
+		// update student thesis
+		$update = StudentThesisModel::where('college_student_id', $person_id)->first();
+		$update->thesis_status_code = 11;
+		$update->updater_id = Auth::user()->id;
+		$update->update();
+
+		return redirect(url('my_thesis'))->with('success', 'Registrasi seminar proposal berhasil');
+	}
 }

@@ -38,8 +38,8 @@
 
                                 <hr class="op-0">
 
-                                <button class="btn btn-brand-02">Save</button>
-                                <a href="{{ url('my_thesis') }}"><button type="button" class="btn btn-white mg-l-2">Cancel</button></a>
+                                <button class="btn btn-brand-01">Simpan</button>
+                                <a href="{{ url('my_thesis') }}"><button type="button" class="btn btn-white mg-l-2">Batal</button></a>
                             </div>
                         </form>
                         <script>
