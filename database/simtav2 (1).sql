@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 02:05 AM
+-- Generation Time: Apr 01, 2021 at 04:23 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.30
 
@@ -224,7 +224,36 @@ CREATE TABLE `student_thesis` (
 --
 
 INSERT INTO `student_thesis` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `lecturer_id`, `college_student_id`, `thesis_status_code`, `total_sks_now`, `total_sks_transkrip`, `is_kkt_file_set`, `thesis_topic_id`, `title_of_thesis`, `date_agree`) VALUES
-('c0bc00c2-e544-4d02-a671-44facb185f82', 1, NULL, '2021-03-31 12:28:42', '2021-03-31 17:52:09', 'b7486ac4-ed1a-434f-b376-a137023053a0', 'b7486ac4-ed1a-434f-b376-a137023053a0', '3e6bf132-e192-4764-ad1f-3d04164bc1b4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 11, 24, 87, 1, '1b47d82e-09ac-44ab-ae72-940de9b69ca8', 'SPK Pemilihan Bujang Gadis Pada Fasilkom Universitas Sriwijaya', '2021-03-31');
+('c0bc00c2-e544-4d02-a671-44facb185f82', 1, NULL, '2021-03-31 12:28:42', '2021-04-01 02:17:05', 'b7486ac4-ed1a-434f-b376-a137023053a0', '1c53e01a-27f4-4c67-b5fd-31afc55057e7', '3e6bf132-e192-4764-ad1f-3d04164bc1b4', 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 12, 24, 87, 1, '1b47d82e-09ac-44ab-ae72-940de9b69ca8', 'SPK Pemilihan Bujang Gadis Pada Fasilkom Universitas Sriwijaya', '2021-03-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_thesis_examiner`
+--
+
+CREATE TABLE `student_thesis_examiner` (
+  `id` varchar(36) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `creator_id` varchar(36) DEFAULT NULL,
+  `updater_id` varchar(36) DEFAULT NULL,
+  `college_student_id` varchar(36) DEFAULT NULL,
+  `lecturer_id` varchar(36) DEFAULT NULL,
+  `lecturer_type` int(11) DEFAULT NULL,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student_thesis_examiner`
+--
+
+INSERT INTO `student_thesis_examiner` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `college_student_id`, `lecturer_id`, `lecturer_type`, `description`) VALUES
+('5a2cd7b9-000e-47f1-8fd1-ba5d9bc1bd28', 1, NULL, '2021-04-01 02:17:05', '2021-04-01 02:17:05', '1c53e01a-27f4-4c67-b5fd-31afc55057e7', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '4f42ea73-7fc2-4994-87af-6d43f600ed30', 1, NULL),
+('5a805870-14e0-4752-a388-850fb5203c8d', 1, NULL, '2021-04-01 02:17:05', '2021-04-01 02:17:05', '1c53e01a-27f4-4c67-b5fd-31afc55057e7', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '5656cd73-c09c-4f87-b14a-94fca8ad18e0', 2, NULL),
+('7c8671c5-09b6-40ef-b289-e7b517f2bae2', 1, NULL, '2021-04-01 02:17:05', '2021-04-01 02:17:05', '1c53e01a-27f4-4c67-b5fd-31afc55057e7', NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', 'aba1df87-cbb5-432f-a44c-b0502bf1c75c', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -337,11 +366,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `status`, `sort`, `created_at`, `updated_at`, `creator_id`, `updater_id`, `person_id`, `username`, `password`, `remember_token`, `user_type_code`) VALUES
-('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-03-31 12:54:53', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$10$wrKLWT8uvneD20VvrsC7FexwrTJ8wmquWB17ITXuJLiDPXv7G1Fma', 'DRjYXFUuodiai7H2UrgdPRIz8qwCrD2gbUqOzTvkK2MV43bMrRHABlAdmzrd', 2),
+('1c53e01a-27f4-4c67-b5fd-31afc55057e7', 1, NULL, '2021-03-16 07:59:21', '2021-04-01 02:21:12', NULL, 'b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', '2e69af03-8628-11eb-8b4d-c0b5d79bd8c4', 'pengelola', '$2y$10$wrKLWT8uvneD20VvrsC7FexwrTJ8wmquWB17ITXuJLiDPXv7G1Fma', 'ARkEQNh2VTnZWaE555AKTT9ch8alAll5sImc0Y5z5ihWWZ4H99rwyFiJ6xw3', 2),
 ('42f34444-b2f5-437e-8b02-cbe3db2764dd', 1, NULL, '2021-03-30 15:57:39', '2021-03-30 15:57:39', NULL, NULL, '4f42ea73-7fc2-4994-87af-6d43f600ed30', '198305132015109201', '$2y$10$mSIGkl.AzISn5dTztiw3c.wSaRNlyeDqnTpMC62b.l7qnR6uyO5Fq', NULL, 3),
 ('64a53a82-8fb7-47e2-80a9-b1f89c571386', 1, NULL, '2021-03-30 16:41:14', '2021-03-31 12:21:51', NULL, NULL, '2565d964-e434-4050-9a18-e0524eb35f80', '197811172006042001', '$2y$10$3.wRQvUSVOmkm5Jms108aOxAJnMhZQATG/8rwayu/gNqvV9UoK9z2', 'zvq5REJKZIxBXSOexwyz3ymw7jcUH5T1R2Rhroz7h0i4xgGb3YFjP9YRut5I', 3),
 ('9ac7c76e-e63e-4d3f-a622-4f28e50469ff', 1, NULL, '2021-03-30 15:48:19', '2021-03-31 17:38:11', NULL, NULL, '3e6bf132-e192-4764-ad1f-3d04164bc1b4', '198201132015042001', '$2y$10$bjRhjJuI3Ozki5FOl3fTG.Y8taI3Ax8c.yhAFppygdctxMaIuHMF.', 'f33wLa0PKh5cBHwz0InqTtuPnz6ObbMxA1ROh2M4hz3PRQ3IjhLlZQruXTvg', 3),
-('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-03-31 16:48:48', NULL, NULL, NULL, 'admin', '$2y$10$6jqZkNklKwDiKTPfDMy60.L7tCppkG47dldgzBAmYUMztMDy4WdxO', '4KzCK73mlzlDHqZEwl690bhqZ0KwZwiAOIu85g6DVWYFmNTrRse19hPtzcIT', 1),
+('b6f7a26c-8609-11eb-8b4d-c0b5d79bd8c4', 1, NULL, '2021-03-16 00:00:00', '2021-04-01 02:23:28', NULL, NULL, NULL, 'admin', '$2y$10$6jqZkNklKwDiKTPfDMy60.L7tCppkG47dldgzBAmYUMztMDy4WdxO', 'c48yfVd7u6SbNj6OWDbbNLqCLz29wWRj8qtG6cBhSKjO41fsgb3f0bKfJ8xX', 1),
 ('b7486ac4-ed1a-434f-b376-a137023053a0', 1, NULL, '2021-03-30 16:53:47', '2021-03-31 17:37:22', NULL, NULL, 'faa1de1d-3846-488b-9db1-f5b9bf867c8e', '09031281520102', '$2y$10$esf22oYUizbSojAgLKPC8.9XPrZE/4tDUdpeUeYVFw0zgLSagbBP6', '2plJ3OKgwzzKC4QUnSsVCvO8ei4PBRyLrXBMUZvy3QZ8181PbUHYHUTI3LxQ', 4),
 ('bbb7d7aa-94bc-4e51-8257-bb05cfb9b5d8', 1, NULL, '2021-03-30 15:47:56', '2021-03-30 15:47:56', NULL, NULL, '5656cd73-c09c-4f87-b14a-94fca8ad18e0', '197107212005011005', '$2y$10$9qibf4M19pVmzVA25sn1qeX8PgeIP6hgZ.Jo84xMjCVQin9e/OmjG', NULL, 3),
 ('c1a9d730-a691-49b7-8269-5dfc8ebd08ca', 1, NULL, '2021-03-30 15:47:27', '2021-03-30 15:47:27', NULL, NULL, '2565d964-e434-4050-9a18-e0524eb35f80', '197811172006042001', '$2y$10$bCFSNi7RrqPbQcri74h2ueQvsdhhYT0CxyvwAli4DxAW8alv4HYCO', NULL, 3),
@@ -418,6 +447,12 @@ ALTER TABLE `proposal_seminar_requirement`
 -- Indexes for table `student_thesis`
 --
 ALTER TABLE `student_thesis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student_thesis_examiner`
+--
+ALTER TABLE `student_thesis_examiner`
   ADD PRIMARY KEY (`id`);
 
 --

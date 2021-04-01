@@ -115,6 +115,9 @@ Route::group(['prefix' => 'manage_student_thesis'], function()
 	Route::get('edit/{id}', ['uses' => 'System\ManageStudentThesisController@edit']);
 	Route::post('update/{id}', ['uses' => 'System\ManageStudentThesisController@update']);
 	Route::get('destroy/{id}', ['uses' => 'System\ManageStudentThesisController@destroy']);
+
+	Route::get('create_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@create_examiner']);
+	Route::post('store_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@store_examiner']);
 });
 
 /** 

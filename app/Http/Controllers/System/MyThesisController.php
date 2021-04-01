@@ -207,8 +207,8 @@ class MyThesisController extends Controller
 
 	public function create_thesis_topic()
 	{
-		$data['supervisor'] = PersonModel::where('status', 1)->where('person_type_code', 3)->get();
-		$data['thesis_topics'] = ThesisTopicModel::where('status', 1)->get();
+		$data['supervisor'] = PersonModel::where('status', '!=', 0)->where('person_type_code', 3)->get();
+		$data['thesis_topics'] = ThesisTopicModel::where('status', '!=', 0)->get();
 		return view('my_thesis.thesis_topic.create_thesis_topic', $data);
 	}
 
