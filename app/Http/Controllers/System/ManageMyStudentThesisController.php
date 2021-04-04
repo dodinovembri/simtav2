@@ -4,11 +4,13 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\PersonAssetModel;
+use App\Models\StudentThesisExaminerModel;
 use Illuminate\Http\Request;
 use Auth;
 use Ramsey\Uuid\Uuid;
 use App\Models\StudentThesisModel;
 use App\Models\StudentThesisHistoryModel;
+use App\Models\UserModel;
 
 class ManageMyStudentThesisController extends Controller {
 
@@ -20,7 +22,15 @@ class ManageMyStudentThesisController extends Controller {
 	public function index()
 	{
 		$lecturer_id = Auth::user()->person_id;
-		$data['manage_my_student_thesis'] = StudentThesisModel::with('person')->where('lecturer_id', $lecturer_id)->where('status', '!=', 0)->where('thesis_status_code', 5)->orWhere('thesis_status_code', 8)->get();
+		$college_student = [];
+		// get schedule
+		$check = StudentThesisExaminerModel::where('status', '!=', 0)->where('lecturer_id', $lecturer_id)->whereNull('is_ready')->get();
+		foreach ($check as $key => $value) {
+			$college_student_id = array_push($college_student, $value->college_student_id);
+		}
+		
+		// get college student
+		$data['manage_my_student_thesis'] = StudentThesisModel::where('status', '!=', 0)->where('lecturer_id', $lecturer_id)->whereIn('thesis_status_code', [5, 8, 15, 26])->orWhereIn('college_student_id', $college_student)->get();		
 
 		return view('manage_my_student_thesis.index', $data);
 	}
@@ -53,9 +63,10 @@ class ManageMyStudentThesisController extends Controller {
 	 */
 	public function show($id)
 	{
-		$data['student_thesis'] = StudentThesisModel::find($id);
-		$person_id = $data['student_thesis']->college_student_id;
-		$data['person_assets'] = PersonAssetModel::where('person_id', $person_id)->where('information_type_code', 4)->where('status', '!=', 0)->get();
+		$data['student_thesis']          = StudentThesisModel::with('person.year_of_education')->where('id', $id)->first();
+		$person_id 		                 = $data['student_thesis']->college_student_id;
+		$data['user']                    = UserModel::where('person_id', $data['student_thesis']->college_student_id)->first();
+		$data['person_assets']           = PersonAssetModel::where('person_id', $person_id)->where('information_type_code', 4)->where('status', '!=', 0)->get();
 		$data['extend_proposal_seminar'] = PersonAssetModel::where('person_id', $person_id)->where('information_type_code', 5)->where('status', '!=', 0)->first();
 
 		return view('manage_my_student_thesis.show', $data);
@@ -167,4 +178,90 @@ class ManageMyStudentThesisController extends Controller {
 		
 		return redirect(url('manage_my_student_thesis'))->with('success', 'Topik TA tidak disetujui.');
 	}
+
+	public function proposal_seminar_confirm($id)
+	{
+		$data['college_student'] = StudentThesisModel::with('person')->where('id', $id)->first();
+		
+		return view('manage_my_student_thesis.view_link.proposal_seminar_confirm', $data);
+	}	
+
+	public function proposal_seminar_confirm_agree($id)
+	{
+		// update student thesis examiner
+		$lecturer_id = Auth::user()->person_id;
+		$college_student = StudentThesisModel::find($id);
+		$update = StudentThesisExaminerModel::where('college_student_id', $college_student->college_student_id)->where('lecturer_id', $lecturer_id)->where('status', '!=', 0)->first();
+		$update->is_ready = 1;
+		$update->updater_id = Auth::user()->id;
+		$update->update();
+
+		// update student thesis if all agree
+		$count_all = StudentThesisExaminerModel::where('college_student_id', $college_student->college_student_id)->where('status', '!=', 0)->count();
+		$count_agree = StudentThesisExaminerModel::where('college_student_id', $college_student->college_student_id)->where('status', '!=', 0)->where('is_ready', 1)->count();
+		if ($count_all == $count_agree) {			
+			$update                     = StudentThesisModel::find($id);
+			$update->thesis_status_code = 16;
+			$update->update();
+		}
+
+		return redirect(url('manage_my_student_thesis'))->with('success', 'Konfirmasi kesediaan menguji sudah di submit.');
+	}
+
+	public function proposal_seminar_confirm_reject(Request $request, $id)
+	{
+		// update student thesis examiner
+		$lecturer_id = Auth::user()->person_id;
+		$college_student = StudentThesisModel::find($id);
+		$update = StudentThesisExaminerModel::where('college_student_id', $college_student->college_student_id)->where('lecturer_id', $lecturer_id)->where('status', '!=', 0)->first();
+		$update->is_ready = 2;
+		$update->updater_id = Auth::user()->id;
+		$update->description = $request->rejected_reason;
+		$update->update();
+
+		return redirect(url('manage_my_student_thesis'))->with('success', 'Konfirmasi tidak bersedia menguji sudah di submit.');
+	}
+
+	public function comprehensive_confirm($id)
+	{
+		$data['college_student'] = StudentThesisModel::with('person')->where('id', $id)->first();
+		
+		return view('manage_my_student_thesis.view_link.comprehensive_confirm', $data);
+	}	
+	
+	public function comprehensive_confirm_agree($id)
+	{
+		// update student thesis examiner
+		$lecturer_id = Auth::user()->person_id;
+		$college_student = StudentThesisModel::find($id);
+		$update = StudentThesisExaminerModel::where('status', '!=', 0)->where('college_student_id', $college_student->college_student_id)->where('lecturer_id', $lecturer_id)->where('examiner_type', 2)->first();
+		$update->is_ready = 1;
+		$update->updater_id = Auth::user()->id;
+		$update->update();
+
+		// update student thesis if all agree
+		$count_all = StudentThesisExaminerModel::where('status', '!=', 0)->where('college_student_id', $college_student->college_student_id)->where('examiner_type', 2)->count();
+		$count_agree = StudentThesisExaminerModel::where('status', '!=', 0)->where('college_student_id', $college_student->college_student_id)->where('is_ready', 1)->where('examiner_type', 2)->count();
+		if ($count_all == $count_agree) {			
+			$update                     = StudentThesisModel::find($id);
+			$update->thesis_status_code = 27;
+			$update->update();
+		}
+
+		return redirect(url('manage_my_student_thesis'))->with('success', 'Konfirmasi kesediaan menguji sudah di submit.');
+	}
+
+	public function comprehensive_confirm_reject(Request $request, $id)
+	{
+		// update student thesis examiner
+		$lecturer_id = Auth::user()->person_id;
+		$college_student = StudentThesisModel::find($id);
+		$update = StudentThesisExaminerModel::where('status', '!=', 0)->where('college_student_id', $college_student->college_student_id)->where('lecturer_id', $lecturer_id)->first();
+		$update->is_ready = 2;
+		$update->updater_id = Auth::user()->id;
+		$update->description = $request->rejected_reason;
+		$update->update();
+
+		return redirect(url('manage_my_student_thesis'))->with('success', 'Konfirmasi tidak bersedia menguji sudah di submit.');
+	}	
 }

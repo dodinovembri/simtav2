@@ -107,7 +107,8 @@ class ProposalSeminarRequirementController extends Controller {
 	public function destroy($id)
 	{
 		$delete = ProposalSeminarRequirementModel::find($id);
-		$delete->delete();
+		$delete->status = 0;
+		$delete->update();
 
 		return redirect(url('proposal_seminar_requirement'))->with('success', 'Syarat Sempro berhasil dihapus!');
 	}

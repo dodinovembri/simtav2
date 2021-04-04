@@ -5,12 +5,14 @@
         <option value="{{ url('college_student_classification', 2) }}">Tidak Memenuhi Syarat</option>
         <option value="{{ url('college_student_classification', 9) }}">Perpanjang Seminar Diterima</option>
         <option value="{{ url('college_student_classification', 10) }}">Perpanjang Seminar Ditolak</option>
+        <option value="{{ url('college_student_classification', 17) }}">Sudah Selesai Seminar</option>
     <?php } else { ?>
         <option value="">Pilih</option>
         <option value="{{ url('college_student_classification', 4) }}">Memenuhi Syarat</option>
         <option value="{{ url('college_student_classification', 2) }}">Tidak Memenuhi Syarat</option>
         <option value="{{ url('college_student_classification', 9) }}">Perpanjang Seminar Diterima</option>
         <option value="{{ url('college_student_classification', 10) }}">Perpanjang Seminar Ditolak</option>
+        <option value="{{ url('college_student_classification', 17) }}">Sudah Selesai Seminar</option>
     <?php } ?>
 </select>
 <br><br>
@@ -26,6 +28,8 @@
             return "Perpanjang Seminar Diterima";
         }elseif ($id == 10) {
             return "Perpanjang Seminar Ditolak";
+        }elseif ($id == 17) {
+            return "Sudah Selesai Seminar";
         }
     }
 

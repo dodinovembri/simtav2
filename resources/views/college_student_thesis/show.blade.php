@@ -26,6 +26,7 @@
 							</div><!-- row -->
 						</div><!-- stat-profile-body -->
 					</div><!-- stat-profile -->
+					<br>
 					<div>
 						@include('college_student_thesis.components.modal')
 					</div>

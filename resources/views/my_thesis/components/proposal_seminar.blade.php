@@ -9,7 +9,7 @@
             $date2 = date_create($date_n);
             $diff = date_diff($date1, $date2);
             $rangex = $diff->format("%a");
-            $range = (int)$rangex;       
+            $range = (int)$rangex;
             if ($range > 30) { ?>
                 <div class="timeline-item">
                     <div class="row row-sm">
@@ -63,7 +63,7 @@
                         <div class="timeline-body">
                             <div class="card card-timeline card-timeline-note">
                                 <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
-                                    <i class="icon fa fa-close"></i> Perpanjang seminar proposal diterima.
+                                    <i class="icon fa fa-close"></i>Perpanjang seminar proposal diterima.
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,173 @@
                         <div class="timeline-body">
                             <div class="card card-timeline card-timeline-note">
                                 <div class="alert alert-danger alert-dismissible mg-b-0 fade show" role="alert">
-                                    <i class="icon fa fa-close"></i> Perpanjang seminar proposal ditolak. Alasan penolakan: {{$extend_proposal_rejected_reason->description}}
+                                    <i class="icon fa fa-close"></i>Perpanjang seminar proposal ditolak. Alasan penolakan: {{$extend_proposal_rejected_reason->description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 11) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Anda sudah mendaftar untuk seminar proposal.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 12) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-danger alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Pendaftaran seminar proposal ditolak. Alasan penolakan: {{$proposal_seminar_register_rejected_reason->description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <h5>Daftar Sempro</h5>
+                                <p class="mg-b-0">Silahkan untuk ulang melakukan pendaftaran seminar proposal, lengkapi berkas yang kurang!.<a href="#register_proposal_seminar" data-toggle="modal"> Daftar Sekarang!</a></p>
+                                @include('my_thesis.components.register_proposal_seminar')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 13) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Persyaratan seminar proposal sudah lengkap, silahkan tunggu set penguji.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 14) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Penguji seminar sudah diatur, silahkan tunggu jadwal ujian seminar proposal.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 15) { ?>            
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Jadwal seminar sudah diatur, silahkan tunggu ketersediaan penguji.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        <?php } elseif ($my_thesis->thesis_status_code == 16) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Jadwal Seminar Proposal: {{ $my_thesis->proposal_seminar_schedule }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <h5>Penguji Seminar Proposal</h5>
+                                <ul>
+                                <?php foreach ($proposal_seminar_examiners as $key => $value) { ?>
+                                    <li>{{ $value->person->nip }} - {{ $value->person->given_name." ".$value->person->middle_name." ".$value->person->surname }}</li>
+                                <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 17) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Selamat, anda sudah melakukan seminar proposal. Silahkan submit SK Seminar Proposal <a href="{{ url('my_thesis/create_proposal_seminar_certificate') }}">Input Sekarang!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code == 18) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>SK Seminar Proposal sudah di submit. Silahkan lanjut ke tahap selanjutnya!.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif ($my_thesis->thesis_status_code > 18) { ?>
+            <div class="timeline-item">
+                <div class="row row-sm">
+                    <div class="col-sm-3 col-lg-2"></div>
+                    <div class="col-sm-9">
+                        <div class="timeline-body">
+                            <div class="card card-timeline card-timeline-note">
+                                <div class="alert alert-info alert-dismissible mg-b-0 fade show" role="alert">
+                                    <i class="icon fa fa-close"></i>Tahap ini sudah selesai.
                                 </div>
                             </div>
                         </div>

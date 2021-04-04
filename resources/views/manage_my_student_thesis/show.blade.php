@@ -36,7 +36,7 @@
 												</div>
 											<?php } ?>
 										</div><!-- row -->
-									</div>
+									</div><br>
 									<div>
 										@include('manage_my_student_thesis.components.modal')
 									</div>

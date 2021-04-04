@@ -14,7 +14,7 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Mahasiswa</li>
+					<li class="breadcrumb-item active" aria-current="page">Pengelompokan Mahasiswa</li>
 				</ol>
 			</nav>
 			<h4 class="content-title content-title-xs">List Mahasiswa</h4>
@@ -32,8 +32,7 @@
 									<th>No</th>
 									<th>NIM</th>
 									<th>Nama</th>
-									<th>Tipe</th>
-									<th>Status</th>
+									<th>Keterangan</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -44,8 +43,7 @@
 										<td>{{ $no }}</td>
 										<td>{{ $value->person->nim }}</td>
 										<td>{{ $value->person->given_name." ".$value->person->middle_name." ".$value->person->surname }}</td>
-										<td><?php echo CheckUserType($value->person->person_type_code); ?></td>
-										<td><?php echo CheckStatus($value->status); ?></td>
+										<td>@include('components.thesis_status_code')</td>
 									</tr>
 								<?php } ?>
 							</tbody>

@@ -7,14 +7,13 @@
 <div class="content">
 
 	@include('components.header')
-	@include('components.helper')
 
 	<div class="content-header">
 		<div>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Mahasiswa</li>
+					<li class="breadcrumb-item active" aria-current="page">Kelola Skripsi Mahasiswa</li>
 				</ol>
 			</nav>
 			<h4 class="content-title content-title-xs">List Mahasiswa</h4>
@@ -40,12 +39,11 @@
 								<?php $no = 0;
 								foreach ($manage_my_student_thesis as $key => $value) {
 									$no++; ?>
-									@include('manage_my_student_thesis.components.helper')
 									<tr>
 										<td>{{ $no }}</td>
-										<td><a href="{{url('manage_my_student_thesis/show', $value->id)}}"><b>{{ $value->person->nim }}</b></a></td>
+										<td>@include('manage_my_student_thesis.components.link')</td>
 										<td>{{ $value->person->given_name." ".$value->person->middle_name." ".$value->person->surname }}</td>
-										<td><?php echo CheckStatusCode($value->thesis_status_code); ?></td>
+										<td>@include('components.thesis_status_code')</td>
 									</tr>
 								<?php } ?>
 							</tbody>

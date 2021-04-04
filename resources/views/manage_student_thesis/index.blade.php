@@ -38,12 +38,11 @@
 								<?php $no = 0;
 								foreach ($manage_student_thesis as $key => $value) {
 									$no++; ?>
-									@include('manage_student_thesis.components.helper')
 									<tr>
 										<td>{{ $no }}</td>
-										<td><a href="{{ url('manage_student_thesis/create_examiner', $value->college_student_id) }}"><b>{{ $value->person->nim }}</b></a></td>
+										<td>@include('manage_student_thesis.components.link')</td>
 										<td>{{ $value->person->given_name." ".$value->person->middle_name." ".$value->person->surname }}</td>
-										<td><?php echo CheckStatusCode($value->thesis_status_code); ?></td>
+										<td>@include('components.thesis_status_code')</td>
 									</tr>
 								<?php } ?>
 							</tbody>

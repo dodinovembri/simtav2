@@ -16,6 +16,7 @@ use App\Models\StudentThesisModel;
 use App\Models\StudentThesisHistoryModel;
 use App\Models\ThesisTopicModel;
 use App\Models\StudentThesisSupervisorModel;
+use App\Models\StudentThesisExaminerModel;
 
 class MyThesisController extends Controller
 {
@@ -34,6 +35,10 @@ class MyThesisController extends Controller
 		$data['my_thesis_history'] = StudentThesisHistoryModel::where('history_code', 2)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
 		$data['topic_ta_history'] = StudentThesisHistoryModel::where('history_code', 7)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
 		$data['extend_proposal_rejected_reason'] = StudentThesisHistoryModel::where('history_code', 10)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
+		$data['proposal_seminar_register_rejected_reason'] = StudentThesisHistoryModel::where('history_code', 12)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
+		$data['comprehensive_register_rejected_reason'] = StudentThesisHistoryModel::where('history_code', 23)->where('status', '!=', 0)->where('college_student_id', $college_id)->first();
+		$data['proposal_seminar_examiners'] = StudentThesisExaminerModel::where('college_student_id', $college_id)->where('status', '!=', 0)->get();
+		$data['comprehensive_examiners'] = StudentThesisExaminerModel::where('college_student_id', $college_id)->where('status', '!=', 0)->where('examiner_type', 2)->get();
 		
 		return view('my_thesis.index', $data);
 	}
@@ -236,20 +241,42 @@ class MyThesisController extends Controller
 		}
 
 		// store consultation file to person asset
-		$filename = uniqid() . '.' . $consultation_file->getClientOriginalExtension();
-		$consultation_file->move("img/consultation_file/", $filename);
+		$check = PersonAssetModel::where('status', '!=', 0)->where('information_type_code', 4)->where('person_id', Auth::user()->person_id)->first();
+		if (!isset($check)) {			
+			$filename = uniqid() . '.' . $consultation_file->getClientOriginalExtension();
+			$consultation_file->move("img/consultation_file/", $filename);
+	
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = $user_id;
+			$insert_to_person_asset->person_id             = $person_id;
+			$insert_to_person_asset->information_type_code = 4;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $consultation_file->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $consultation_file->getClientSize();
+			$insert_to_person_asset->url                   = "img/consultation_file/";
+			$insert_to_person_asset->save();
+		}else{
+			$check->status = 0;
+			$check->updater_id = Auth::user()->id;
+			$check->update();
 
-		$insert_to_person_asset                        = new PersonAssetModel();
-		$insert_to_person_asset->id                    = Uuid::uuid4();
-		$insert_to_person_asset->status                = 1;
-		$insert_to_person_asset->creator_id            = $user_id;
-		$insert_to_person_asset->person_id             = $person_id;
-		$insert_to_person_asset->information_type_code = 4;
-		$insert_to_person_asset->file_name             = $filename;
-		$insert_to_person_asset->original_file_name    = $consultation_file->getClientOriginalName();
-		$insert_to_person_asset->file_size             = $consultation_file->getClientSize();
-		$insert_to_person_asset->url                   = "img/consultation_file/";
-		$insert_to_person_asset->save();
+			$filename = uniqid() . '.' . $consultation_file->getClientOriginalExtension();
+			$consultation_file->move("img/consultation_file/", $filename);
+	
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = $user_id;
+			$insert_to_person_asset->person_id             = $person_id;
+			$insert_to_person_asset->information_type_code = 4;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $consultation_file->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $consultation_file->getClientSize();
+			$insert_to_person_asset->url                   = "img/consultation_file/";
+			$insert_to_person_asset->save();			
+		}
 
 		// update student thesis
 		$update_to_student_thesis = StudentThesisModel::where('college_student_id', $person_id)->first();
@@ -323,4 +350,121 @@ class MyThesisController extends Controller
 
 		return redirect(url('my_thesis'))->with('success', 'Registrasi seminar proposal berhasil');
 	}
+
+	public function create_proposal_seminar_certificate()
+	{
+		return view('my_thesis.proposal_seminar.create_proposal_seminar_certificate');
+	}
+
+	public function store_proposal_seminar_certificate(Request $request)
+	{
+		$proposal_seminar_certificate = $request->file('proposal_seminar_certificate');
+		$filename = uniqid() . '.' . $proposal_seminar_certificate->getClientOriginalExtension();
+		$proposal_seminar_certificate->move("img/proposal_seminar_certificate/", $filename);
+
+		// save to person asset
+		$check_if_exist = PersonAssetModel::where('person_id', Auth::user()->person_id)->where('information_type_code', 5)->where('status', '!=', 0)->first();
+		if (!isset($check_if_exist)) {			
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = Auth::user()->id;
+			$insert_to_person_asset->person_id             = Auth::user()->person_id;
+			$insert_to_person_asset->information_type_code = 6;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $proposal_seminar_certificate->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $proposal_seminar_certificate->getClientSize();
+			$insert_to_person_asset->url                   = "img/proposal_seminar_certificate/";
+			$insert_to_person_asset->save();
+		}else{
+			$check_if_exist->status = 0;
+			$check_if_exist->updater_id = Auth::user()->id;
+			$check_if_exist->update();
+
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = Auth::user()->id;
+			$insert_to_person_asset->person_id             = Auth::user()->person_id;
+			$insert_to_person_asset->information_type_code = 6;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $proposal_seminar_certificate->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $proposal_seminar_certificate->getClientSize();
+			$insert_to_person_asset->url                   = "img/proposal_seminar_certificate/";
+			$insert_to_person_asset->save();			
+		}
+
+		$college_student_id = Auth::user()->person_id;
+		$update = StudentThesisModel::where('college_student_id', $college_student_id)->where('status', '!=', 0)->first();
+		$update->thesis_status_code = 18;
+		$update->updater_id = Auth::user()->id;
+		$update->update();
+
+		return redirect(url('my_thesis'))->with('success', 'SK Seminar proposal berhasil di upload.');
+	}
+
+	public function register_comprehensive()
+	{
+		$person_id = Auth::user()->person_id;
+
+		// update student thesis
+		$update = StudentThesisModel::where('college_student_id', $person_id)->first();
+		$update->thesis_status_code = 22;
+		$update->updater_id = Auth::user()->id;
+		$update->update();
+
+		return redirect(url('my_thesis'))->with('success', 'Registrasi komprehensive berhasil');
+	}	
+
+	public function create_comprehensive_certificate()
+	{
+		return view('my_thesis.comprehensive.create_comprehensive_certificate');
+	}
+
+	public function store_comprehensive_certificate(Request $request)
+	{
+		$comprehensive_certificate = $request->file('comprehensive_certificate');
+		$filename = uniqid() . '.' . $comprehensive_certificate->getClientOriginalExtension();
+		$comprehensive_certificate->move("img/comprehensive_certificate/", $filename);
+
+		// save to person asset
+		$check_if_exist = PersonAssetModel::where('person_id', Auth::user()->person_id)->where('information_type_code', 5)->where('status', '!=', 0)->first();
+		if (!isset($check_if_exist)) {			
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = Auth::user()->id;
+			$insert_to_person_asset->person_id             = Auth::user()->person_id;
+			$insert_to_person_asset->information_type_code = 7;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $comprehensive_certificate->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $comprehensive_certificate->getClientSize();
+			$insert_to_person_asset->url                   = "img/comprehensive_certificate/";
+			$insert_to_person_asset->save();
+		}else{
+			$check_if_exist->status = 0;
+			$check_if_exist->updater_id = Auth::user()->id;
+			$check_if_exist->update();
+
+			$insert_to_person_asset                        = new PersonAssetModel();
+			$insert_to_person_asset->id                    = Uuid::uuid4();
+			$insert_to_person_asset->status                = 1;
+			$insert_to_person_asset->creator_id            = Auth::user()->id;
+			$insert_to_person_asset->person_id             = Auth::user()->person_id;
+			$insert_to_person_asset->information_type_code = 7;
+			$insert_to_person_asset->file_name             = $filename;
+			$insert_to_person_asset->original_file_name    = $comprehensive_certificate->getClientOriginalName();
+			$insert_to_person_asset->file_size             = $comprehensive_certificate->getClientSize();
+			$insert_to_person_asset->url                   = "img/comprehensive_certificate/";
+			$insert_to_person_asset->save();			
+		}
+
+		$college_student_id = Auth::user()->person_id;
+		$update = StudentThesisModel::where('college_student_id', $college_student_id)->where('status', '!=', 0)->first();
+		$update->thesis_status_code = 29;
+		$update->updater_id = Auth::user()->id;
+		$update->update();
+
+		return redirect(url('my_thesis'))->with('success', 'SK Komprehensif berhasil di upload.');
+	}	
 }

@@ -59,15 +59,6 @@
 							</div>
 						</a>
 					</li>
-					<li class="list-group-item list-group-item-action">
-						<a href="#paneSecurity" data-toggle="tab" class="media">
-							<i data-feather="shield"></i>
-							<div class="media-body">
-								<h6>Rapat</h6>
-								<span>Keputusan berdasarkan hasil rapat</span>
-							</div>
-						</a>
-					</li>
 				</ul>
 			</div><!-- col -->
 			<div class="col-md-8">
@@ -77,7 +68,6 @@
 						@include('my_thesis.components.thesis_topic')
 						@include('my_thesis.components.proposal_seminar')
 						@include('my_thesis.components.comprehensive')
-						@include('my_thesis.components.meeting')
 					</div><!-- tab-content -->
 				</div><!-- card -->
 			</div><!-- col -->

@@ -13,4 +13,9 @@ class PersonModel extends Model {
         return $this->belongsTo('App\Models\PersonModel', 'id', 'college_student_id');
     }
 
+    public function year_of_education()
+    {
+        return $this->belongsTo('App\Models\YearOfEducationModel', 'year_of_education_id', 'id');
+    }
+
 }

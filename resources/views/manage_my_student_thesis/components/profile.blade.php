@@ -1,14 +1,9 @@
 <div class="profile-sidebar">
     <div class="profile-sidebar-header">
-        <div class="avatar"><img src="https://via.placeholder.com/500/637382/fff" class="rounded-circle" alt=""></div>
+        <div class="avatar"><img src="{{ asset('img/profile') }}/{{ $user->image }}" class="rounded-circle" alt=""></div>
 
-        <h5>Abigail Johnson</h5>
-        <p>UI Developer (Savior of Mankind)</p>
-        <span>Bay Area, San Francisco, CA</span>
-
-        <div class="d-flex align-self-stretch mg-t-30">
-            <a href="" class="btn btn-brand-01 btn-sm btn-uppercase flex-fill">Follow</a>
-            <a href="" class="btn btn-white btn-sm btn-uppercase flex-fill mg-l-5">Message</a>
-        </div>
+        <h5>{{ $student_thesis->person->given_name." ".$student_thesis->person->middle_name." ".$student_thesis->person->surname }}</h5>
+        <p>{{ $student_thesis->person->nim }}</p>
+        <span>{{ $student_thesis->person->year_of_education->year_of_education_name }}</span>
     </div><!-- profile-sidebar-header -->
 </div><!-- profile-sidebar -->

@@ -51,7 +51,7 @@
 									<th>Kode Syarat Kompre</th>
 									<th>Nama Syarat Kompre</th>
 									<th>Status</th>
-									<th>Actions</th>
+									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>

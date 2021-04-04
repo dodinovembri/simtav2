@@ -69,6 +69,21 @@ Route::group(['prefix' => 'college_student_thesis'], function()
 
 	Route::post('store_kkt_file_rejected/{id}', ['uses' => 'System\CollegeStudentThesisController@store_kkt_file_rejected']);
 	Route::get('verified_kkt_file/{id}', ['uses' => 'System\CollegeStudentThesisController@verified_kkt_file']);
+
+	Route::get('check_seminar_register/{id}', ['uses' => 'System\CollegeStudentThesisController@check_seminar_register']);
+	Route::get('proposal_seminar_requirement_complete/{id}', ['uses' => 'System\CollegeStudentThesisController@proposal_seminar_requirement_complete']);
+	Route::post('proposal_seminar_requirement_rejected/{id}', ['uses' => 'System\CollegeStudentThesisController@proposal_seminar_requirement_rejected']);
+	Route::get('set_examiner_schedule/{id}', ['uses' => 'System\CollegeStudentThesisController@set_examiner_schedule']);
+	Route::post('store_proposal_seminar_schedule/{id}', ['uses' => 'System\CollegeStudentThesisController@store_proposal_seminar_schedule']);
+	Route::get('edit_examiner_status/{id}', ['uses' => 'System\CollegeStudentThesisController@edit_examiner_status']);
+	Route::get('update_examiner_status/{id}', ['uses' => 'System\CollegeStudentThesisController@update_examiner_status']);
+	Route::get('check_comprehensive/{id}', ['uses' => 'System\CollegeStudentThesisController@check_comprehensive']);
+	Route::post('comprehensive_requirement_rejected/{id}', ['uses' => 'System\CollegeStudentThesisController@comprehensive_requirement_rejected']);
+	Route::get('comprehensive_requirement_complete/{id}', ['uses' => 'System\CollegeStudentThesisController@comprehensive_requirement_complete']);
+	Route::get('set_examiner_comprehensive_schedule/{id}', ['uses' => 'System\CollegeStudentThesisController@set_examiner_comprehensive_schedule']);
+	Route::post('store_comprehensive_schedule/{id}', ['uses' => 'System\CollegeStudentThesisController@store_comprehensive_schedule']);
+	Route::get('edit_comprehensive_status/{id}', ['uses' => 'System\CollegeStudentThesisController@edit_comprehensive_status']);
+	Route::get('update_comprehensive_status/{id}', ['uses' => 'System\CollegeStudentThesisController@update_comprehensive_status']);	
 });
 Route::group(['prefix' => 'college_student_classification'], function()
 {
@@ -118,6 +133,16 @@ Route::group(['prefix' => 'manage_student_thesis'], function()
 
 	Route::get('create_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@create_examiner']);
 	Route::post('store_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@store_examiner']);
+	Route::get('proposal_confirm_status/{id}', ['uses' => 'System\ManageStudentThesisController@proposal_confirm_status']);
+	Route::get('edit_proposal_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@edit_proposal_examiner']);
+	Route::post('store_change_proposal_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@store_change_proposal_examiner']);
+	Route::get('create_examiner_for_comprehensive/{id}', ['uses' => 'System\ManageStudentThesisController@create_examiner_for_comprehensive']);
+	Route::get('store_examiner_comprehensive/{id}', ['uses' => 'System\ManageStudentThesisController@store_examiner_comprehensive']);
+	Route::post('store_new_examiner_comprehensive/{id}', ['uses' => 'System\ManageStudentThesisController@store_new_examiner_comprehensive']);
+	Route::get('comprehensive_confirm_status/{id}', ['uses' => 'System\ManageStudentThesisController@comprehensive_confirm_status']);
+	Route::get('edit_comprehensive_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@edit_comprehensive_examiner']);
+	Route::post('store_change_comprehensive_examiner/{id}', ['uses' => 'System\ManageStudentThesisController@store_change_comprehensive_examiner']);
+
 });
 
 /** 
@@ -183,7 +208,13 @@ Route::group(['prefix' => 'manage_my_student_thesis'], function()
 	Route::get('agree/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree']);	
 	Route::post('reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject']);
 	Route::get('agree_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@agree_to_extend_proposal']);	
-	Route::post('reject_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject_to_extend_proposal']);	
+	Route::post('reject_to_extend_proposal/{id}', ['uses' => 'System\ManageMyStudentThesisController@reject_to_extend_proposal']);
+	Route::get('proposal_seminar_confirm/{id}', ['uses' => 'System\ManageMyStudentThesisController@proposal_seminar_confirm']);	
+	Route::get('proposal_seminar_confirm_agree/{id}', ['uses' => 'System\ManageMyStudentThesisController@proposal_seminar_confirm_agree']);	
+	Route::post('proposal_seminar_confirm_reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@proposal_seminar_confirm_reject']);	
+	Route::get('comprehensive_confirm/{id}', ['uses' => 'System\ManageMyStudentThesisController@comprehensive_confirm']);	
+	Route::get('comprehensive_confirm_agree/{id}', ['uses' => 'System\ManageMyStudentThesisController@comprehensive_confirm_agree']);	
+	Route::post('comprehensive_confirm_reject/{id}', ['uses' => 'System\ManageMyStudentThesisController@comprehensive_confirm_reject']);		
 });
 
 /**
@@ -208,4 +239,24 @@ Route::group(['prefix' => 'my_thesis'], function()
 	Route::get('create_extension_proposal_seminar', ['uses' => 'System\MyThesisController@create_extension_proposal_seminar']);
 	Route::post('store_extension_proposal_seminar', ['uses' => 'System\MyThesisController@store_extension_proposal_seminar']);
 	Route::get('register_proposal_seminar', ['uses' => 'System\MyThesisController@register_proposal_seminar']);
+	Route::get('create_proposal_seminar_certificate', ['uses' => 'System\MyThesisController@create_proposal_seminar_certificate']);
+	Route::post('store_proposal_seminar_certificate', ['uses' => 'System\MyThesisController@store_proposal_seminar_certificate']);
+	Route::get('register_comprehensive', ['uses' => 'System\MyThesisController@register_comprehensive']);
+	Route::get('create_comprehensive_certificate', ['uses' => 'System\MyThesisController@create_comprehensive_certificate']);
+	Route::post('store_comprehensive_certificate', ['uses' => 'System\MyThesisController@store_comprehensive_certificate']);
+});
+
+/**
+ * All
+ */
+Route::group(['prefix' => 'profile'], function()
+{
+	Route::get('', ['uses' => 'System\ProfileController@index']);
+	Route::get('create', ['uses' => 'System\ProfileController@create']);
+	Route::post('store', ['uses' => 'System\ProfileController@store']);
+	Route::get('show/{id}', ['uses' => 'System\ProfileController@show']);
+	Route::get('edit_password/{id}', ['uses' => 'System\ProfileController@edit_password']);
+	Route::post('update/{id}', ['uses' => 'System\ProfileController@update']);
+	Route::post('update_password/{id}', ['uses' => 'System\ProfileController@update_password']);
+	Route::get('destroy/{id}', ['uses' => 'System\ProfileController@destroy']);
 });
