@@ -39,9 +39,9 @@
                                     <label class="form-label">Nama Lengkap</label>
                                     <table width="100%">
                                         <tr>
-                                            <td><input type="text" name="given_name" class="form-control" placeholder="Masukkan nama depan" value="{{ $lecturer->given_name }}" required></td>
-                                            <td><input type="text" name="middle_name" class="form-control" placeholder="Masukkan nama tengah" value="{{ $lecturer->middle_name }}"></td>
-                                            <td><input type="text" name="surname" class="form-control" placeholder="Masukkan nama belakang" value="{{ $lecturer->surname }}"></td>
+                                            <td><input type="text" name="given_name" onkeyup="this.value = this.value.toUpperCase()" class="form-control" placeholder="Masukkan nama depan" value="{{ $lecturer->given_name }}" required></td>
+                                            <td><input type="text" name="middle_name" onkeyup="this.value = this.value.toUpperCase()" class="form-control" placeholder="Masukkan nama tengah" value="{{ $lecturer->middle_name }}"></td>
+                                            <td><input type="text" name="surname" onkeyup="this.value = this.value.toUpperCase()" class="form-control" placeholder="Masukkan nama belakang" value="{{ $lecturer->surname }}"></td>
                                         </tr>
                                     </table>
                                 </div><!-- form-group -->

@@ -44,6 +44,9 @@ class LecturerController extends Controller {
 		if ($check) {
 			return redirect(url('lecturer'))->with('info', "Data Dosen sudah tersedia!");
 		}else{
+			$name = $request->given_name." ".$request->middle_name." ".$request->surname;
+			$uniq_name =  preg_replace("/[^a-zA-Z]/", "", $name);
+
 			$insert_to_person                     = new PersonModel();
 			$insert_to_person->id                 = Uuid::uuid4();
 			$insert_to_person->status             = 1;
@@ -51,6 +54,7 @@ class LecturerController extends Controller {
 			$insert_to_person->given_name         = $request->given_name;
 			$insert_to_person->middle_name        = $request->middle_name;
 			$insert_to_person->surname            = $request->surname;
+			$insert_to_person->uniq_name            = $uniq_name;
 			$insert_to_person->person_type_code   = 3;
 			$insert_to_person->is_registered_user = 1;
 			$insert_to_person->save();
@@ -101,12 +105,16 @@ class LecturerController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
+		$name = $request->given_name." ".$request->middle_name." ".$request->surname;
+		$uniq_name =  preg_replace("/[^a-zA-Z]/", "", $name);
+
 		$update                   = PersonModel::find($id);
 		$update->status           = 1;
 		$update->nip              = $request->nip;
 		$update->given_name       = $request->given_name;
 		$update->middle_name      = $request->middle_name;
 		$update->surname          = $request->surname;
+		$update->uniq_name          = $uniq_name;
 		$update->address          = $request->address;
 		$update->update();
 
