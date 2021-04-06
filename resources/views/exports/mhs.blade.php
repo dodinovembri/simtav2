@@ -4,9 +4,8 @@
         <thead>
             <tr>
                 <th>nim</th>
-                <th>nip_pa</th>
                 <th>nama</th>
-                <th>alamat</th>
+                <th>dosen_pa</th>
                 <th>angkatan</th>
                 <th>jurusan</th>
             </tr>
@@ -15,7 +14,6 @@
         
             
             <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

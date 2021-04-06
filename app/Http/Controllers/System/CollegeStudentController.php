@@ -148,8 +148,7 @@ class CollegeStudentController extends Controller
 			$excel->sheet('Template', function ($sheet) use ($request) {
 				$sheet->setColumnFormat(array(
 					'A' => '@',
-					'B' => '@',
-					'E' => '@',
+					'D' => '@',
 				));
 
 				$data['majors'] = $request->majors;
@@ -173,7 +172,8 @@ class CollegeStudentController extends Controller
 			$insert_data = [];
 
 			foreach ($data->toArray() as $key => $value) {
-				$check_lecturer = PersonModel::where('nip', $value['nip_pa'])->first();
+				$uniq_name =  preg_replace("/[^a-zA-Z]/", "", $value['dosen_pa']);
+				$check_lecturer = PersonModel::where('uniq_name', $uniq_name)->first();
 
 				if (!empty($check_lecturer)) {
 					$check_college_student       = PersonModel::where('nim', $value['nim'])->first();
@@ -181,7 +181,7 @@ class CollegeStudentController extends Controller
 					$not_found_year_of_education = [];
 					$not_found_majors            = [];
 					$imported_college_student    = [];
-					
+
 					if (empty($check_college_student)) {
 						$year_of_education = YearOfEducationModel::where('year_of_education_name', $value['angkatan'])->first();
 						$majors = MajorsModel::where('majors_name', $value['jurusan'])->first();
@@ -203,10 +203,9 @@ class CollegeStudentController extends Controller
 								'middle_name'           => isset($name[1]) ? $name[1] : NULL,
 								'surname'               => isset($name[2]) ? $name[2] : NULL,
 								'person_type_code'      => 4,
-								'academic_lecturer_nip' => $value['nip_pa'],
+								'academic_lecturer_nip' => $check_lecturer->nip,
 								'year_of_education_id'  => $year_of_education->id,
 								'majors_id'             => $majors->id,
-								'address'               => $value['alamat'],
 								'is_registered_user'    => 0,
 								'created_at'            => date('Y-m-d H:i:s')
 							);
@@ -218,7 +217,7 @@ class CollegeStudentController extends Controller
 						array_push($exists_mhs, $value['nim']);
 					}
 				} else {
-					return redirect('college_student')->withMessage('Dosen dengan NIP ' . $value['nip_pa'] . ' tidak tersedia !');
+					return redirect('college_student')->withMessage('Dosen' . $value['dosen_pa'] . ' tidak tersedia !');
 				}
 			}
 
