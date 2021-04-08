@@ -15,6 +15,7 @@ use App\Models\StudentThesisModel;
 use Ramsey\Uuid\Uuid;
 use Excel;
 use DB;
+use Auth;
 
 class CollegeStudentController extends Controller
 {
@@ -210,6 +211,10 @@ class CollegeStudentController extends Controller
 								'created_at'            => date('Y-m-d H:i:s')
 							);
 
+							$college_student[] = array(
+								'nim' => $value['nim']
+							);
+
 							array_push($imported_college_student, $value['nim']);
 						}
 					} else {
@@ -224,6 +229,23 @@ class CollegeStudentController extends Controller
 
 			if (!empty($insert_data)) {
 				DB::table('person')->insert($insert_data);
+				
+				$get_inserted = PersonModel::where('status', '!=', 0)->whereIn('nim', $college_student)->get();
+				foreach ($get_inserted as $key => $value) {
+					$save_to_user = new UserModel();
+					$save_to_user->id = Uuid::uuid4();
+					$save_to_user->status = 1;
+					$save_to_user->person_id = $value->id;
+					$save_to_user->username = $value->nim;
+					$save_to_user->password = bcrypt($value->nim);
+					$save_to_user->user_type_code = $value->person_type_code;
+					$save_to_user->save();
+		
+					$update_to_person = PersonModel::find($value->id);
+					$update_to_person->is_registered_user = 1;
+					$update_to_person->updater_id = Auth::user()->id;
+					$update_to_person->update();
+				}
 			}
 
 			return redirect('college_student')->with('success', 'Mahasiswa sukses ditambahkan !');
